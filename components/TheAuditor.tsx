@@ -65,7 +65,7 @@ export const TheAuditor: React.FC = () => {
             </h2>
             
             <p className="text-lg text-luminaq-muted mb-8 leading-relaxed max-w-2xl font-light">
-              A veteran Lead Data Scientist based in Abu Dhabi, with 15 years of technical leadership in enterprise IT and Data Architecture. Unlike generalist consultants, I have hands-on experience building and deploying production-grade AI systems. I audit code, not just slide decks.
+              A Group Lead Data Scientist based in Abu Dhabi, with 15 years of technical leadership in enterprise IT and Data Architecture. Unlike generalist consultants, I have hands-on experience building and deploying production-grade AI systems. I audit code, not just slide decks.
             </p>
 
             <div className="flex flex-col gap-5 mb-10">
