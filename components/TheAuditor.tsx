@@ -31,7 +31,7 @@ export const TheAuditor: React.FC = () => {
                  NOTE: Ensure the file "Satish Singh.png" is placed in your project's public/root folder or images folder.
               */}
               <img 
-                src="images/Satish_Singh.png" 
+                src="images/Satish_Singh_copy.png" 
                 alt="Satish Singh - Lead Data Scientist" 
                 className="w-full h-full object-cover grayscale hover:scale-105 transition-transform duration-700 ease-out object-top"
                 onError={(e) => {
