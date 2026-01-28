@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertTriangle, Plus, Minus } from 'lucide-react';
 
 interface FlagProps {
+  id: string;
   title: string;
   subtitle: string;
   description: string;
@@ -10,11 +11,14 @@ interface FlagProps {
   onClick: () => void;
 }
 
-const FlagItem: React.FC<FlagProps> = ({ title, subtitle, description, isOpen, onClick }) => {
+const FlagItem = ({ id, title, subtitle, description, isOpen, onClick }: FlagProps) => {
   return (
     <div className="border-b border-white/10">
-      <button 
+      <button
         onClick={onClick}
+        onKeyDown={(e) => e.key === 'Enter' && onClick()}
+        aria-expanded={isOpen}
+        aria-controls={`flag-content-${id}`}
         className="w-full flex items-center justify-between py-8 text-left group"
       >
         <div className="flex flex-col gap-2">
@@ -25,18 +29,24 @@ const FlagItem: React.FC<FlagProps> = ({ title, subtitle, description, isOpen, o
             {title}
           </h3>
         </div>
-        <div className={`transition-all duration-300 ${isOpen ? 'text-luminaq-accent rotate-180' : 'text-luminaq-muted group-hover:text-white'}`}>
+        <div
+          className={`transition-all duration-300 ${isOpen ? 'text-luminaq-accent' : 'text-luminaq-muted group-hover:text-white'}`}
+          aria-hidden="true"
+        >
           {isOpen ? <Minus size={18} /> : <Plus size={18} />}
         </div>
       </button>
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id={`flag-content-${id}`}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
             className="overflow-hidden"
+            role="region"
+            aria-labelledby={`flag-header-${id}`}
           >
             <p className="pb-8 text-luminaq-muted leading-relaxed max-w-3xl font-light">
               {description}
@@ -48,41 +58,45 @@ const FlagItem: React.FC<FlagProps> = ({ title, subtitle, description, isOpen, o
   );
 };
 
-export const RedFlags: React.FC = () => {
+const flags = [
+  {
+    id: 'wrapper',
+    subtitle: "The Wrapper Problem",
+    title: "Wrapper vs. Moat",
+    description: "90% of current 'AI Startups' are thin wrappers around OpenAI or Anthropic APIs. Once the major models update, their entire value proposition evaporates. We identify if there is any proprietary technology or defensible IP actually owned by the company."
+  },
+  {
+    id: 'data',
+    subtitle: "Data Hygiene",
+    title: "Dirty Data & Leakage",
+    description: "We often find training sets contaminated with test data (looking impressive but failing in production) or PII/Copyrighted material that creates massive liability. We audit the data lineage from ingestion to inference."
+  },
+  {
+    id: 'debt',
+    subtitle: "Technical Debt",
+    title: "The Demo-Ware Trap",
+    description: "The prototype works great for a 5-minute pitch. But the backend is a mess of hardcoded scripts, unscalable databases, and zero security. We check if the code is production-ready or needs a total rewrite."
+  },
+  {
+    id: 'cost',
+    subtitle: "Cost Structure",
+    title: "Upside-Down Unit Economics",
+    description: "Startups often subsidize inference costs to show growth. We calculate the true cost per query and project margins at scale. If they lose money on every API call, scaling leads to bankruptcy, not profitability."
+  }
+];
+
+export const RedFlags = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const flags = [
-    {
-      subtitle: "The Wrapper Problem",
-      title: "Wrapper vs. Moat",
-      description: "90% of current 'AI Startups' are thin wrappers around OpenAI or Anthropic APIs. Once the major models update, their entire value proposition evaporates. We identify if there is any proprietary technology or defensible IP actually owned by the company."
-    },
-    {
-      subtitle: "Data Hygiene",
-      title: "Dirty Data & Leakage",
-      description: "We often find training sets contaminated with test data (looking impressive but failing in production) or PII/Copyrighted material that creates massive liability. We audit the data lineage from ingestion to inference."
-    },
-    {
-      subtitle: "Technical Debt",
-      title: "The Demo-Ware Trap",
-      description: "The prototype works great for a 5-minute pitch. But the backend is a mess of hardcoded scripts, unscalable databases, and zero security. We check if the code is production-ready or needs a total rewrite."
-    },
-    {
-      subtitle: "Cost Structure",
-      title: "Upside-Down Unit Economics",
-      description: "Startups often subsidize inference costs to show growth. We calculate the true cost per query and project margins at scale. If they lose money on every API call, scaling leads to bankruptcy, not profitability."
-    }
-  ];
-
   return (
-    <section id="red-flags" className="py-24 bg-[#080808]">
+    <section id="red-flags" className="py-24 bg-luminaq-bg">
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row gap-16">
-          
+
           <div className="w-full md:w-1/3">
             <div className="sticky top-12">
               <div className="inline-flex items-center gap-2 text-luminaq-accent mb-6">
-                <AlertTriangle className="w-5 h-5" />
+                <AlertTriangle className="w-5 h-5" aria-hidden="true" />
                 <span className="text-xs uppercase tracking-widest">Risk Assessment</span>
               </div>
               <h2 className="font-serif text-4xl md:text-5xl text-white mb-6">
@@ -98,10 +112,10 @@ export const RedFlags: React.FC = () => {
           </div>
 
           <div className="w-full md:w-2/3">
-            <div className="border-t border-white/10">
+            <div className="border-t border-white/10" role="tablist" aria-label="Red flag categories">
               {flags.map((flag, index) => (
                 <FlagItem
-                  key={index}
+                  key={flag.id}
                   {...flag}
                   isOpen={openIndex === index}
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
