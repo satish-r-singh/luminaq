@@ -105,9 +105,14 @@ export const RedFlags = () => {
               <p className="text-luminaq-muted text-lg mb-8 font-light">
                 We've killed deals that looked perfect on paper. Here are the most frequent deal-breakers we uncover in the code.
               </p>
-              <button className="px-8 py-3 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-luminaq-accent hover:text-white transition-colors">
+              <a
+                href="/case-study.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-luminaq-accent hover:text-white transition-colors inline-block"
+              >
                 Download Case Study
-              </button>
+              </a>
             </div>
           </div>
 

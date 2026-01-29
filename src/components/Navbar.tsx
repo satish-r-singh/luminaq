@@ -129,12 +129,15 @@ const MobileNav = () => {
 
               {/* Footer Actions */}
               <div className="p-4 border-t border-white/10 space-y-4">
-                <button
+                <a
+                  href="https://calendly.com/satish-r-singh"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full flex items-center justify-center gap-2 border border-white/20 text-white font-medium rounded-lg py-3 hover:border-white hover:bg-white/5 transition-all text-sm uppercase tracking-wide"
                 >
                   <FileText size={16} />
                   Request Audit
-                </button>
+                </a>
                 <button
                   className="w-full flex items-center justify-center gap-2 text-luminaq-muted hover:text-white transition-colors py-2 text-sm"
                 >
@@ -227,14 +230,17 @@ const DesktopNav: React.FC<NavbarProps> = ({ isCollapsed, toggleSidebar }) => {
             </motion.p>
           )}
 
-          <button
+          <a
+            href="https://calendly.com/satish-r-singh"
+            target="_blank"
+            rel="noopener noreferrer"
             className={`w-full flex items-center justify-center border border-white/20 text-white font-medium rounded-lg hover:border-white hover:bg-white/5 transition-all overflow-hidden ${isCollapsed ? 'p-3 aspect-square' : 'py-3 px-4 text-xs uppercase tracking-wide'
               }`}
             title={isCollapsed ? "Request Audit" : undefined}
             aria-label="Request Audit"
           >
             {isCollapsed ? <FileText size={18} /> : <span className="whitespace-nowrap">Request Audit</span>}
-          </button>
+          </a>
         </div>
 
         <button

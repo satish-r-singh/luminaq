@@ -40,12 +40,15 @@ export const FreeResource = () => {
                         transition={{ delay: 0.3 }}
                         className="flex flex-col items-center gap-4"
                     >
-                        <button
+                        <a
+                            href="/ai-pitch-decoder.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="group flex items-center gap-3 bg-transparent border-2 border-white/30 hover:border-white hover:bg-white/5 text-white px-10 py-5 rounded-full font-medium transition-all duration-300 text-lg"
                         >
                             <Download className="w-5 h-5" aria-hidden="true" />
                             Download the Free Guide
-                        </button>
+                        </a>
 
                         <p className="text-luminaq-muted text-sm font-light">
                             PDF download. No email required.

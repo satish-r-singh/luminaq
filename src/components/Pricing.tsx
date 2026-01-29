@@ -40,12 +40,15 @@ export const Pricing = () => {
                         transition={{ delay: 0.3 }}
                         className="flex flex-col items-center gap-4"
                     >
-                        <button
+                        <a
+                            href="https://calendly.com/satish-r-singh"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="group flex items-center gap-3 bg-luminaq-accent hover:bg-luminaq-accentHover text-white px-10 py-5 rounded-full font-medium transition-all duration-300 text-lg"
                         >
                             Request a Custom Quote
                             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                        </button>
+                        </a>
 
                         <p className="text-luminaq-muted text-sm font-light">
                             You'll receive a detailed proposal within 48 hours. No obligation.
