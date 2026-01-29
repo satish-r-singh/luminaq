@@ -24,6 +24,10 @@ export const Pricing = () => {
                             Pricing depends on deal complexity, data room size, and technical depth required.
                         </p>
 
+                        <p className="text-sm text-luminaq-muted/70">
+                            For angel investors where the investment is large enough that being wrong hurts.
+                        </p>
+
                         <p className="text-white font-serif text-2xl md:text-3xl italic">
                             Most audits fall between $2,500 – $7,500 USD.
                         </p>

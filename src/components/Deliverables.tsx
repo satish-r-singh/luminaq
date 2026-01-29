@@ -5,39 +5,52 @@ const deliverables = [
     {
         icon: <FileText className="w-6 h-6" aria-hidden="true" />,
         title: "Pre-Audit Deep Dive",
-        desc: "We review the pitch deck, data room, and any technical documentation before we begin"
+        desc: "We review everything before we talk—so you're not paying for us to get up to speed"
     },
     {
         icon: <Search className="w-6 h-6" aria-hidden="true" />,
         title: "Full Technical Assessment",
-        desc: "Comprehensive review across all six risk vectors with evidence-based findings"
+        desc: "A comprehensive audit across all six risk vectors—the diligence large VCs do internally"
     },
     {
         icon: <ClipboardList className="w-6 h-6" aria-hidden="true" />,
         title: "Written Audit Report",
-        desc: "10-15 page document with risk scores, technical findings, and strategic recommendations"
+        desc: "A 10-15 page document you can share with co-investors without embarrassment"
     },
     {
         icon: <FileCheck className="w-6 h-6" aria-hidden="true" />,
         title: "Executive Summary",
-        desc: "One-page verdict your co-investors can read in two minutes"
+        desc: "A one-page verdict for people who don't have time to read 15 pages"
     },
     {
         icon: <Video className="w-6 h-6" aria-hidden="true" />,
         title: "60-Minute Debrief Call",
-        desc: "We walk you through every finding and answer your questions live"
+        desc: "We walk you through everything—no jargon, just straight answers to your questions"
     },
     {
         icon: <HelpCircle className="w-6 h-6" aria-hidden="true" />,
         title: "Founder Question List",
-        desc: "Specific questions to ask the startup based on what we uncovered"
+        desc: "The exact questions that make founders pause—so you don't have to guess what to ask"
     }
 ];
 
 export const Deliverables = () => {
     return (
-        <section id="deliverables" className="py-24 bg-luminaq-surface relative border-t border-white/5">
-            <div className="container mx-auto px-6 md:px-12">
+        <section id="deliverables" className="py-24 bg-luminaq-surface relative border-t border-white/5 overflow-hidden">
+            {/* Blurred background image */}
+            <div
+                className="absolute inset-0 opacity-25"
+                style={{
+                    backgroundImage: 'url(/audit-report-bg.png)',
+                    backgroundSize: '150%',
+                    backgroundPosition: 'center',
+                    filter: 'blur(2px)'
+                }}
+            />
+            {/* Dark overlay for readability */}
+            <div className="absolute inset-0 bg-luminaq-surface/60" />
+
+            <div className="container mx-auto px-6 md:px-12 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

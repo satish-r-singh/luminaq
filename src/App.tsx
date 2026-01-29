@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Hero } from './components/Hero';
 import { Opening } from './components/Opening';
+import { WhoWeHelp } from './components/WhoWeHelp';
 import { TrustGrid } from './components/TrustGrid';
 import { Deliverables } from './components/Deliverables';
 import { TheAuditor } from './components/TheAuditor';
@@ -8,6 +9,7 @@ import { Proof } from './components/Proof';
 import { RedFlags } from './components/RedFlags';
 import { Pricing } from './components/Pricing';
 import { FreeResource } from './components/FreeResource';
+import { TrustBadges } from './components/TrustBadges';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 
@@ -26,6 +28,7 @@ export default function App() {
       >
         <Hero />
         <Opening />
+        <WhoWeHelp />
         <TrustGrid />
         <Deliverables />
         <TheAuditor />
@@ -33,6 +36,7 @@ export default function App() {
         <RedFlags />
         <Pricing />
         <FreeResource />
+        <TrustBadges />
         <Footer />
       </main>
     </div>

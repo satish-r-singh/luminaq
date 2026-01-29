@@ -12,7 +12,8 @@ import {
   Menu,
   X,
   Package,
-  DollarSign
+  DollarSign,
+  Users
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -22,6 +23,7 @@ interface NavbarProps {
 
 const navItems = [
   { icon: <Home className="w-4 h-4" />, label: "Home", href: "#" },
+  { icon: <Users className="w-4 h-4" />, label: "Who We Help", href: "#who-we-help" },
   { icon: <LayoutDashboard className="w-4 h-4" />, label: "What We Audit", href: "#audit" },
   { icon: <Package className="w-4 h-4" />, label: "Deliverables", href: "#deliverables" },
   { icon: <UserCheck className="w-4 h-4" />, label: "The Auditor", href: "#auditor" },

@@ -169,7 +169,9 @@ export const Hero = () => {
           transition={{ delay: 0.3, duration: 1 }}
           className="text-lg md:text-xl text-white/80 max-w-3xl font-light mb-20 drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)]"
         >
-          Technical Due Diligence for AI Investors. We strip away the marketing hype and audit the engineering reality-so you invest in innovation, not vaporware.
+          Technical Due Diligence for Angel Investors Evaluating AI Startups. <br />
+          We strip away the marketing hype and audit the engineering reality.<br />
+          So you invest in <span className="font-serif text-white font-medium">INNOVATION</span>, not <span className="font-serif italic text-black font-medium line-through">VAPORWARE</span>.
         </motion.p>
 
         <motion.div

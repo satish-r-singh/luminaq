@@ -3,8 +3,9 @@ import { Quote } from 'lucide-react';
 
 const stats = [
     { value: "20+", label: "Technical Audits Completed" },
-    { value: "$2M+", label: "Capital Protected from Vaporware" },
-    { value: "9", label: "Deals Killed Before Investment" }
+    { value: "$2M+", label: "Capital Protected" },
+    { value: "9", label: "Deals Killed" },
+    { value: "11", label: "Deals Approved with Confidence" }
 ];
 
 export const Proof = () => {
@@ -33,7 +34,7 @@ export const Proof = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
+                    className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12"
                 >
                     {stats.map((stat, index) => (
                         <div
@@ -49,6 +50,17 @@ export const Proof = () => {
                         </div>
                     ))}
                 </motion.div>
+
+                {/* Tagline */}
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                    className="text-center text-white/70 text-lg md:text-xl font-light max-w-3xl mx-auto mb-20"
+                >
+                    We don't just help you avoid bad deals. We help you invest in good ones without second-guessing yourself.
+                </motion.p>
 
                 {/* Testimonial */}
                 <motion.div
