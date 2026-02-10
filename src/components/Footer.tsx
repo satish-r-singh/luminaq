@@ -95,10 +95,10 @@ export const Footer = () => {
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-luminaq-muted text-xs">
-            &copy; {new Date().getFullYear()} Luminaq Intelligence Ltd.
+            &copy; {new Date().getFullYear()} Luminaq
           </p>
           <p className="text-luminaq-muted text-xs uppercase tracking-widest">
-            Abu Dhabi • Dubai • London
+            Abu Dhabi • Dubai •
           </p>
         </div>
       </div>

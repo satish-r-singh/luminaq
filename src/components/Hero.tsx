@@ -85,7 +85,7 @@ export const Hero = () => {
       {/* Background Image - Enchanted Landscape with Parallax */}
       <motion.div className="absolute inset-0 z-0" style={{ y: backgroundY }}>
         <img
-          src="/hero-bg.png"
+          src="/hero-bg.webp"
           alt=""
           className="w-full h-[120%] object-cover"
         />
@@ -171,7 +171,7 @@ export const Hero = () => {
         >
           Technical Due Diligence for Angel Investors Evaluating AI Startups. <br />
           We strip away the marketing hype and audit the engineering reality.<br />
-          So you invest in <span className="font-serif text-white font-medium">INNOVATION</span>, not <span className="font-serif italic text-black font-medium line-through">VAPORWARE</span>.
+          So you invest in <span className="font-serif text-white font-medium">INNOVATION</span>, not <span className="font-serif italic font-bold text-black">VAPORWARE</span>.
         </motion.p>
 
         <motion.div

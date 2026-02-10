@@ -94,7 +94,7 @@ export const WhoWeHelp = () => {
                         {/* Right Image */}
                         <div className="relative h-64 md:h-auto min-h-[300px]">
                             <img
-                                src="/investor-clarity.png"
+                                src="/investor-clarity.webp"
                                 alt="Clarity through uncertainty"
                                 className="absolute inset-0 w-full h-full object-cover"
                             />

@@ -41,7 +41,7 @@ export const Deliverables = () => {
             <div
                 className="absolute inset-0 opacity-25"
                 style={{
-                    backgroundImage: 'url(/audit-report-bg.png)',
+                    backgroundImage: 'url(/audit-report-bg.webp)',
                     backgroundSize: '150%',
                     backgroundPosition: 'center',
                     filter: 'blur(2px)'

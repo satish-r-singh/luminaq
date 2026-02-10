@@ -32,7 +32,7 @@ export const TheAuditor = () => {
           >
             <motion.div
               style={{ y: imageY }}
-              className="relative aspect-[4/5] w-full max-w-md mx-auto bg-luminaq-elevated border border-luminaq-border overflow-hidden"
+              className="relative aspect-[4/5] w-full max-w-md mx-auto bg-luminaq-elevated border border-luminaq-border overflow-visible"
             >
               <img
                 src="/satishsingh.webp"
@@ -49,7 +49,7 @@ export const TheAuditor = () => {
               <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_80px_40px_#0a0a0a] z-10" aria-hidden="true" />
 
               {/* Experience Badge */}
-              <div className="absolute bottom-6 right-6 bg-[#C8C8C8] text-black px-6 py-5 z-20 shadow-2xl min-w-[140px]">
+              <div className="absolute -bottom-4 -right-4 bg-[#C8C8C8] text-black px-6 py-5 z-20 shadow-2xl min-w-[140px]">
                 <p className="font-serif text-3xl italic font-semibold text-black mb-1">15+</p>
                 <p className="text-[10px] font-bold uppercase tracking-widest text-black/90">Years Experience</p>
               </div>

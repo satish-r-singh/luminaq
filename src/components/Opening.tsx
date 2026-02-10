@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 const storyBlocks = [
-    "You're in the pitch meeting. The founder says \"fine-tuned LLM with proprietary embeddings.\" You nod. You smile. You have no idea if that's impressive or meaningless. The demo looks incredible. The team seems smart. The market opportunity sounds massive. But something feels off—and you can't explain why.",
+    "You're in the pitch meeting. The founder says \"fine-tuned LLM with proprietary embeddings.\" You nod. You smile. You have no idea if that's impressive or meaningless. The demo looks incredible. The team seems smart. The market opportunity sounds massive. But something feels off - and you can't explain why.",
     "You leave with a beautiful deck and a simple question you can't answer: Is this real innovation, or an expensive science project? Large VCs have CTOs on speed dial to answer that question. You have Google and a gut feeling.",
     "That's not due diligence. That's hope with a checkbook."
 ];
@@ -12,7 +12,7 @@ const WaveGridImage = () => (
     <div className="absolute bottom-0 left-0 right-0 h-72 overflow-hidden pointer-events-none z-20">
         {/* Wave grid image - full opacity */}
         <img
-            src="/wave-grid.png"
+            src="/wave-grid.webp"
             alt=""
             className="w-full h-full object-cover object-center"
         />
@@ -170,7 +170,7 @@ export const Opening = () => {
 
                         {/* Conclusion */}
                         <p className="text-xl md:text-2xl text-white font-medium leading-relaxed max-w-2xl mx-auto">
-                            We help you break that cycle—not by making you say <span className="text-white/50">"no"</span> to everything,
+                            We help you break that cycle - not by making you say <span className="text-white/50">"no"</span> to everything,
                             but by giving you the confidence to say <span className="text-luminaq-accent font-serif italic">"yes"</span> to the right ones.
                         </p>
                     </motion.div>
