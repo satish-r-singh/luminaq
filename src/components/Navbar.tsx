@@ -225,7 +225,7 @@ const DesktopNav: React.FC<NavbarProps> = ({ isCollapsed, toggleSidebar }) => {
             href="https://calendly.com/satish-r-singh"
             target="_blank"
             rel="noopener noreferrer"
-            className={`w-full flex items-center justify-center border border-white/20 text-white font-medium rounded-lg hover:border-white hover:bg-white/5 transition-all overflow-hidden ${isCollapsed ? 'p-3 aspect-square' : 'py-3 px-4 text-xs uppercase tracking-wide'
+            className={`w-full flex items-center justify-center bg-black/30 backdrop-blur-sm border border-white/30 hover:border-white hover:bg-white/10 text-white font-medium transition-all overflow-hidden ${isCollapsed ? 'p-3 aspect-square rounded-lg' : 'py-3 px-4 text-xs uppercase tracking-wide rounded-full'
               }`}
             title={isCollapsed ? "Request Audit" : undefined}
             aria-label="Request Audit"

@@ -81,7 +81,7 @@ export const Proof = () => {
                         </blockquote>
 
                         <cite className="text-luminaq-muted text-lg not-italic">
-                            — Angel Investor, UAE
+                            - Angel Investor, UAE
                         </cite>
                     </div>
                 </motion.div>
@@ -94,7 +94,7 @@ export const Proof = () => {
                     transition={{ delay: 0.6 }}
                     className="text-center text-luminaq-muted text-sm font-light max-w-2xl mx-auto"
                 >
-                    Corporate AI training delivered to teams at Emirates Institute of Finance, Vinsys, Mindworx, and The Knowledge Academy.
+                    Early stage Due Diligence delivered to a UAE-based VC from retail background.
                 </motion.p>
             </div>
         </section>

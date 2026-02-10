@@ -32,23 +32,26 @@ export const TheAuditor = () => {
           >
             <motion.div
               style={{ y: imageY }}
-              className="relative aspect-[4/5] w-full max-w-md mx-auto bg-luminaq-elevated border border-luminaq-border overflow-visible"
+              className="relative aspect-[4/5] w-full max-w-md mx-auto overflow-visible"
             >
-              <img
-                src="/satishsingh.webp"
-                alt="Satish Singh - Lead Data Scientist"
-                className="w-full h-full object-cover grayscale hover:scale-105 transition-transform duration-700 ease-out object-top"
-                loading="lazy"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
+              {/* Inner container with overflow-hidden for image zoom */}
+              <div className="relative w-full h-full bg-luminaq-elevated border border-luminaq-border overflow-hidden">
+                <img
+                  src="/satishsingh.webp"
+                  alt="Satish Singh - Lead Data Scientist"
+                  className="w-full h-full object-cover grayscale hover:scale-105 transition-transform duration-700 ease-out object-top"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
 
-              {/* Vignette for seamless blending */}
-              <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_30%,#0a0a0a_100%)] z-10" aria-hidden="true" />
-              <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_80px_40px_#0a0a0a] z-10" aria-hidden="true" />
+                {/* Vignette for seamless blending */}
+                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_30%,#0a0a0a_100%)] z-10" aria-hidden="true" />
+                <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_80px_40px_#0a0a0a] z-10" aria-hidden="true" />
+              </div>
 
-              {/* Experience Badge */}
+              {/* Experience Badge - Bleeding out from bottom right */}
               <div className="absolute -bottom-4 -right-4 bg-[#C8C8C8] text-black px-6 py-5 z-20 shadow-2xl min-w-[140px]">
                 <p className="font-serif text-3xl italic font-semibold text-black mb-1">15+</p>
                 <p className="text-[10px] font-bold uppercase tracking-widest text-black/90">Years Experience</p>

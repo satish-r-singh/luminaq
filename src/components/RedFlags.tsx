@@ -109,7 +109,7 @@ export const RedFlags = () => {
                 href="/case-study.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-luminaq-accent hover:text-white transition-colors inline-block"
+                className="px-8 py-3 bg-black/30 backdrop-blur-sm border border-white/30 hover:border-white hover:bg-white/10 text-white text-xs font-bold uppercase tracking-widest transition-all inline-block rounded-full"
               >
                 Download Case Study
               </a>

@@ -8,7 +8,7 @@ import { TheAuditor } from './components/TheAuditor';
 import { Proof } from './components/Proof';
 import { RedFlags } from './components/RedFlags';
 import { Pricing } from './components/Pricing';
-import { FreeResource } from './components/FreeResource';
+
 import { TrustBadges } from './components/TrustBadges';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
@@ -35,7 +35,7 @@ export default function App() {
         <Proof />
         <RedFlags />
         <Pricing />
-        <FreeResource />
+
         <TrustBadges />
         <Footer />
       </main>
