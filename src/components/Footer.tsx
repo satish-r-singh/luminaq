@@ -1,22 +1,11 @@
 import { Github, Linkedin, Twitter } from 'lucide-react';
 
 const Logo = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="text-white"
-    aria-hidden="true"
-  >
-    <path d="M12 12c0-3-2.5-5-4.5-5S3 9 3 12s2.5 5 4.5 5s4.5-2 4.5-5" className="opacity-80" />
-    <path d="M12 12c0-3 2.5-5 4.5-5s4.5 2 4.5 5s-2.5 5-4.5 5s-4.5-2-4.5-5" className="opacity-80" />
-    <circle cx="12" cy="12" r="1" fill="currentColor" className="text-luminaq-accent" />
-  </svg>
+  <img
+    src="/logo.webp"
+    alt="LuminaQ Logo"
+    className="w-6 h-6"
+  />
 );
 
 const socialLinks = [
