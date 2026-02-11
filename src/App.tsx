@@ -14,7 +14,7 @@ import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 
 export default function App() {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
 
   return (
     <div className="min-h-screen bg-luminaq-bg font-sans text-luminaq-text flex flex-col md:flex-row">

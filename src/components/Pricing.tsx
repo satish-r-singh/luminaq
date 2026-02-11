@@ -14,8 +14,8 @@ export const Pricing = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         whileHover={{ scale: 1.02 }}
                         viewport={{ once: true }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                        className="text-center flex flex-col h-full bg-luminaq-card border border-luminaq-accent/30 rounded-[2px] p-10 md:p-14 hover:border-luminaq-accent/60 shadow-[0_0_40px_-10px_rgba(161,131,93,0.15)] hover:shadow-[0_0_60px_-10px_rgba(161,131,93,0.25)] transition-all duration-300 cursor-default"
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                        className="text-center flex flex-col h-full bg-luminaq-card border border-luminaq-accent/30 rounded-[2px] p-10 md:p-14 hover:border-luminaq-accent/60 shadow-[0_0_40px_-10px_rgba(161,131,93,0.15)] hover:shadow-[0_0_60px_-10px_rgba(161,131,93,0.25)] transition-[border-color,box-shadow] duration-300 cursor-default"
                     >
                         <span className="text-luminaq-accent text-xs font-medium uppercase tracking-widest mb-6 block">
                             Investment
@@ -72,8 +72,8 @@ export const Pricing = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         whileHover={{ scale: 1.02 }}
                         viewport={{ once: true }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                        className="text-center flex flex-col h-full bg-luminaq-card border border-luminaq-border rounded-[2px] p-10 md:p-14 hover:border-white/20 transition-colors duration-300 cursor-default"
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                        className="text-center flex flex-col h-full bg-luminaq-card border border-luminaq-border rounded-[2px] p-10 md:p-14 hover:border-white/20 transition-[border-color,box-shadow] duration-300 cursor-default"
                     >
                         <span className="text-luminaq-accent text-xs font-medium uppercase tracking-widest mb-6 block">
                             Free Resource
