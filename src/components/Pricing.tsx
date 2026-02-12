@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Download } from 'lucide-react';
+import { QuoteRequestModal } from './QuoteRequestModal';
 
 export const Pricing = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <section id="pricing" className="py-24 bg-luminaq-surface relative border-t border-white/5">
             <div className="container mx-auto px-6 md:px-12">
@@ -50,15 +53,13 @@ export const Pricing = () => {
                             transition={{ delay: 0.3 }}
                             className="flex flex-col items-center gap-4"
                         >
-                            <a
-                                href="https://calendly.com/satish-r-singh"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                onClick={() => setIsModalOpen(true)}
                                 className="group flex items-center gap-3 bg-luminaq-accent hover:bg-luminaq-accentHover text-white px-10 py-5 rounded-full font-medium transition-all duration-300 text-lg"
                             >
                                 Request a Custom Quote
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                            </a>
+                            </button>
 
                             <p className="text-luminaq-muted text-sm font-light">
                                 You'll receive a detailed proposal within 48 hours. No obligation.
@@ -122,6 +123,12 @@ export const Pricing = () => {
 
                 </div>
             </div>
+
+            {/* Quote Request Modal */}
+            <QuoteRequestModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
         </section>
     );
 };
