@@ -182,11 +182,12 @@ export const QuoteRequestModal = ({ isOpen, onClose }: QuoteRequestModalProps) =
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    access_key: 'f8513014-6701-46de-9413-d8da170eb01e', // TODO: Replace with your actual key from web3forms.com
+                    access_key: 'f8513014-6701-46de-9413-d8da170eb01e',
                     subject: 'New Quote Request from Luminaq Website',
                     from_name: formData.name,
                     email: formData.email,
                     to: 'satish@luminaq.ae',
+                    botcheck: false, // Honeypot spam protection
                     message: `
 New Quote Request from Luminaq Website
 
@@ -494,6 +495,15 @@ Submitted at: ${new Date().toLocaleString('en-US', { timeZone: 'Asia/Dubai' })} 
                                         className="w-full px-4 py-3 bg-luminaq-elevated border border-luminaq-border rounded-[4px] text-luminaq-text placeholder-luminaq-muted focus:outline-none focus:border-luminaq-accent transition-colors resize-none"
                                     />
                                 </div>
+
+                                {/* Honeypot field for bot protection - hidden from users */}
+                                <input
+                                    type="checkbox"
+                                    name="botcheck"
+                                    style={{ display: 'none' }}
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                />
 
                                 {/* Submit Button */}
                                 <button

@@ -8,7 +8,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
-  FileText,
+  Send,
   Menu,
   X,
   Package,
@@ -126,7 +126,7 @@ const MobileNav = () => {
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center gap-2 border border-white/20 text-white font-medium rounded-lg py-3 hover:border-white hover:bg-white/5 transition-all text-sm uppercase tracking-wide"
                 >
-                  <FileText size={16} />
+                  <Send size={16} />
                   Request Audit
                 </a>
                 <button
@@ -230,7 +230,7 @@ const DesktopNav: React.FC<NavbarProps> = ({ isCollapsed, toggleSidebar }) => {
             title={isCollapsed ? "Request Audit" : undefined}
             aria-label="Request Audit"
           >
-            {isCollapsed ? <FileText size={18} /> : <span className="whitespace-nowrap">Request Audit</span>}
+            {isCollapsed ? <Send size={18} /> : <span className="whitespace-nowrap">Request Audit</span>}
           </a>
         </div>
 
