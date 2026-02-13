@@ -107,7 +107,7 @@ export const Opening = () => {
                             ))}
                             {/* Last line with scaling effect */}
                             <motion.p
-                                className="text-center text-lg md:text-xl leading-relaxed text-white font-medium"
+                                className="text-center text-lg md:text-xl leading-relaxed text-white font-medium max-w-[70%] mx-auto md:max-w-none"
                                 style={{
                                     scale: lastLineScale,
                                     opacity: lastLineOpacity
