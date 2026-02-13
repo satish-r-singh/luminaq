@@ -9,7 +9,7 @@ const storyBlocks = [
 
 // Wave grid image component with vignette
 const WaveGridImage = () => (
-    <div className="absolute bottom-0 left-0 right-0 h-72 overflow-hidden pointer-events-none z-20">
+    <div className="absolute bottom-0 left-0 right-0 h-48 md:h-72 overflow-hidden pointer-events-none z-20">
         {/* Wave grid image - full opacity */}
         <img
             src="/wave-grid.webp"
@@ -93,7 +93,7 @@ export const Opening = () => {
                         className="absolute left-0 right-0 px-6 z-10"
                         style={{ y: yOffset }}
                     >
-                        <div className="max-w-2xl mx-auto space-y-32">
+                        <div className="max-w-2xl mx-auto space-y-12 md:space-y-32">
                             {storyBlocks.slice(0, -1).map((text, index) => (
                                 <p
                                     key={index}
