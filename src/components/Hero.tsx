@@ -167,11 +167,10 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 1 }}
-          className="text-lg md:text-xl text-white/80 max-w-3xl font-light mb-20 drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)]"
+          className="text-xl md:text-2xl text-white/80 max-w-3xl font-light mb-20 drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)]"
         >
-          Technical Due Diligence for Angel Investors Evaluating AI Startups. <br />
-          We strip away the marketing hype and audit the engineering reality.<br />
-          So you invest in <span className="font-serif text-white font-medium">INNOVATION</span>, not <span className="font-serif italic font-bold text-black">VAPORWARE</span>.
+          We protect your capital from AI startups that aren't real.<br />
+          Technical due diligence for Angel Investors.
         </motion.p>
 
         <motion.div
