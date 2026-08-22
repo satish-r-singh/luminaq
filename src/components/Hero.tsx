@@ -1,6 +1,109 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import {
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from 'framer-motion';
 import { ArrowRight, FileText } from 'lucide-react';
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, type ReactNode } from 'react';
+
+// ---------------------------------------------------------------- hero exit
+// The hero stands down one element at a time rather than sliding away as a
+// block. Each layer owns its own window of the hero's scroll-away, so the
+// frame empties in sequence and the departure reads as authored.
+//
+// See docs/kage-design-philosophy.md §6. Two deliberate departures from the
+// reference:
+//
+// 1. It dissolves its largest element with a blur. This project's performance
+//    rules restrict scroll-driven animation to transform and opacity, so that
+//    becomes a slight scale recede — same "letting go" read, stays on the
+//    compositor.
+// 2. Its hero pins the furniture to the foot of the frame, so that furniture
+//    can fade long before it scrolls off. Ours is centred: all four blocks sit
+//    together and the headline clears the top edge first. Windows are
+//    therefore ordered by when each block actually leaves the frame, so every
+//    fade is seen rather than completing off-screen. It also leaves the call
+//    to action standing last, which is the right order for this page.
+//
+// `clears` records the scrollYProgress at which each block passes the top of
+// the viewport, measured at 1440x900 (the tightest case — every block stays in
+// frame longer on narrow screens). Each window must finish before its `clears`.
+
+const smoothstep = (edge0: number, edge1: number, x: number) => {
+  const t = Math.min(Math.max((x - edge0) / (edge1 - edge0), 0), 1);
+  return t * t * (3 - 2 * t);
+};
+
+type ExitSpec = {
+  from: number;    // scrollYProgress at which this layer starts to go
+  to: number;      // ...and at which it has gone
+  shift?: number;  // px it drifts down on the way out
+  recede?: number; // fraction it scales away by
+};
+
+// Ordered by when each layer releases, not by DOM position.
+const HERO_EXIT = {
+  //                                                        clears frame at
+  ambience:    { from: 0.0,  to: 0.22 },                 // full-bleed
+  headline:    { from: 0.02, to: 0.36, shift: 10, recede: 0.02 }, // 0.42
+  standfirst:  { from: 0.14, to: 0.52, shift: 15 },      // 0.58
+  reassurance: { from: 0.22, to: 0.62, shift: 15 },      // 0.77
+  actions:     { from: 0.28, to: 0.68, shift: 15 },      // 0.73
+} satisfies Record<string, ExitSpec>;
+
+const ExitLayer = ({
+  progress,
+  spec,
+  className,
+  children,
+}: {
+  progress: MotionValue<number>;
+  spec: ExitSpec;
+  className?: string;
+  children: ReactNode;
+}) => {
+  const reduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Tabbing to a link inside a faded layer scrolls it only just inside the
+  // viewport edge — which is still deep enough into the exit for it to be
+  // invisible. Measured: focus landed on the hero CTA at opacity 0.003. So a
+  // layer holding focus overrides its scroll position and shows itself.
+  const focusBoost = useMotionValue(0);
+  const scrolledAway = useTransform(progress, (p) => 1 - smoothstep(spec.from, spec.to, p));
+  const opacity = useTransform([scrolledAway, focusBoost], ([away, focus]: number[]) =>
+    Math.max(away, focus)
+  );
+
+  const y = useTransform(opacity, (a) => (1 - a) * (spec.shift ?? 0));
+  const scale = useTransform(opacity, (a) => 1 - (1 - a) * (spec.recede ?? 0));
+
+  // A faded layer sits in the viewport for part of its window, so stop it
+  // catching clicks meant for what is behind it.
+  useMotionValueEvent(opacity, 'change', (a) => {
+    const el = ref.current;
+    if (el) el.style.pointerEvents = a < 0.05 ? 'none' : '';
+  });
+
+  // Reduced motion keeps the whole hero readable — only the choreography goes.
+  if (reduceMotion) return <div className={className}>{children}</div>;
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      style={{ opacity, y, scale }}
+      onFocus={() => focusBoost.set(1)}
+      onBlur={() => focusBoost.set(0)}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 // Code symbols that float upward
 const CODE_SYMBOLS = ['<>', '{}', '//', '01', '&&', '||', '==', '=>', '[]', '()', '/*', '*/', ';;'];
@@ -91,12 +194,16 @@ export const Hero = () => {
         />
       </motion.div>
 
-      {/* Floating Code Symbols Layer */}
-      <div className="absolute inset-0 z-5 pointer-events-none overflow-hidden">
+      {/* Floating Code Symbols Layer — decoration, so it dissolves first */}
+      <ExitLayer
+        progress={scrollYProgress}
+        spec={HERO_EXIT.ambience}
+        className="absolute inset-0 z-5 pointer-events-none overflow-hidden"
+      >
         {floatingSymbols.map((symbolData) => (
           <FloatingSymbol key={symbolData.id} {...symbolData} />
         ))}
-      </div>
+      </ExitLayer>
 
       {/* Vignette Effect - Rectangular Edge Style like micro1 */}
       <div className="absolute inset-0 z-10 pointer-events-none">
@@ -153,25 +260,31 @@ export const Hero = () => {
       {/* Main Content */}
       <div className="relative z-20 flex-1 flex flex-col items-center justify-center text-center max-w-5xl mx-auto px-6 pt-24 pb-16">
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-20 tracking-tight drop-shadow-[0_4px_40px_rgba(0,0,0,0.8)]"
-        >
-          The Pitch Deck Says <span className="italic">Unicorn.</span><br />
-          The Code Says <span className="text-black italic">Weekend Project.</span>
-        </motion.h1>
+        {/* Largest flat block, and the first to clear the frame: it recedes
+            rather than dims, which reads as release instead of a brightness cut */}
+        <ExitLayer progress={scrollYProgress} spec={HERO_EXIT.headline} className="mb-20">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-[1.1] tracking-tight drop-shadow-[0_4px_40px_rgba(0,0,0,0.8)]"
+          >
+            The Pitch Deck Says <span className="italic">Unicorn.</span><br />
+            The Code Says <span className="text-black italic">Weekend Project.</span>
+          </motion.h1>
+        </ExitLayer>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 1 }}
-          className="text-xl md:text-2xl text-white/80 max-w-3xl font-light mb-20 drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)]"
-        >
-          We protect your capital from AI startups that aren't real.<br />
-          Technical due diligence for Angel Investors.
-        </motion.p>
+        <ExitLayer progress={scrollYProgress} spec={HERO_EXIT.standfirst} className="mb-20">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            className="text-xl md:text-2xl text-white/80 max-w-3xl font-light drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)]"
+          >
+            We protect your capital from AI startups that aren't real.<br />
+            Technical due diligence for Angel Investors.
+          </motion.p>
+        </ExitLayer>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -179,8 +292,12 @@ export const Hero = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="flex flex-col items-center gap-3"
         >
-          {/* Buttons Row - Aligned */}
-          <div className="flex flex-col sm:flex-row items-center gap-4">
+          {/* Buttons Row - Aligned. Last to release: it is the page's purpose. */}
+          <ExitLayer
+            progress={scrollYProgress}
+            spec={HERO_EXIT.actions}
+            className="flex flex-col sm:flex-row items-center gap-4"
+          >
             <a
               href="https://calendly.com/satish-r-singh"
               target="_blank"
@@ -200,12 +317,14 @@ export const Hero = () => {
               <FileText className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" aria-hidden="true" />
               View Sample Report
             </a>
-          </div>
+          </ExitLayer>
 
-          {/* Subtext - Below both buttons */}
-          <span className="text-white/60 text-sm font-light drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
-            15 minutes. No obligation.
-          </span>
+          {/* Subtext - Below both buttons. Releases just ahead of them. */}
+          <ExitLayer progress={scrollYProgress} spec={HERO_EXIT.reassurance}>
+            <span className="text-white/60 text-sm font-light drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+              15 minutes. No obligation.
+            </span>
+          </ExitLayer>
         </motion.div>
 
       </div>
