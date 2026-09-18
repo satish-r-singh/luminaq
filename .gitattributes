@@ -1,0 +1,8 @@
+# Normalise line endings so a Windows checkout never shows the whole repo as modified.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary
+*.pdf binary
+*.ttf binary
+*.webp binary

@@ -1,174 +1,52 @@
 ---
 name: performance
-description: Enforces performance best practices for LuminaQ's Vite + React + Framer Motion stack. Use it when adding images, animations, new components, or making changes that could affect load time, bundle size, or runtime performance.
+description: Performance rules for the Luminaq site. Use when adding an image, a script, a font or an animation, or when anything might affect load time or frame rate.
 ---
 
-# LuminaQ Performance Guidelines
+# Performance
 
-## Overview
+The site is deliberately small. Keep it that way.
 
-LuminaQ is a visually rich landing page with parallax effects, scroll-triggered animations, and high-resolution hero imagery. This combination can get heavy fast. These guidelines keep the site feeling premium without sacrificing speed.
+Current production build, gzipped: HTML about 15KB, CSS about 8KB, JS about 10KB. Images
+dominate everything else. If a change pushes the JS past roughly 20KB gzipped, something
+has been added that does not belong.
 
-**Keywords**: performance, optimization, bundle size, lazy loading, images, animations, Core Web Vitals, LCP, CLS, INP, Framer Motion, Vite
+## No dependencies
 
-## Image Optimization
+There are no runtime dependencies. Not React, not a framework, not an animation library,
+not an icon package. The previous build shipped React 19, Framer Motion and Lucide for a
+page that is one screen of markup repeated nine times. If a task seems to need a library,
+it almost certainly does not. Icons are inline SVG.
 
-### Format & Sizing
+## Images
 
-- **All images must be `.webp`** — no `.png` or `.jpg` in production. Convert before adding to `/public`.
-- Hero/background images: max 1920px wide, aim for under 200KB
-- Card/section images: max 800px wide, aim for under 80KB
-- Thumbnails/icons: max 400px wide, aim for under 30KB
+- Everything in `public/` is copied to the build untouched and served from the root.
+- WebP or optimised JPEG. Never a PNG for a photograph.
+- The two hero plates are about 290KB each. That is the floor for what they do, and they
+  cannot be recompressed independently of each other without breaking alignment.
+- `plate-surface.jpg` is preloaded with `fetchpriority="high"` because it is the first
+  thing anyone sees. Nothing else should be preloaded.
+- Never base64 an image into the HTML or CSS. `assetsInlineLimit` is set to 0 for exactly
+  this reason. An inlined image cannot be cached and inflates every page load.
 
-### Loading Strategy
+## The canvas hero
 
-| Position | Loading | Reason |
-|----------|---------|--------|
-| Hero image, logo, above-fold content | `loading="eager"` (default) | Must render immediately for LCP |
-| Everything below the fold | `loading="lazy"` | Defer until needed |
+`hero.js` composites cached offscreen layers rather than redrawing the photograph each
+frame. The rules that keep it at 60fps:
 
-### Layout Shift Prevention
+- The surface, revealed and findings layers are built once per resize, never per frame.
+- The ambient light renders into a half resolution buffer, regenerated about 22 times a
+  second, then blended once per frame. Its slowest cycle is a minute, so nothing is lost.
+- Any full canvas operation added to the per frame path is expensive. Measure before and
+  after: the target is under 1ms added per frame with the GPU disabled.
+- `devicePixelRatio` is capped at 1.6. Do not raise it.
 
-- Always set explicit `width` and `height` on `<img>` tags
-- Use `aspect-ratio` in CSS if dimensions are responsive
-- Reserve space for images with placeholder containers matching the final dimensions
+## Fonts
 
-## Animation Performance
+Four families from Google Fonts with `display=swap` and both preconnects. Do not add a
+fifth. Do not add a weight that is not used.
 
-### Safe Properties
+## Scroll handlers
 
-Only animate these — they run on the compositor thread and don't trigger layout or paint:
-
-- `transform` (translate, scale, rotate)
-- `opacity`
-
-### Forbidden in Animation
-
-Never animate these properties — they force layout recalculation:
-
-- `width`, `height`, `max-width`, `max-height`
-- `top`, `left`, `right`, `bottom`
-- `margin`, `padding`
-- `border-width`, `border-radius`
-- `font-size`
-
-### Framer Motion Rules
-
-```tsx
-// GOOD — transform + opacity only
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8 }}
-/>
-
-// BAD — animating height triggers layout
-<motion.div
-  initial={{ height: 0 }}
-  animate={{ height: "auto" }}
-/>
-```
-
-**Additional rules:**
-- Always use `viewport={{ once: true }}` on scroll-triggered animations — replaying wastes GPU cycles
-- Limit simultaneously animating elements to 8-10 per viewport. Stagger with delays, don't fire all at once.
-- Use `will-change: transform` (via Tailwind `will-change-transform`) on elements with heavy parallax only — not globally
-- Never use `layout` prop on Framer Motion components unless explicitly needed for shared layout transitions — it forces expensive layout measurements
-
-### Infinite Animations
-
-The Hero floating code symbols are the only acceptable infinite animation. Rules for these:
-
-- Use `transform` and `opacity` exclusively
-- Keep total count under 15 elements
-- Use large `duration` values (15-25s) so the GPU isn't constantly recalculating
-- Set `pointer-events: none` so they don't interfere with interaction
-
-## Bundle Size
-
-### Current Stack
-
-| Package | Purpose | Watch for |
-|---------|---------|-----------|
-| `react` + `react-dom` | Core framework | Avoid importing from `react/server` on client |
-| `framer-motion` | Animation | Import specific features, not the entire library |
-| `lucide-react` | Icons | Tree-shakes well, but import individual icons: `import { Shield } from 'lucide-react'` |
-
-### Import Discipline
-
-```tsx
-// GOOD — specific import, tree-shakeable
-import { motion, useInView } from 'framer-motion';
-import { Shield, FileText } from 'lucide-react';
-
-// BAD — barrel imports pull everything
-import * as Icons from 'lucide-react';
-import * as Motion from 'framer-motion';
-```
-
-### Adding New Dependencies
-
-Before adding a new package:
-1. Check if the functionality exists in the current stack
-2. Check the bundle size on bundlephobia.com
-3. Prefer packages under 10KB gzipped for utility libraries
-4. Never add a library for something achievable with 20 lines of code
-
-## Font Loading
-
-Current: Three Google Fonts loaded via `<link>` in `index.html`.
-
-**Rules:**
-- Ensure the Google Fonts URL includes `&display=swap` to prevent FOIT (Flash of Invisible Text)
-- Only load weights actually used:
-  - Inter: 300, 400, 500, 600, 700
-  - Playfair Display: 400, 700
-  - JetBrains Mono: 400
-- `preconnect` to `fonts.googleapis.com` and `fonts.gstatic.com` is already in place — don't remove
-
-## Vite Build
-
-### Production Defaults
-
-Vite handles these automatically:
-- Tree shaking, dead code elimination
-- CSS minification
-- JS minification (esbuild)
-- Asset hashing for cache busting
-
-### What to Verify After Changes
-
-Run `npm run build` and check:
-- `dist/assets/` for unexpectedly large chunks (anything over 200KB gzipped warrants investigation)
-- No duplicate vendor chunks (React appearing twice, etc.)
-
-## Core Web Vitals Targets
-
-| Metric | Target | Main Risk in This Project |
-|--------|--------|--------------------------|
-| **LCP** | < 2.5s | Large hero background image loading slowly |
-| **CLS** | < 0.1 | Images without dimensions, fonts swapping late |
-| **INP** | < 200ms | Heavy Framer Motion animations blocking main thread |
-
-### LCP Optimization
-
-The hero section drives LCP. Protect it:
-- Hero background image must not be lazy-loaded
-- Preload the hero image if LCP is slow: `<link rel="preload" as="image" href="/hero-bg.webp" />`
-- Minimize JavaScript that blocks above-fold rendering
-
-### CLS Prevention Checklist
-
-- All `<img>` tags have `width` + `height` or CSS `aspect-ratio`
-- Fonts use `font-display: swap`
-- No content injected dynamically above existing content after load
-- Modal overlays (`QuoteRequestModal`) use fixed positioning — they don't shift page content
-
-## Third-Party Scripts
-
-Currently the site references Calendly for discovery calls.
-
-**Rules:**
-- Load third-party scripts with `async` or `defer`
-- Never load third-party scripts in `<head>` without `async`
-- If Calendly adds an embed widget, lazy-load it — don't initialize until the user scrolls to the pricing section or clicks a CTA
+Every scroll listener is `{passive:true}` and anything that paints is throttled through
+`requestAnimationFrame`. Never write directly to the DOM inside a scroll handler.

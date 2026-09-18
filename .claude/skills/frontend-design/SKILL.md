@@ -1,179 +1,77 @@
 ---
 name: frontend-design
-description: Enforces LuminaQ's dark luxury aesthetic when building or modifying UI components. Use it when creating new pages, sections, components, or modifying existing frontend elements to ensure visual consistency.
+description: How the Luminaq page is built and how to add to it without breaking the look. Use when creating or modifying any section, component or piece of layout.
 ---
 
-# LuminaQ Frontend Design System
+# Building on this page
 
-## Overview
+Plain HTML and CSS. No Tailwind, no components, no utility classes. One stylesheet in
+cascade order. If a rule seems to be fighting another one, check the order before adding
+specificity.
 
-LuminaQ follows a **dark luxury editorial** aesthetic — the visual language of a high-end financial publication that moonlights as a hacker's terminal. Think: a Michelin-starred restaurant menu designed by someone who reads source code for fun.
+## The idea to protect
 
-**Keywords**: frontend, UI, components, design system, layout, styling, dark mode, luxury, editorial, sections, responsive
+The page is an instrument, not a brochure. Everything on it either measures something or
+gets out of the way. That is why the palette is monochrome, the labels are numbered, the
+left rail is a scale rather than a menu, and the hero is a lens you drag over a
+photograph to find out what is actually there. Any addition should feel like another
+reading on the same instrument.
 
-## Design Philosophy
+## Structure
 
-### Tone: Dark Luxury Editorial
+Every section is `<section id="..." class="sec" data-rail="n">` wrapping a `.wrap`.
+Inside, in order: a `.lbl` with its number and name, an `<h2 class="h2 rv">`, then the
+content. Copy an existing section rather than inventing a new shape.
 
-Every pixel communicates authority and exclusivity. The design earns trust through restraint — not by shouting, but by whispering in a room where everyone else is shouting.
+`.wrap` is `max-width:1440px` with `padding: 0 clamp(20px,5vw,88px)`. Never set a page
+gutter anywhere else.
 
-**Core Principles:**
+Vertical rhythm comes from `.sec { padding: clamp(92px,13vw,200px) 0 }`. Do not override
+it per section. Sections that need a different ground get
+`background:var(--ink2)` with a hairline top and bottom border.
 
-1. **Silence is expensive.** White space (dark space, in our case) is the most premium element. Let content breathe. Cramped layouts signal desperation; generous spacing signals confidence.
+## Adding a section
 
-2. **Gold is earned, not given.** The accent color (`#a1835d`) appears sparingly — only on primary CTAs, key highlights, and moments that deserve the viewer's attention. If everything glows gold, nothing does.
+1. Copy an existing `<section>` whole.
+2. Give it an `id` and the next `data-rail` index. Renumber every section after it.
+3. Add a matching `<a class="tk">` to `<nav id="rail">` in the same position in the list.
+4. Update the `.lbl` numbers so they stay sequential.
+5. Add it to the top nav `.links` and the footer columns only if it deserves to be linked.
 
-3. **Serif for soul, sans for structure.** Playfair Display headlines carry emotional weight and gravitas. Inter body text delivers clarity. Never mix these roles.
+## Reveals
 
-4. **Sharp corners, soft motion.** Cards use `rounded-[2px]` — nearly razor-sharp. But animations are buttery smooth with long easing curves. The contrast between hard geometry and fluid motion creates tension that feels alive.
+Anything that should animate in on scroll gets one of three classes:
 
-5. **Depth through darkness.** There are no bright backgrounds. Hierarchy is built through subtle shifts in near-black tones: `#080808` → `#0a0a0a` → `#121212` → `#1a1a1a`. The eye learns to read these differences like contour lines on a map.
+- `.rv` wipes in from the left, for headings
+- `.rvu` rises, for the stacked lines of a big headline, one per line
+- `.rvf` fades, for body copy and figures
 
-## Component Patterns
+`site.js` wraps each one in a `.rvhost` at runtime and observes the wrapper, because a
+`clip-path` on the element itself zeroes its own intersection rect and it would never
+fire. Do not remove the wrapper logic. There is a 2.6 second safety timeout and a
+`beforeprint` handler so content can never stay hidden.
 
-### Section Template
+## Motion
 
-Every full section follows this skeleton:
+Sparingly, and always from a visible resting state. Transitions run 0.3 to 0.6 seconds on
+the shared easing variable. Hover states change a hairline or a colour, not a size or a
+shadow. The only continuous motion on the page is the drifting dust in the hero, which is
+deliberate and tuned; do not add more.
 
-```tsx
-<section className="relative py-24 px-6 md:px-12 bg-luminaq-bg">
-  <div className="max-w-5xl mx-auto">
-    {/* Optional: uppercase label */}
-    <p className="text-luminaq-accent tracking-widest text-sm font-light mb-6">
-      SECTION LABEL
-    </p>
+Everything respects `prefers-reduced-motion`. Under it the ambient light stops, the idle
+lens stops, and every reveal resolves immediately.
 
-    {/* Headline: always serif */}
-    <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-luminaq-text mb-8">
-      Headline Goes Here
-    </h2>
+## Responsive
 
-    {/* Supporting text: always sans, always muted or translucent white */}
-    <p className="text-lg md:text-xl text-white/60 font-light max-w-3xl mb-12">
-      Supporting copy that doesn't compete with the headline.
-    </p>
+Mobile stacks. The rail hides below 1180px. The top nav links hide below 1040px. Grids
+use `minmax(0,1fr)` rather than `1fr`, because `1fr` respects min-content and lets a long
+word push the page sideways. Check 390px after any layout change.
 
-    {/* Content area */}
-  </div>
-</section>
-```
+## Things that have broken before
 
-### Cards
-
-Cards are containers of quiet authority. No rounded corners. No drop shadows by default — shadow appears on hover as a warm gold glow, rewarding interaction.
-
-```tsx
-<div className="bg-luminaq-card border border-luminaq-border rounded-[2px] p-10 md:p-14
-  hover:border-luminaq-accent/60 hover:shadow-[0_0_60px_-10px_rgba(161,131,93,0.25)]
-  transition-all duration-300">
-  {/* Card content */}
-</div>
-```
-
-**Rules:**
-- Never use `rounded-lg` or `rounded-xl` on cards. Only `rounded-[2px]`.
-- Card backgrounds are always `bg-luminaq-card` (`#121212`), never white or light.
-- Borders start subtle (`border-luminaq-border`) and warm up on hover toward accent.
-
-### Buttons
-
-Three tiers, used intentionally:
-
-| Tier | When to use | Visual weight |
-|------|------------|---------------|
-| **Primary (Gold)** | One per viewport. The single action you want most. | Highest — solid gold fill with glow shadow |
-| **Secondary (Glass)** | Supporting action next to a primary CTA. | Medium — frosted glass with border |
-| **Tertiary (Outline)** | Lower-priority or repeated actions in lists. | Lowest — border only, no fill |
-
-All buttons are `rounded-full` — the only element that gets fully rounded corners. This contrast against sharp-cornered cards creates visual hierarchy.
-
-### Glassmorphism
-
-Used for overlays, secondary buttons, and floating navigation elements:
-
-```
-bg-black/30 backdrop-blur-sm border border-white/10
-```
-
-**Rules:**
-- Never exceed `bg-black/50` — glass should feel like tinted air, not a wall.
-- Always pair with a border (`white/10` to `white/30`) so edges are legible.
-- Reserve `backdrop-blur-md` or higher for modals only.
-
-## Animation Language
-
-### Philosophy
-
-Motion in LuminaQ is **deliberate and unhurried**. Elements don't bounce or spring — they glide into place like something expensive being unveiled.
-
-### Entrance Pattern
-
-```tsx
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
->
-```
-
-**Rules:**
-- `y: 20` for standard elements. `y: 30` for hero-level content. Never exceed `y: 40`.
-- Always use `viewport={{ once: true }}` — replaying animations on scroll feels cheap.
-- The signature easing `[0.22, 1, 0.36, 1]` is non-negotiable. It creates the slow-start, smooth-land feel that defines the brand.
-- Stagger grouped items with `delay` increments of `0.1–0.2s`. Never let all items appear simultaneously.
-
-### Hover Interactions
-
-- Cards and interactive blocks: `whileHover={{ scale: 1.02 }}` — subtle, almost imperceptible.
-- Icons inside buttons: `group-hover:translate-x-1` — a small nudge, not a leap.
-- Never use `scale` above `1.05`. Never use `rotate` on hover for UI elements.
-
-### What NOT to Animate
-
-- Text content (no typewriter effects, no letter-by-letter reveals)
-- Borders or border-radius changes
-- Color transitions longer than `300ms`
-- Anything that loops infinitely (except hero background ambient effects)
-
-## Responsive Strategy
-
-### Breakpoint Behavior
-
-| Breakpoint | Layout shift |
-|-----------|-------------|
-| Default (mobile) | Single column, `px-6`, stacked elements |
-| `md:` (768px) | `px-12`, side-by-side where natural |
-| `lg:` (1024px) | Full grid layouts (`grid-cols-2`), max headline sizes |
-
-### Mobile-Specific Rules
-
-- Navigation collapses to hamburger menu with slide-in panel (`x: '100%'` → `x: 0`)
-- Hero text scales down but never below `text-3xl`
-- Cards maintain full padding (`p-10`) — do not compress on mobile. Scroll is acceptable; cramped is not.
-- Horizontal scrolling is forbidden. If content doesn't fit, stack it.
-
-## Z-Index Scale
-
-| Layer | z-index | Usage |
-|-------|---------|-------|
-| Background images | `z-0` | Hero backgrounds, decorative elements |
-| Floating decorations | `z-5` | Animated code symbols, particles |
-| Overlays/vignettes | `z-10` | Gradient overlays, image fades |
-| Main content | `z-20` | All readable content and interactive elements |
-| Mobile backdrop | `z-40` | Dark overlay behind mobile nav |
-| Navigation/modals | `z-50` | Fixed navbar, modal dialogs |
-
-Never introduce z-index values outside this scale without updating it.
-
-## Anti-Patterns
-
-Things that break the LuminaQ aesthetic — avoid these unconditionally:
-
-- **Light backgrounds.** No white sections. No `bg-gray-100`. Not even `bg-luminaq-text`. The page is dark, always.
-- **Colorful gradients.** No rainbow effects, no vibrant gradient meshes. The only gradients are black-to-transparent vignettes and subtle gold glows.
-- **Rounded cards.** `rounded-lg` on a card instantly kills the luxury feel. Cards are `rounded-[2px]`.
-- **Emoji in UI.** Never in headings, labels, or buttons. The tone is too refined.
-- **Underlined links.** Use color shift (`text-luminaq-accent hover:text-luminaq-accentHover`) instead.
-- **Generic stock imagery.** If an image doesn't feel like it belongs in a Bloomberg terminal or a private equity pitch book, it doesn't belong here.
-- **Busy layouts.** If a section has more than 3 visual elements competing for attention, simplify. Remove until it feels like enough, then remove one more.
+- `.vd` was used for both a verdict pill and a vector description, so body copy rendered
+  as uppercase mono. Check a class is not already taken.
+- `<button>` centres its text by default. Every button here sets `text-align:left`.
+- A `&nbsp;` inside a `.rvu` line made it unbreakable and `overflow:hidden` clipped it.
+- The tier action blocks use `margin-top:auto` so the three buttons align. Do not replace
+  that with a fixed margin.

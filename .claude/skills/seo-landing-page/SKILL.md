@@ -1,171 +1,64 @@
 ---
 name: seo-landing-page
-description: Enforces SEO best practices for LuminaQ's Vite + React single-page landing site. Use it when modifying index.html, adding new sections, working with images, or making changes that affect search engine visibility and social sharing.
+description: Search and link-preview rules for luminaq.ae. Use when touching index.html's head, adding a section, changing headings or images, or anything affecting how the page is found or shared.
 ---
 
-# LuminaQ SEO & Discoverability
+# Search and sharing
 
-## Overview
+One page, one URL: `https://www.luminaq.ae/`. No routes, no second page. Everything
+depends on that one document being complete and readable without JavaScript running.
 
-LuminaQ is a single-page React app built with Vite. Since it's client-rendered, SEO requires deliberate effort in meta tags, structured data, semantic HTML, and asset optimization.
+## Why the copy is in the HTML
 
-**Keywords**: SEO, meta tags, Open Graph, structured data, schema.org, sitemap, robots.txt, headings, alt text, performance, social sharing
+The text lives in `index.html`, not in a JSON file or a JS template, on purpose. Crawlers
+read the served HTML. The previous React build put every word behind a client render,
+which is a handicap this site does not need to carry. **Do not move copy into JavaScript.**
 
-## Current Setup
+## The head
 
-- **Entry:** `index.html` → Vite bundles `src/index.tsx`
-- **Title:** "Luminaq | AI Technical Due Diligence" (55 chars — good)
-- **Description:** "Technical Due Diligence for UAE Investors. We audit AI startup codebases, architecture, and data pipelines to expose technical risks before you invest." (154 chars — optimal)
-- **Fonts:** Google Fonts with preconnect (Inter, Playfair Display, JetBrains Mono)
-- **Images:** All `.webp` format in `/public`
+Keep all of these correct and in agreement with each other:
 
-## Meta Tags Checklist
+- `<title>` under about 60 characters, leading with Luminaq.
+- `<meta name="description">` around 145 characters, first person, naming the service.
+- `<link rel="canonical">` pointing at `https://www.luminaq.ae/` with the www and https.
+- Open Graph: `og:type`, `og:site_name`, `og:url`, `og:title`, `og:description`,
+  `og:locale` (`en_AE`), and `og:image` with explicit `og:image:width` 1200,
+  `og:image:height` 630 and an `og:image:alt`.
+- `twitter:card` set to `summary_large_image`, plus title, description and image.
+- The JSON-LD `ProfessionalService` block. Keep it factual. Never add a review count,
+  rating or client number that is not real.
 
-When modifying `index.html`, ensure these are present in `<head>`:
+Absolute URLs in every OG and canonical tag. A relative `og:image` silently fails in
+every client that matters.
 
-```html
-<!-- Already present -->
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Luminaq | AI Technical Due Diligence</title>
-<meta name="description" content="..." />
-<meta name="keywords" content="..." />
-<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+## The share card
 
-<!-- Should be added if missing -->
-<meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://luminaq.com/" />
-<meta name="theme-color" content="#080808" />
+`public/img/og-card.jpg`, 1200 x 630. It carries no text: the preview card supplies the
+title and description itself, and text baked into the image would be duplicated and would
+break at small sizes. If the hero photograph changes, regenerate this from the new one.
 
-<!-- Open Graph -->
-<meta property="og:title" content="Luminaq | AI Technical Due Diligence" />
-<meta property="og:description" content="..." />
-<meta property="og:image" content="https://luminaq.com/og-image.webp" />
-<meta property="og:url" content="https://luminaq.com/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Luminaq" />
+After any change to the head, paste the URL into a Slack or WhatsApp draft and look at
+what renders. Link previews fail silently and nobody tells you.
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Luminaq | AI Technical Due Diligence" />
-<meta name="twitter:description" content="..." />
-<meta name="twitter:image" content="https://luminaq.com/og-image.webp" />
-```
+## Headings
 
-## Heading Hierarchy
+One `<h1>`, in the hero. Every section gets an `<h2>`. Do not skip a level to get a size,
+the sizes are classes.
 
-The site must have exactly one `<h1>` and a logical descending structure.
+## Images
 
-| Level | Usage | Current status |
-|-------|-------|----------------|
-| `h1` | Hero main headline (one per page) | **MISSING — must add** |
-| `h2` | Section titles ("What We Audit", "Common Red Flags", etc.) | Present across components |
-| `h3` | Subsection items (individual audit categories, deliverables) | Present |
-| `h4` | Footer nav headers, minor labels | Present |
+Every `<img>` needs a real `alt`. Describe what it shows, not what it is for. The
+decorative canvas has `aria-hidden` and needs none.
 
-**Rules:**
-- Never skip levels (no `h2` → `h4` without `h3`)
-- The Hero headline ("The Pitch Deck Says Unicorn...") should be `h1`, not a `p` or `span`
-- Every section should have one `h2` as its primary heading
+## Legacy anchors
 
-## Image SEO
+The `.alias` spans carry ids from the pre-2026 React site (`#pricing`, `#audit`,
+`#who-we-help`, `#red-flags`, `#deliverables`). Anyone who shared a deep link before the
+redesign still lands in the right place. Do not remove them, and do not reuse those ids
+for anything else.
 
-All images live in `/public` as `.webp` (good).
+## The PDFs
 
-**Rules:**
-- Every `<img>` must have a descriptive `alt` attribute unless purely decorative
-- Purely decorative images (hero backgrounds, wave grids) use `alt=""` and `aria-hidden="true"`
-- The auditor portrait (`satishsingh.webp`) has good alt text: "Satish Singh - Lead Data Scientist"
-- Add `loading="lazy"` to all images below the fold
-- Hero images should NOT be lazy-loaded (they're above the fold)
-- Keep image dimensions explicit with `width` and `height` attributes to prevent layout shift
-
-## Structured Data
-
-Add JSON-LD to `index.html` inside a `<script type="application/ld+json">` tag.
-
-**Required schemas:**
-
-1. **Organization** — Company identity for Knowledge Panel
-2. **ProfessionalService** — The audit service with pricing, location
-3. **FAQPage** — The Red Flags section content works well as FAQ
-
-**Example Organization schema:**
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Luminaq",
-  "description": "Technical Due Diligence for Angel Investors Evaluating AI Startups",
-  "url": "https://luminaq.com",
-  "logo": "https://luminaq.com/logo.webp",
-  "areaServed": "AE",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Abu Dhabi",
-    "addressCountry": "AE"
-  }
-}
-```
-
-## Missing Files
-
-These should exist in `/public`:
-
-| File | Status | Purpose |
-|------|--------|---------|
-| `robots.txt` | **Missing** | Crawl directives for search engines |
-| `sitemap.xml` | **Missing** | Site map for search engine indexing |
-| `og-image.webp` | **Missing** | Social sharing preview image (1200x630px) |
-
-**robots.txt template:**
-```
-User-agent: *
-Allow: /
-Sitemap: https://luminaq.com/sitemap.xml
-```
-
-**sitemap.xml template:**
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://luminaq.com/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <priority>1.0</priority>
-  </url>
-</urlset>
-```
-
-## Section IDs for Anchor Links
-
-Sections should have `id` attributes for deep linking and navigation. Current state:
-
-| Section | ID | Status |
-|---------|-----|--------|
-| Hero | (none) | Missing |
-| Opening | (none) | Missing |
-| Who We Help | `who-we-help` | Present |
-| What We Audit | `audit` | Present |
-| Deliverables | `deliverables` | Present |
-| The Auditor | `auditor` | Present |
-| Proof | (none) | Missing |
-| Red Flags | `red-flags` | Present |
-| Pricing | `pricing` | Present |
-
-**Rule:** Every major section should have a kebab-case `id` for anchor linking.
-
-## Font Loading
-
-Current setup uses Google Fonts with `preconnect`. Ensure:
-- `font-display: swap` is included in the Google Fonts URL or CSS to prevent invisible text during load
-- Only load the weights actually used (currently: 300, 400, 500, 600, 700 for Inter; 400, 700 for Playfair Display)
-
-## Performance as SEO Signal
-
-Core Web Vitals directly affect search ranking:
-
-- **LCP (Largest Contentful Paint):** Hero image and headline must render fast. Don't lazy-load above-fold content.
-- **CLS (Cumulative Layout Shift):** Set explicit `width`/`height` on images. Reserve space for fonts with `font-display: swap`.
-- **INP (Interaction to Next Paint):** Framer Motion animations should use `transform` and `opacity` only — never animate `width`, `height`, or `top`/`left`.
+`public/` holds the sample report, the pitch decoder and the case study. They are not
+linked from the page at the moment, but they are still served and may have inbound links.
+Keep the files and the filenames.
