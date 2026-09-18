@@ -1,30 +1,655 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luminaq | AI Technical Due Diligence</title>
-  <meta name="description"
-    content="Technical Due Diligence for UAE Investors. We audit AI startup codebases, architecture, and data pipelines to expose technical risks before you invest." />
-  <meta name="keywords" content="AI due diligence, technical audit, startup investment, code review, UAE investors" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<title>Luminaq | Independent Technical Due Diligence on AI Startups</title>
+<meta name="description" content="Independent technical due diligence on AI startups. I open the repository behind the pitch deck and tell you, in writing, what is actually built.">
+<link rel="canonical" href="https://www.luminaq.ae/">
+<meta name="theme-color" content="#000000">
+<meta name="author" content="Satish Rohit Singh">
+
+<!-- link previews: WhatsApp, LinkedIn, Slack, iMessage, X -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Luminaq">
+<meta property="og:url" content="https://www.luminaq.ae/">
+<meta property="og:title" content="Luminaq | Independent Technical Due Diligence on AI Startups">
+<meta property="og:description" content="Independent technical due diligence on AI startups. I open the repository behind the pitch deck and tell you, in writing, what is actually built.">
+<meta property="og:locale" content="en_AE">
+<meta property="og:image" content="https://www.luminaq.ae/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A unicorn in a forest, seen through a lens that reveals a horse with a horn strapped to its head.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Luminaq | Independent Technical Due Diligence on AI Startups">
+<meta name="twitter:description" content="Independent technical due diligence on AI startups. I open the repository behind the pitch deck and tell you, in writing, what is actually built.">
+<meta name="twitter:image" content="https://www.luminaq.ae/img/og-card.jpg">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@400;500;700&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap">
+<link rel="preload" as="image" href="/img/plate-surface.jpg" fetchpriority="high">
 
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400&display=swap"
-    rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Luminaq",
+  "url": "https://www.luminaq.ae/",
+  "logo": "https://www.luminaq.ae/favicon.svg",
+  "image": "https://www.luminaq.ae/img/og-card.jpg",
+  "description": "Independent technical due diligence on AI startups. I open the repository behind the pitch deck and tell you, in writing, what is actually built.",
+  "serviceType": "Technical due diligence on AI companies",
+  "areaServed": "AE",
+  "address": { "@type": "PostalAddress", "addressCountry": "AE" },
+  "founder": { "@type": "Person", "name": "Satish Rohit Singh" },
+  "priceRange": "AED 1,900 and up"
+}
+</script>
 </head>
-
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/index.tsx"></script>
-</body>
+<div id="grain"></div>
+<div id="cur"><div class="ring"></div><div class="cross"></div><div class="dot"></div><div class="rd">layer 02 / mesh</div></div>
 
+<!-- LEFT RAIL. A progress scale, not a menu. Each .tk href must match a section id, and its position in this list must match that section data-rail index (hero is -1, premise 0, through engage 7). -->
+<nav id="rail" aria-label="Page sections">
+  <div class="spine">
+    <span class="track" aria-hidden="true"></span>
+    <span class="fill" aria-hidden="true"></span>
+    <a class="tk" href="#premise"><span class="tick"></span><span class="t"><b>001</b>Premise</span></a>
+    <a class="tk" href="#inst"><span class="tick"></span><span class="t"><b>002</b>The method</span></a>
+    <a class="tk" href="#index"><span class="tick"></span><span class="t"><b>003</b>The index</span></a>
+    <a class="tk" href="#report"><span class="tick"></span><span class="t"><b>004</b>Evidence</span></a>
+    <a class="tk" href="#diag"><span class="tick"></span><span class="t"><b>005</b>Diagnostic</span></a>
+    <a class="tk" href="#auditor"><span class="tick"></span><span class="t"><b>006</b>The auditor</span></a>
+    <a class="tk" href="#record"><span class="tick"></span><span class="t"><b>007</b>Record</span></a>
+    <a class="tk" href="#engage"><span class="tick"></span><span class="t"><b>008</b>Engagement</span></a>
+  </div>
+</nav>
+
+<!-- TOP NAV. The logo is the real mark as inline SVG using currentColor so it inherits colour and goes white on hover. -->
+<nav id="nav">
+  <a class="brand" href="#top">
+    <svg viewBox="0 0 1855 1627.35" fill="currentColor" aria-hidden="true"><path d="M34 0L1745.2 0A34 34 0 0 1 1779.2 34L1779.2 1151.34A7 7 0 0 1 1767.89 1156.85L1645.89 1061.56A7 7 0 0 1 1643.2 1056.05L1643.2 135.45A11 11 0 0 0 1632.2 124.45L144.5 124.45A11 11 0 0 0 133.5 135.45L133.5 1480.5A11 11 0 0 0 144.5 1491.5L1354.72 1491.5A7 7 0 0 1 1359.92 1493.81L1469.9 1615.66A7 7 0 0 1 1464.7 1627.35L34 1627.35A34 34 0 0 1 0 1593.35L0 34A34 34 0 0 1 34 0Z"/><path d="M1187.81 1110.2L1300.14 1058.56A6 6 0 0 1 1306.39 1059.33Q1597.07 1252.89 1846.28 1490.53A6 6 0 0 1 1845.64 1500.35L1675.65 1603.26A6 6 0 0 1 1668.3 1602.37L1186.07 1119.89A6 6 0 0 1 1187.81 1110.2Z"/><circle cx="1084.18" cy="824.17" r="157.06"/></svg>
+    LUMINAQ
+  </a>
+  <div class="links">
+    <a href="#inst">Method</a><a href="#report">Evidence</a>
+    <a href="#diag">Diagnostic</a><a href="#auditor">Auditor</a><a href="#engage">Engagement</a>
+  </div>
+  <a class="btn" href="https://calendly.com/satish-r-singh" target="_blank" rel="noopener"><span>Book a call</span><span class="ar"></span></a>
+</nav>
+
+<!-- HERO. Headline, sub, the two CTAs. The forest plate and the lens are drawn by assets/js/hero.js onto <canvas id="hcv">. -->
+<section id="hero" data-rail="-1">
+  <canvas id="hcv"></canvas>
+  <div class="wrap">
+    <div class="hgrid">
+      <div>
+        <div class="eyebrow rvf"><span class="pip"></span><span class="lbl">Independent technical due diligence<span class="hide-s"> &nbsp;/&nbsp; Abu Dhabi</span></span></div>
+        <h1 class="h1">
+          <span class="rvu"><span class="claim">The pitch deck</span></span>
+          <span class="rvu"><span class="claim">says <em>unicorn</em>.</span></span>
+          <span class="rvu"><span class="truth">The code says <em>weekend project</em>.</span></span>
+        </h1>
+        <p class="sub rvf">I open the repository behind the pitch deck and tell you, in writing, whether there is a company underneath it. Six risk vectors, one score, five working days.</p>
+        <div class="acts rvf">
+          <a class="btn solid lg" href="https://calendly.com/satish-r-singh" target="_blank" rel="noopener"><span>Book a 15 minute call</span><span class="ar"></span></a>
+          <a class="tlink" href="#report"><span>Read a real audit report</span><span class="ar"></span></a>
+        </div>
+      </div>
+      <div></div>
+    </div>
+  </div>
+  <div id="hint"><span class="sw"></span><span class="hide-s">Move the lens across the image. Look closely at the head.</span><span class="only-s">Look closely at the head</span></div>
+</section>
+
+<!-- 001 PREMISE. Two columns of argument. Pure copy, safe to rewrite. -->
+<section id="premise" class="sec" data-rail="0"><span class="alias" id="who-we-help"></span>
+  <div class="wrap">
+    <div class="lbl rvf"><span class="n">001</span> &nbsp;/&nbsp; The premise</div>
+    <h2 class="big h2 rv" style="margin-top:26px">You can read the founder. I read the code.</h2>
+    <div class="cols">
+      <div class="rvf">
+        <p class="lede">Large funds keep a technologist on the bench for exactly one reason. Somebody has to open the repository, not to be impressed by it, but to establish whether the thing described in the deck exists in the form described.</p>
+        <p class="lede">You are making the same decisions without that person in the room. Not because you cannot judge a business, a founder or a market. You judge those better than most funds do.</p>
+      </div>
+      <div class="rvf">
+        <p class="lede">It is that AI is the first category where the entire claim can live in a layer nobody at the table can read, and where the gap between a real system and a convincing one is three weeks of work.</p>
+        <p class="lede" style="color:var(--bone)">That layer is the only thing I look at. I have no view on your thesis and no opinion on the founder. I tell you what is built.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.fig{width:100%;height:auto;display:block;overflow:visible}
+.fig text{font-family:var(--mono)}
+.gl{stroke:rgba(232,230,225,.08);stroke-width:1}
+.ax{stroke:rgba(232,230,225,.22);stroke-width:1}
+.bar{fill:rgba(232,230,225,.42);transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);transition:transform .85s var(--ez)}
+.bar.hot{fill:var(--rd)}
+.on .bar{transform:scaleY(1)}
+.dr{stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 1.5s var(--ez) .2s}
+.on .dr{stroke-dashoffset:0}
+.pop{opacity:0;transform:scale(.85);transform-box:fill-box;transform-origin:center;transition:opacity .5s var(--ez),transform .6s var(--ez)}
+.on .pop{opacity:1;transform:scale(1)}
+.fade{opacity:0;transition:opacity .7s var(--ez)}
+.on .fade{opacity:1}
+@keyframes flow{to{offset-distance:100%}}
+@keyframes puls{0%,100%{opacity:.35}50%{opacity:1}}
+.on .plz{animation:puls 2.2s ease-in-out infinite}
+</style>
+
+<!-- 002 THE METHOD. The six risk vectors. Each .vrow is a button; each .vpane is its detail panel. data-v on the row must match data-p on the pane. -->
+<section id="inst" class="sec" data-rail="1"><span class="alias" id="red-flags"></span>
+ <div class="wrap">
+  <div class="top">
+   <div>
+    <div class="lbl rvf"><span class="n">002</span> &nbsp;/&nbsp; The method</div>
+    <h2 class="h2 rv" style="margin-top:26px;max-width:17ch">Six places the truth is kept.</h2>
+   </div>
+   <p class="small rvf" style="max-width:36ch">Every engagement runs the same six vectors in the same order. Select one to see what the evidence actually looks like.</p>
+  </div>
+
+  <div class="instwrap rvf">
+   <div class="vlist">
+    <button class="vrow on" data-v="0"><span class="num">01</span><span class="nm">Codebase Integrity</span><span class="st">Viewing</span></button>
+    <button class="vrow" data-v="1"><span class="num">02</span><span class="nm">Architecture Scalability</span><span class="st">Viewing</span></button>
+    <button class="vrow" data-v="2"><span class="num">03</span><span class="nm">Licence and IP Exposure</span><span class="st">Viewing</span></button>
+    <button class="vrow" data-v="3"><span class="num">04</span><span class="nm">Inference Economics</span><span class="st">Viewing</span></button>
+    <button class="vrow" data-v="4"><span class="num">05</span><span class="nm">Data Lineage and Privacy</span><span class="st">Viewing</span></button>
+    <button class="vrow" data-v="5"><span class="num">06</span><span class="nm">Model Moat</span><span class="st">Viewing</span></button>
+   </div>
+
+   <div class="vstage">
+    <!-- 01 -->
+    <div class="vpane on" data-p="0">
+     <p class="vd">A repository keeps an honest diary. Commit cadence, authorship spread and the ratio of new code to rewritten code tell me whether a company was built over two years or assembled over one quarter to be shown to you.</p>
+     <div class="vfig">
+      <svg class="fig" viewBox="0 0 560 250"><g id="f0">
+       <line class="ax" x1="24" y1="212" x2="552" y2="212"/>
+       <text class="axl" x="24" y="30">COMMITS / MONTH</text>
+       <text class="axl" x="24" y="232">MONTH 01</text><text class="axl" x="500" y="232">MONTH 24</text>
+       <g class="bars"></g>
+       <line x1="462" y1="40" x2="462" y2="212" stroke="#E2503B" stroke-width="1" stroke-dasharray="3 4" class="fade"/>
+       <text class="figr fade" x="454" y="52" text-anchor="end">PRE-SEED ANNOUNCED</text>
+       <text class="figt fade" x="454" y="68" text-anchor="end" opacity=".7">614 commits in 11 weeks</text>
+       <text class="figt fade" x="24" y="184" opacity=".7">18 months, 1 author, 94 commits</text>
+      </g></svg>
+      <div class="cap">Fig 01 &nbsp;/&nbsp; Deal LQ-0231 &nbsp;/&nbsp; git log --numstat, 24 month window</div>
+     </div>
+     <div class="vfind"><span class="fx">F-01 HIGH</span><span class="ft">Eighty one percent of the codebase was written in the eleven weeks before the raise, by a single author, with no review history. This is a demo built for a room, not a product built for users.</span></div>
+    </div>
+
+    <!-- 02 -->
+    <div class="vpane" data-p="1">
+     <p class="vd">The demo serves twelve people beautifully. I model the point at which it stops, which component gives way first, and what it costs to fix. Most architectures do not fail gradually. They fail at a specific number.</p>
+     <div class="vfig">
+      <svg class="fig" viewBox="0 0 560 250">
+       <line class="ax" x1="46" y1="206" x2="548" y2="206"/><line class="ax" x1="46" y1="24" x2="46" y2="206"/>
+       <text class="axl" x="46" y="18">P99 LATENCY</text>
+       <text class="axl" x="46" y="226">100</text><text class="axl" x="200" y="226">1K</text><text class="axl" x="354" y="226">10K</text><text class="axl" x="498" y="226">100K CONCURRENT</text>
+       <path d="M46 188 L548 188" stroke="#D9A15C" stroke-width="1" stroke-dasharray="4 5" opacity=".6" class="fade"/>
+       <text class="figa fade" x="52" y="180">CLAIMED: FLAT TO 100K</text>
+       <path class="dr" d="M46 192 C140 190 210 186 268 178 C320 170 352 150 378 116 C398 88 412 56 424 30" fill="none" stroke="#E2503B" stroke-width="1.6" stroke-linecap="round"/>
+       <circle cx="352" cy="152" r="3.5" fill="#E2503B" class="pop"/>
+       <text class="figr fade" x="362" y="146">KNEE AT 8,400</text>
+       <text class="figt fade" x="362" y="162" opacity=".7">p99 1.2s to 14.6s</text>
+       <text class="figt fade" x="362" y="178" opacity=".7">single write primary, no read replicas</text>
+      </svg>
+      <div class="cap">Fig 02 &nbsp;/&nbsp; Modelled from schema, queue config and connection limits</div>
+     </div>
+     <div class="vfind"><span class="fx">F-04 HIGH</span><span class="ft">Every inference request writes synchronously to one primary database with a connection ceiling of 200. The architecture cannot reach the traction the model assumes without a rebuild of the persistence layer.</span></div>
+    </div>
+
+    <!-- 03 -->
+    <div class="vpane" data-p="2">
+     <p class="vd">One dependency with the wrong licence can place the intellectual property you are buying outside the company that is selling it to you. I walk the full dependency graph, including the parts the founders did not know they had.</p>
+     <div class="vfig">
+      <svg class="fig" viewBox="0 0 560 250">
+       <g stroke="rgba(232,230,225,.16)" stroke-width="1" fill="none" class="fade">
+        <path d="M92 125 C140 125 150 58 196 58"/><path d="M92 125 C140 125 150 104 196 104"/>
+        <path d="M92 125 C140 125 150 150 196 150"/><path d="M92 125 C140 125 150 196 196 196"/>
+        <path d="M262 104 C310 104 320 66 366 66"/><path d="M262 104 C310 104 320 122 366 122"/>
+        <path d="M262 150 C310 150 320 168 366 168"/><path d="M262 58 C310 58 320 30 366 30"/>
+        <path d="M262 196 C310 196 320 212 366 212"/>
+       </g>
+       <g class="pop"><circle cx="86" cy="125" r="5" fill="#E8E6E1"/><text class="figt" x="30" y="112">app/</text></g>
+       <g class="pop"><circle cx="200" cy="58" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="50" opacity=".75">fastapi</text></g>
+       <g class="pop"><circle cx="200" cy="104" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="96" opacity=".75">ml-core</text></g>
+       <g class="pop"><circle cx="200" cy="150" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="142" opacity=".75">vectordb</text></g>
+       <g class="pop"><circle cx="200" cy="196" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="188" opacity=".75">ingest</text></g>
+       <g class="pop"><circle cx="370" cy="30" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="34" opacity=".55">pydantic  MIT</text></g>
+       <g class="pop plz"><circle cx="370" cy="122" r="6" fill="#E2503B"/><text class="figr" x="382" y="126">seg-attn-v2  GPL-3.0</text></g>
+       <g class="pop"><circle cx="370" cy="66" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="70" opacity=".55">torch  BSD-3</text></g>
+       <g class="pop"><circle cx="370" cy="168" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="172" opacity=".55">faiss  MIT</text></g>
+       <g class="pop"><circle cx="370" cy="212" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="216" opacity=".55">httpx  BSD-3</text></g>
+       <text class="axl" x="30" y="242">247 PACKAGES WALKED &nbsp;/&nbsp; 4 DEPTH LEVELS &nbsp;/&nbsp; 1 COPYLEFT CONFLICT</text>
+      </svg>
+      <div class="cap">Fig 03 &nbsp;/&nbsp; Transitive dependency graph, production lockfile</div>
+     </div>
+     <div class="vfind"><span class="fx">F-07 CRITICAL</span><span class="ft">A GPL-3.0 segmentation module sits four levels deep inside the inference path. Distributed as it is today, the copyleft terms reach the code the company calls proprietary. This is a legal question, not an engineering one, and it changes what you are buying.</span></div>
+    </div>
+    <!-- 04 -->
+    <div class="vpane" data-p="3">
+     <p class="vd">AI margins invert quietly. A company can grow revenue and lose more money on every new customer, and the deck will not show it because the deck prices tokens at last year’s rate and this year’s volume. Move the inputs and watch where their model actually sits.</p>
+     <div class="vfig">
+      <div class="calc">
+       <div class="ctrls">
+        <div class="sl"><label>Tokens per active user, monthly <b id="o-tok">1.4M</b></label><input id="i-tok" type="range" min="1" max="150" value="14"></div>
+        <div class="sl"><label>Monthly active users <b id="o-usr">8,000</b></label><input id="i-usr" type="range" min="1" max="120" value="80"></div>
+        <div class="sl"><label>Price per seat, monthly <b id="o-prc">USD 29</b></label><input id="i-prc" type="range" min="5" max="200" value="29"></div>
+        <div class="sl"><label>Blended cost per 1M tokens <b id="o-cst">USD 4.10</b></label><input id="i-cst" type="range" min="10" max="900" value="410"></div>
+       </div>
+       <div class="out">
+        <div class="row"><div class="k">Gross margin per seat</div><div class="v" id="o-gm">-98%</div></div>
+        <div class="row"><div class="k">Monthly inference bill</div><div class="v" id="o-bill">USD 459K</div></div>
+        <div class="verdictbar vb-bad" id="o-vb">Negative unit economics at stated price</div>
+       </div>
+      </div>
+      <div class="cap" style="position:static;margin-top:16px">Fig 04 &nbsp;/&nbsp; Live model, defaults are deal LQ-0231 as billed &nbsp;&middot;&nbsp; drag tokens to 9.5M to reach their heaviest decile</div>
+     </div>
+     <div class="vfind"><span class="fx">F-11 HIGH</span><span class="ft">At blended usage the margin is eighty percent, which is survivable. The heaviest decile consumes seven times the average and crosses into loss at 7.1 million tokens per seat. That is the cohort the sales team is actively targeting, so growth moves this the wrong way. The deck also models tokens at USD 1.80, a rate the company has never actually paid.</span></div>
+    </div>
+
+    <!-- 05 -->
+    <div class="vpane" data-p="4">
+     <p class="vd">Where the training data came from, whether they had the right to use it, and what leaves the building. Two of the last nine companies I looked at were training on customer data their own contracts prohibited them from touching.</p>
+     <div class="vfig">
+      <svg class="fig" viewBox="0 0 560 250">
+       <g class="fade">
+        <rect x="24" y="58" width="112" height="44" fill="none" stroke="rgba(232,230,225,.22)"/><text class="figt" x="36" y="78">WEB CRAWL</text><text class="axl" x="36" y="92">14.2M docs</text>
+        <rect x="172" y="58" width="112" height="44" fill="none" stroke="rgba(232,230,225,.22)"/><text class="figt" x="184" y="78">CLEANING</text><text class="axl" x="184" y="92">dedupe, pii scrub</text>
+        <rect x="320" y="58" width="112" height="44" fill="none" stroke="rgba(232,230,225,.22)"/><text class="figt" x="332" y="78">TRAIN SET</text><text class="axl" x="332" y="92">v7.final.2</text>
+        <rect x="468" y="58" width="72" height="44" fill="none" stroke="#8FD9EE" stroke-opacity=".5"/><text class="figc" x="480" y="78">MODEL</text>
+        <g stroke="rgba(232,230,225,.26)" stroke-width="1" marker-end="url(#ah)">
+          <path d="M136 80 L168 80"/><path d="M284 80 L316 80"/><path d="M432 80 L464 80"/>
+        </g>
+       </g>
+       <defs><marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="rgba(232,230,225,.4)"/></marker>
+       <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#E2503B"/></marker></defs>
+       <g class="fade">
+        <rect x="172" y="172" width="150" height="44" fill="rgba(226,80,59,.07)" stroke="#E2503B" stroke-opacity=".55"/>
+        <text class="figr" x="184" y="192">CLIENT UPLOADS</text><text class="axl" x="184" y="206" fill="#E2503B" opacity=".7">3 enterprise accounts</text>
+       </g>
+       <path class="dr" d="M322 194 C376 194 376 140 376 106" fill="none" stroke="#E2503B" stroke-width="1.4" stroke-dasharray="1400" marker-end="url(#ar)"/>
+       <text class="figr fade" x="386" y="160">NO CONSENT PATH</text>
+       <text class="axl fade" x="386" y="176" fill="#E2503B" opacity=".7">MSA clause 8.3 prohibits</text>
+       <text class="axl fade" x="24" y="240">RETENTION: INDEFINITE &nbsp;/&nbsp; DELETION ENDPOINT: NOT IMPLEMENTED</text>
+      </svg>
+      <div class="cap">Fig 05 &nbsp;/&nbsp; Data lineage reconstructed from pipeline code and storage buckets</div>
+     </div>
+     <div class="vfind"><span class="fx">F-13 CRITICAL</span><span class="ft">Documents uploaded by three named enterprise customers are flowing into the training set. The company’s own master agreement forbids it. This is a contractual and regulatory exposure that sits on the balance sheet you are buying into.</span></div>
+    </div>
+
+    <!-- 06 -->
+    <div class="vpane" data-p="5">
+     <p class="vd">Fine tuned, or a system prompt in a trench coat. There is a test for this and it is not the demo. I compare what the deck claims is proprietary against what the repository can actually be shown to contain.</p>
+     <div class="vfig">
+      <svg class="fig" viewBox="0 0 560 250">
+       <text class="figa fade" x="24" y="24">CLAIMED IN THE DECK</text>
+       <text class="figr fade" x="300" y="24">FOUND IN THE REPOSITORY</text>
+       <g class="pop"><rect x="24" y="40" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="63">Proprietary domain model</text></g>
+       <g class="pop"><rect x="24" y="86" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="109">Fine tuning pipeline</text></g>
+       <g class="pop"><rect x="24" y="132" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="155">Proprietary eval harness</text></g>
+       <g class="pop"><rect x="24" y="178" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="201">Inference orchestration</text></g>
+       <g class="pop"><rect x="300" y="40" width="240" height="38" fill="none" stroke="#E2503B" stroke-opacity=".5" stroke-dasharray="4 4"/><text class="figr" x="314" y="63">Not present</text></g>
+       <g class="pop"><rect x="300" y="86" width="240" height="38" fill="none" stroke="#E2503B" stroke-opacity=".5" stroke-dasharray="4 4"/><text class="figr" x="314" y="109">Not present</text></g>
+       <g class="pop"><rect x="300" y="132" width="240" height="38" fill="rgba(232,230,225,.05)" stroke="rgba(232,230,225,.24)"/><text class="figt" x="314" y="155">12 assertions, last run 7 months ago</text></g>
+       <g class="pop"><rect x="300" y="178" width="240" height="38" fill="rgba(232,230,225,.05)" stroke="rgba(232,230,225,.24)"/><text class="figt" x="314" y="201">prompt_v9.txt &nbsp;+&nbsp; 1 API call</text></g>
+       <text class="axl fade" x="24" y="240">SWITCHING COST TO A COMPETING MODEL: ESTIMATED 3 DAYS</text>
+      </svg>
+      <div class="cap">Fig 06 &nbsp;/&nbsp; Claim mapping against repository contents and training artefacts</div>
+     </div>
+     <div class="vfind"><span class="fx">F-16 HIGH</span><span class="ft">No fine tuning has ever been run. The product is a 4.2 kilobyte system prompt in front of a general model, wrapped in a good interface. The interface is real work and has value. It is not a technical moat, and the deck prices it as one.</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+<!-- 003 THE INDEX. Three sample deals. The numbers live in the SCORECARD DATA block in assets/js/site.js, not here. -->
+<section id="index" class="sec" data-rail="2" style="background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><span class="alias" id="audit"></span>
+ <div class="wrap">
+  <div class="top" style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
+   <div>
+    <div class="lbl rvf"><span class="n">003</span> &nbsp;/&nbsp; The instrument</div>
+    <h2 class="h2 rv" style="margin-top:26px;max-width:19ch">Every audit ends in one number.</h2>
+   </div>
+   <p class="small rvf" style="max-width:38ch">The Luminaq Index scores the six vectors from zero to one hundred and resolves to one of three verdicts. The same instrument runs on every deal, which is the only reason deals can be compared to each other.</p>
+  </div>
+  <div class="deals rvf">
+   <button class="dchip on" data-d="0">LQ-0231 &nbsp;/&nbsp; Seed &nbsp;/&nbsp; MENA</button>
+   <button class="dchip" data-d="1">LQ-0244 &nbsp;/&nbsp; Series A &nbsp;/&nbsp; UK</button>
+   <button class="dchip" data-d="2">LQ-0259 &nbsp;/&nbsp; Seed &nbsp;/&nbsp; SEA</button>
+  </div>
+  <div class="card scard rvf">
+   <div class="left">
+    <div>
+     <div class="meta" id="s-meta"></div>
+     <div class="bigscore"><span class="n" id="s-score">0</span><span class="d">/ 100</span></div>
+     <div id="s-vd"></div>
+    </div>
+    <div class="small" id="s-sum" style="color:var(--dim)"></div>
+   </div>
+   <div class="right">
+    <div class="lbl" style="margin-bottom:8px">Vector breakdown</div>
+    <div id="s-vecs"></div>
+    <div class="note" id="s-note"></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 004 EVIDENCE. The five-page sample audit report. Page markup is inline; the pager is in site.js. -->
+<section id="report" class="sec" data-rail="3"><span class="alias" id="deliverables"></span>
+ <div class="wrap">
+  <div class="top" style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
+   <div>
+    <div class="lbl rvf"><span class="n">004</span> &nbsp;/&nbsp; Evidence</div>
+    <h2 class="h2 rv" style="margin-top:26px;max-width:20ch">This is the document you are paying for.</h2>
+   </div>
+   <p class="small rvf" style="max-width:38ch">A real audit, redacted to protect the investor and the company. Nothing here is a template. Read it before you decide whether I am worth a call.</p>
+  </div>
+  <div class="rpwrap rvf">
+   <div class="rpstage">
+    <div class="doc on" data-pg="0">
+     <div class="dh"><span>Luminaq &nbsp;/&nbsp; Technical Due Diligence</span><span>Confidential</span></div>
+     <div class="dt" style="margin-top:40px">Technical Due Diligence<br>Report</div>
+     <p style="margin-top:20px;font-size:11px">Prepared for <span class="rdct" style="width:120px"></span>, at the request of <span class="rdct" style="width:92px"></span>, in connection with a proposed seed investment in <span class="rdct" style="width:104px"></span>.</p>
+     <div class="vbox" style="border-color:#E2503B">
+      <div class="dl" style="margin-bottom:7px">Verdict</div>
+      <div class="vv" style="color:#E2503B">Withdraw</div>
+      <p style="margin-top:8px">Luminaq Index 31 / 100. Two critical findings materially change what is being sold. Detail at sections 4 and 6.</p>
+     </div>
+     <table>
+      <tr><td>Engagement</td><td class="num">LQ-0231</td></tr>
+      <tr><td>Instructed</td><td class="num">11 FEB 2026</td></tr>
+      <tr><td>Delivered</td><td class="num">17 FEB 2026</td></tr>
+      <tr><td>Repository access</td><td class="num">READ ONLY, 4 DAYS</td></tr>
+      <tr><td>Author</td><td class="num">S. R. SINGH</td></tr>
+     </table>
+     <div class="df"><span>Luminaq FZE LLC &nbsp;/&nbsp; Ajman, UAE</span><span>Page 1 of 14</span></div>
+    </div>
+
+    <div class="doc" data-pg="1">
+     <div class="dh"><span>2. Index Summary</span><span>LQ-0231 &nbsp;/&nbsp; Confidential</span></div>
+     <div class="dt">Index summary</div>
+     <p>Each vector is scored independently against the same rubric. No vector is weighted higher than another. A single critical finding caps the overall index at 40 regardless of performance elsewhere.</p>
+     <table>
+      <tr><th>Vector</th><th style="text-align:right">Score</th><th style="text-align:right">Flags</th></tr>
+      <tr><td>1. Codebase integrity</td><td class="num">22</td><td class="num"><span class="sev hi">1 high</span></td></tr>
+      <tr><td>2. Architecture scalability</td><td class="num">38</td><td class="num"><span class="sev hi">1 high</span></td></tr>
+      <tr><td>3. Licence and IP</td><td class="num">9</td><td class="num"><span class="sev hi">1 crit</span></td></tr>
+      <tr><td>4. Inference economics</td><td class="num">27</td><td class="num"><span class="sev hi">1 high</span></td></tr>
+      <tr><td>5. Data lineage</td><td class="num">14</td><td class="num"><span class="sev hi">1 crit</span></td></tr>
+      <tr><td>6. Model moat</td><td class="num">31</td><td class="num"><span class="sev md">1 high</span></td></tr>
+     </table>
+     <p style="margin-top:16px"><b>Composite: 31 / 100.</b> The company presents as a research led AI business. The evidence supports an interface business with a competent front end team and no defensible technical position.</p>
+     <div class="df"><span>Luminaq FZE LLC</span><span>Page 3 of 14</span></div>
+    </div>
+
+    <div class="doc" data-pg="2">
+     <div class="dh"><span>4. Licence and IP Exposure</span><span>LQ-0231 &nbsp;/&nbsp; Confidential</span></div>
+     <div class="dt">Finding F-07</div>
+     <div style="margin-top:12px"><span class="sev hi">Critical</span></div>
+     <p><b>Observation.</b> The production lockfile resolves <span class="rdct" style="width:86px"></span> version 2.1.4 at dependency depth four, reached through the segmentation path in <span class="rdct" style="width:74px"></span>. The package is licensed GPL-3.0.</p>
+     <p><b>Why it matters.</b> The module is linked into the inference binary the company distributes to on premise customers. On the plain reading of the licence, the copyleft obligation extends to the surrounding work. The company describes that surrounding work to investors as proprietary.</p>
+     <p><b>What the founders said.</b> When asked, the CTO was not aware the package was present. It arrived transitively through a vision utility added in <span class="rdct" style="width:58px"></span>.</p>
+     <p><b>Remediation.</b> Replace with an Apache-2.0 equivalent, or purchase a commercial licence from the author. Engineering estimate two to four weeks. The prior distribution history is a legal question and is outside my scope.</p>
+     <p style="margin-top:14px"><b>Effect on index.</b> Vector 3 scored 9. Composite capped at 40.</p>
+     <div class="df"><span>Luminaq FZE LLC</span><span>Page 7 of 14</span></div>
+    </div>
+
+    <div class="doc" data-pg="3">
+     <div class="dh"><span>5. Inference Economics</span><span>LQ-0231 &nbsp;/&nbsp; Confidential</span></div>
+     <div class="dt">Unit economics</div>
+     <p>The deck models blended inference at USD 1.80 per million tokens. Billing exports for the trailing three months show an actual blended rate of USD 4.10, driven by retry volume and an uncached system prompt resent on every call.</p>
+     <table>
+      <tr><th>Per seat, monthly</th><th style="text-align:right">Deck</th><th style="text-align:right">Observed</th></tr>
+      <tr><td>Tokens consumed</td><td class="num">0.4M</td><td class="num">1.4M</td></tr>
+      <tr><td>Inference cost</td><td class="num">$0.72</td><td class="num">$5.74</td></tr>
+      <tr><td>Price charged</td><td class="num">$29.00</td><td class="num">$29.00</td></tr>
+      <tr><td>Gross margin</td><td class="num">97%</td><td class="num">80%</td></tr>
+      <tr><td>Heavy decile margin</td><td class="num">not modelled</td><td class="num">-98%</td></tr>
+     </table>
+     <p style="margin-top:14px">The blended figure is survivable. The distribution is not. The heaviest ten percent of users consume 61 percent of tokens and are the cohort the sales team is actively targeting.</p>
+     <p><b>Note.</b> Caching the system prompt is a two day fix and recovers roughly 30 percent. I have flagged it to the founders regardless of the outcome of this engagement.</p>
+     <div class="df"><span>Luminaq FZE LLC</span><span>Page 9 of 14</span></div>
+    </div>
+
+    <div class="doc" data-pg="4">
+     <div class="dh"><span>8. Founder Question List</span><span>LQ-0231 &nbsp;/&nbsp; Confidential</span></div>
+     <div class="dt">Questions to ask</div>
+     <p>Put these to the founders directly. The wording matters. Each one is answerable in a sentence by a team that has done the work, and produces a long answer from a team that has not.</p>
+     <ol>
+      <li>Show me the training run. Which week, which hardware, what did it cost.</li>
+      <li>If your model provider doubled prices on Monday, what is your plan on Tuesday.</li>
+      <li>Who wrote the code between month one and month eighteen.</li>
+      <li>Which customer data is in the training set, and where is the consent recorded.</li>
+      <li>What is your gross margin on the heaviest ten percent of your users.</li>
+      <li>Name the component you would have to rebuild to reach fifty thousand users.</li>
+      <li>What is in the system prompt, and how long is it.</li>
+     </ol>
+     <p style="margin-top:12px">You are not testing their intelligence. You are testing whether the artefacts exist.</p>
+     <div class="df"><span>Luminaq FZE LLC</span><span>Page 13 of 14</span></div>
+    </div>
+   </div>
+   <div class="rpside">
+    <button class="pg on" data-g="0"><span class="pn">01</span><span class="pt">Cover and verdict</span></button>
+    <button class="pg" data-g="1"><span class="pn">02</span><span class="pt">Index summary</span></button>
+    <button class="pg" data-g="2"><span class="pn">03</span><span class="pt">Finding F-07, licence</span></button>
+    <button class="pg" data-g="3"><span class="pn">04</span><span class="pt">Unit economics</span></button>
+    <button class="pg" data-g="4"><span class="pn">05</span><span class="pt">Founder question list</span></button>
+    <div class="rpnav">
+     <button id="rp-prev" aria-label="Previous page"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M8 2 L3.5 6.5 L8 11" stroke="currentColor" stroke-width="1.1"/></svg></button>
+     <button id="rp-next" aria-label="Next page"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M5 2 L9.5 6.5 L5 11" stroke="currentColor" stroke-width="1.1"/></svg></button>
+     <span class="ct"><span id="rp-ct">01</span> / 05</span>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+<!-- 005 DIAGNOSTIC. The eight-question self-test. Questions and scoring are in the DIAGNOSTIC block in site.js. -->
+<section id="diag" class="sec" data-rail="4">
+ <div class="wrap">
+  <div class="top" style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
+   <div>
+    <div class="lbl rvf"><span class="n">005</span> &nbsp;/&nbsp; Free diagnostic</div>
+    <h2 class="h2 rv" style="margin-top:26px;max-width:18ch">Wrapper or moat. Eight questions.</h2>
+   </div>
+   <p class="small rvf" style="max-width:38ch">Answer for a deal you are actually looking at. Ninety seconds, no email, no download. It will not replace an audit and it will tell you whether you need one.</p>
+  </div>
+  <div class="dgwrap rvf">
+   <div class="dgbar"><i id="dg-bar"></i></div>
+   <div class="dgbody">
+    <div class="dgq" id="dg-q">
+     <div class="qn" id="dg-n">Question 01 of 08</div>
+     <h3 class="qt" id="dg-t"></h3>
+     <div class="dgopts" id="dg-o"></div>
+    </div>
+    <div class="dgres" id="dg-r">
+     <div class="rgrid">
+      <div class="meter">
+       <div class="lbl" style="margin-bottom:16px">Provisional read</div>
+       <div class="mv" id="dg-mv">0</div>
+       <div class="mu" id="dg-mu"></div>
+       <div style="margin-top:22px" id="dg-vd"></div>
+      </div>
+      <div>
+       <h4 id="dg-h"></h4>
+       <p class="lede" id="dg-p" style="font-size:1rem"></p>
+       <div class="ask">
+        <div class="lbl" style="margin-bottom:10px">Ask them these next</div>
+        <ul id="dg-a"></ul>
+       </div>
+      </div>
+     </div>
+     <div class="dgfoot">
+      <a class="btn solid" href="https://calendly.com/satish-r-singh" target="_blank" rel="noopener"><span>Have me look at it properly</span><span class="ar"></span></a>
+      <button class="tlink" id="dg-again"><span>Run it again</span><span class="ar"></span></button>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 006 THE AUDITOR. Bio, portrait, credential table. Pure copy. -->
+<section id="auditor" class="sec" data-rail="5" style="background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+ <div class="wrap">
+  <div class="lbl rvf"><span class="n">006</span> &nbsp;/&nbsp; The auditor</div>
+  <h2 class="h2 rv" style="margin-top:26px;max-width:20ch">You get me. That is the whole product.</h2>
+  <div class="augrid">
+   <figure class="portrait rvf">
+     <img src="/img/portrait.jpg" alt="Satish Rohit Singh, technical auditor, Luminaq" width="900" height="900">
+     <figcaption>S. R. Singh &nbsp;/&nbsp; Luminaq &nbsp;/&nbsp; Abu Dhabi</figcaption>
+    </figure>
+   <div class="body rvf">
+    <p class="q">Founders can charm a generalist. They cannot hide a commit history from someone who has written one.</p>
+    <p>I am Satish Rohit Singh. I have spent fifteen years building the systems I am now asked to examine, which is the only qualification that matters here. I was the first hire on a product team and co built that product from an empty repository. I have stood up data science functions inside companies that had none. I have shipped generative AI into production, with the cost reports and the incident reviews to go with it.</p>
+    <p>That history is why this works. I know what a real training run costs, what a rushed architecture looks like six months in, and which corners get cut when a raise is three weeks out. I have cut some of them myself.</p>
+    <p>I do not take equity, carry, or a finder’s fee, in your fund or in anything I audit. I have no relationship to protect on either side of the table. The only thing I am selling you is an accurate answer, including the ones that cost me repeat work.</p>
+    <div class="creds">
+     <div><dt>Background</dt><dd>Fifteen years enterprise engineering and data architecture. Senior engineer through senior data scientist and technical product owner.</dd></div>
+     <div><dt>AI specifically</dt><dd>Four years in production generative AI. Retrieval systems, agentic architecture, evaluation, inference cost work.</dd></div>
+     <div><dt>Founding side</dt><dd>First hire and co builder on a venture backed product. Established data science functions at two companies.</dd></div>
+     <div><dt>Academic</dt><dd>MSc Data Science. Published peer reviewed research on explainable AI. Adjunct faculty teaching postgraduate AI.</dd></div>
+     <div><dt>Independence</dt><dd>No equity, no carry, no introduction fees. Registered in the UAE as Luminaq FZE LLC.</dd></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 007 RECORD. PLACEHOLDER FIGURES. data-cu on each .sv is the number it counts up to. Replace with real figures before this is public. -->
+<section id="record" class="sec" data-rail="6" style="padding-bottom:0">
+ <div class="wrap">
+  <div class="lbl rvf"><span class="n">007</span> &nbsp;/&nbsp; Record</div>
+  <h2 class="h2 rv" style="margin-top:26px;max-width:22ch">The point is not the deals I stopped.</h2>
+  <p class="lede rvf" style="margin-top:22px">Anyone can tell you no. What you are buying is the ability to say yes quickly, for a stated reason, and sleep afterwards.</p>
+  <div class="stats rvf">
+   <div class="s"><div class="sv" data-cu="24">0</div><div class="sk">Audits completed</div></div>
+   <div class="s"><div class="sv" data-cu="13">0</div><div class="sk">Deals cleared with confidence</div></div>
+   <div class="s"><div class="sv" data-cu="6" data-suf=" days">0</div><div class="sk">Median time to written verdict</div></div>
+   <div class="s"><div class="sv" data-cu="2.4" data-pre="$" data-suf="M">0</div><div class="sk">Capital protected on stopped deals</div></div>
+  </div>
+  <div class="quote rvf">
+   <blockquote>He found three things in four days that we had missed in six weeks. Two were fixable. One was not.</blockquote>
+   <div class="att">Angel investor, Abu Dhabi<br>Seed stage, MENA &nbsp;/&nbsp; deal proceeded after remediation<br><span style="color:var(--mute2)">Full attribution available under NDA on request</span></div>
+  </div>
+ </div>
+</section>
+<!-- 008 ENGAGEMENT. The three pricing tiers, then the two terms and the badge row. To add a tier see CLAUDE.md. -->
+<section id="engage" class="sec" data-rail="7"><span class="alias" id="pricing"></span>
+ <div class="wrap">
+  <div class="top" style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
+   <div>
+    <div class="lbl rvf"><span class="n">008</span> &nbsp;/&nbsp; Engagement</div>
+    <h2 class="h2 rv" style="margin-top:26px;max-width:17ch">Priced against the cheque.</h2>
+   </div>
+   <p class="small rvf" style="max-width:40ch">Diligence should cost a fraction of what it protects. The audit scales with the size of the decision behind it, so a small deal never subsidises a large one. You get the number before the work starts, never after.</p>
+  </div>
+
+  <div class="tiers rvf">
+   <div class="tier">
+    <div class="tn">01 &nbsp;/&nbsp; Signal</div>
+    <div class="tp">AED 1,900</div>
+    <div class="tw">48 hours &nbsp;/&nbsp; flat</div>
+    <p class="td">A first pass before you commit to full diligence. Enough to know whether the deal deserves the next four days of anyone’s time, including yours.</p>
+    <ul>
+     <li><i></i>Repository and architecture skim</li>
+     <li><i></i>Wrapper or moat determination</li>
+     <li><i></i>Two page memo with a go or stop</li>
+     <li><i></i>Credited in full against a later audit</li>
+    </ul>
+    <div class="ta"><a class="btn" href="https://calendly.com/satish-r-singh" target="_blank" rel="noopener"><span>Start a signal</span><span class="ar"></span></a></div>
+   </div>
+   <div class="tier">
+    <div class="tn">02 &nbsp;/&nbsp; Full audit</div>
+    <div class="tp">From AED 4,500</div>
+    <div class="tw">5 working days &nbsp;/&nbsp; scaled to the cheque</div>
+    <p class="td">The complete instrument. Six vectors, scored, every finding evidenced and every claim in the deck tested against what the repository actually contains.</p>
+    <ul>
+     <li><i></i>All six vectors, Luminaq Index score</li>
+     <li><i></i>Fourteen page written report</li>
+     <li><i></i>One page verdict for co investors</li>
+     <li><i></i>Sixty minute debrief call</li>
+     <li><i></i>Founder question list</li>
+     <li><i></i>One follow up round after remediation</li>
+    </ul>
+    <div class="ta"><a class="btn solid" href="https://calendly.com/satish-r-singh" target="_blank" rel="noopener"><span>Book a full audit</span><span class="ar"></span></a></div>
+   </div>
+   <div class="tier">
+    <div class="tn">03 &nbsp;/&nbsp; Standing</div>
+    <div class="tp">AED 14,000<small>/ month</small></div>
+    <div class="tw">Priority queue</div>
+    <p class="td">For investors seeing deals continuously. You stop deciding whether a deal is worth diligence, because diligence is already retained.</p>
+    <ul>
+     <li><i></i>One full audit or three signals monthly</li>
+     <li><i></i>24 hour start on anything urgent</li>
+     <li><i></i>Unlimited short questions between deals</li>
+     <li><i></i>Quarterly portfolio technical review</li>
+     <li><i></i>Three month minimum, then monthly</li>
+    </ul>
+    <div class="ta"><a class="btn" href="https://calendly.com/satish-r-singh" target="_blank" rel="noopener"><span>Discuss a retainer</span><span class="ar"></span></a></div>
+   </div>
+  </div>
+
+  <div style="margin-top:clamp(52px,7vw,92px)">
+   <div class="lbl rvf">How I work</div>
+   <div class="terms rvf">
+    <div class="term"><div class="tk">Independence</div><div class="tv">No equity, no carry, no introduction or success fees, in any company I audit or any fund I work for. I will decline an engagement rather than hold a position in it.</div></div>
+    <div class="term"><div class="tk">Scope</div><div class="tv">I establish what is technically true. I do not value the company, opine on the founders, or tell you whether to invest. That decision stays yours, which is where it belongs.</div></div>
+   </div>
+   <div class="badges rvf">
+    <span class="badge">No material finding, no fee</span><span class="badge">No equity, no carry</span>
+    <span class="badge">Mutual NDA before access</span><span class="badge">Read only, time boxed access</span>
+    <span class="badge">Clones destroyed at delivery</span><span class="badge">Luminaq FZE LLC &nbsp;/&nbsp; UAE</span>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- CLOSE. Final call to action. -->
+<section id="close">
+ <div class="wrap">
+  <div class="lbl rvf" style="margin-bottom:30px">Last thing</div>
+  <h2 class="h1 rv">Bring me the deal you cannot read.</h2>
+  <p class="lede rvf" style="margin:26px auto 0;max-width:50ch;text-align:center">Fifteen minutes, no obligation, and I will tell you on the call whether it is worth auditing at all. Sometimes the answer is that it is not, and that is free.</p>
+  <div class="acts rvf">
+   <a class="btn solid lg" href="https://calendly.com/satish-r-singh" target="_blank" rel="noopener"><span>Book a 15 minute call</span><span class="ar"></span></a>
+   <a class="btn lg" href="#diag"><span>Run the free diagnostic first</span><span class="ar"></span></a>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <div class="wrap">
+  <div class="fgrid">
+   <div style="max-width:32ch">
+    <a class="brand" href="#top" style="margin-bottom:18px">
+     <svg viewBox="0 0 1855 1627.35" fill="currentColor" aria-hidden="true"><path d="M34 0L1745.2 0A34 34 0 0 1 1779.2 34L1779.2 1151.34A7 7 0 0 1 1767.89 1156.85L1645.89 1061.56A7 7 0 0 1 1643.2 1056.05L1643.2 135.45A11 11 0 0 0 1632.2 124.45L144.5 124.45A11 11 0 0 0 133.5 135.45L133.5 1480.5A11 11 0 0 0 144.5 1491.5L1354.72 1491.5A7 7 0 0 1 1359.92 1493.81L1469.9 1615.66A7 7 0 0 1 1464.7 1627.35L34 1627.35A34 34 0 0 1 0 1593.35L0 34A34 34 0 0 1 34 0Z"/><path d="M1187.81 1110.2L1300.14 1058.56A6 6 0 0 1 1306.39 1059.33Q1597.07 1252.89 1846.28 1490.53A6 6 0 0 1 1845.64 1500.35L1675.65 1603.26A6 6 0 0 1 1668.3 1602.37L1186.07 1119.89A6 6 0 0 1 1187.81 1110.2Z"/><circle cx="1084.18" cy="824.17" r="157.06"/></svg>
+     LUMINAQ
+    </a>
+    <p class="small">Independent technical due diligence on AI companies, for the people writing the cheques.</p>
+   </div>
+   <div class="fcol"><span style="color:var(--mute2)">Work</span><a href="#inst">The method</a><a href="#index">The index</a><a href="#report">Sample report</a><a href="#diag">Diagnostic</a></div>
+   <div class="fcol"><span style="color:var(--mute2)">Firm</span><a href="#auditor">The auditor</a><a href="#engage">Engagement</a><a href="#engage">Confidentiality</a><a href="#engage">Conflicts policy</a></div>
+   <div class="fcol"><span style="color:var(--mute2)">Contact</span><a href="https://calendly.com/satish-r-singh" target="_blank" rel="noopener">Book a call</a><a href="mailto:hello@luminaq.ae">hello@luminaq.ae</a><span>Abu Dhabi &nbsp;/&nbsp; Dubai</span></div>
+  </div>
+  <div class="fbot">
+   <span>&copy; 2026 Luminaq FZE LLC</span>
+   <span>Ajman NuVentures Free Zone &nbsp;/&nbsp; United Arab Emirates</span>
+   <span>Privacy &nbsp;/&nbsp; Terms &nbsp;/&nbsp; NDA template</span>
+  </div>
+ </div>
+</footer>
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>

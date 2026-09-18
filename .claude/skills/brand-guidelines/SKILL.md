@@ -1,119 +1,68 @@
 ---
 name: brand-guidelines
-description: Applies LuminaQ's official brand colors, typography, and design system to any artifact that may benefit from having LuminaQ's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.
+description: Luminaq's visual identity. Use whenever choosing a colour, a typeface, a weight or a size, or when placing the mark, on the website or on anything else carrying the Luminaq name.
 ---
 
-# LuminaQ Brand Styling
+# Luminaq brand
 
-## Overview
+Rebuilt September 2026. The previous identity was gold `#a1835d` on near-black with
+Playfair Display and Inter. **That is gone.** If you find those values anywhere, they are
+a leftover, not a reference.
 
-To access LuminaQ's official brand identity and style resources, use this skill.
+## Colour
 
-**Keywords**: branding, corporate identity, visual identity, post-processing, styling, brand colors, typography, LuminaQ brand, visual formatting, visual design, due diligence, investor
+Monochrome. No hue at all. Hierarchy is carried by value and by inversion.
 
-## Brand Guidelines
+```
+--ink      #000000   the ground. Pure black, not a muddy near-black.
+--ink2     #060606   raised surfaces, alternating sections
+--ink3     #0A0A0A   cards
+--ink4     #101010   the most elevated surface
+--line     rgba(255,255,255,.09)   hairlines
+--line2    rgba(255,255,255,.17)   hairlines that need to be seen
+--bone     #F4F3F1   primary text
+--dim      #A8A8A8   secondary text
+--mute     #767676   labels, captions
+--mute2    #4A4A4A   the quietest thing that is still there
+--am       #FFFFFF   accent. White, used sparingly and only to mark state.
+```
 
-### Colors
+**Never use green.** Where green is the instinct, use grey. This is absolute.
 
-**Core Palette:**
+Severity is inversion, not colour. A critical finding is white on black reversed to black
+on white. A moderate one is outlined. A clear one is grey. Red and amber do not appear.
 
-- Background: `#080808` - Primary dark background
-- Surface: `#0a0a0a` - Slightly elevated surfaces
-- Card: `#121212` - Card and container backgrounds
-- Elevated: `#1a1a1a` - Elevated element backgrounds
-- Border: `#2a2a2a` - Subtle borders and dividers
+## Type
 
-**Accent Colors:**
+- **Instrument Serif** for display. Headlines, prices, big numbers. Regular weight only.
+  Its italic carries emphasis inside a headline.
+- **Schibsted Grotesk** for body copy. 400 and 500.
+- **JetBrains Mono** for labels, section numbers, data, buttons and anything that should
+  read as an instrument reading rather than as prose. Uppercase, letter-spaced about
+  `.15em`, around 9.5 to 10.5px.
 
-- Gold: `#a1835d` - Primary accent (CTAs, highlights, brand signature)
-- Gold Hover: `#b3956d` - Interactive hover state for gold accent
-- Gold Glow: `rgba(161,131,93,0.4)` - Shadow/glow effect for gold elements
+Never set body copy in the mono. Never set a label in the serif.
 
-**Text Colors:**
+Headlines are tight: `line-height: 1.0` to `1.12`, `letter-spacing: -.01em` or so. Body
+copy is loose: `line-height: 1.6`, measure around 60 to 68 characters.
 
-- Primary Text: `#f0f0f0` - Main body and heading text
-- Muted Text: `#888888` - Secondary/supporting text
+## The mark
 
-**Transparency System:**
+A square frame open at the bottom right, a dot inside it, a handle passing out through
+the opening. `public/img/mark.svg`, drawn with `fill="currentColor"` so it inherits.
 
-- `white/5` through `white/30` - Border and background opacity levels
-- `black/30` with `backdrop-blur-sm` - Frosted glass / glassmorphism effect
+Its asymmetries are deliberate and measured from the original: the top bar is 124.45
+units against 133 to 136 on the other three sides, the frame is a 1779 x 1627 rectangle
+rather than a square, the aperture cuts sit at 38.00 and 47.94 degrees, and the handle's
+lower edge is a true 45 degrees while its upper edge bows 15 units off its own chord.
+**Do not regularise any of that.** It is the mark, not a mistake.
 
-### Typography
+Clear space: a margin equal to the frame's stroke weight, 6.7 percent of the mark's
+width, on all four sides. Minimum size 24px on screen, 8mm in print. Below 24px use the
+hinted favicon, not a scaled vector.
 
-- **Headings**: Playfair Display (serif) - Elegant, premium feel
-- **Body Text**: Inter (sans-serif) - Clean, modern readability
-- **Code/Technical**: JetBrains Mono (monospace) - Technical content display
-- **Note**: Fonts are loaded via Google Fonts. Fallbacks: serif, sans-serif, monospace.
+## Texture
 
-### Tailwind Theme Tokens
-
-All brand values are available as Tailwind utilities prefixed with `luminaq-`:
-
-- `bg-luminaq-bg`, `bg-luminaq-surface`, `bg-luminaq-card`, `bg-luminaq-elevated`
-- `border-luminaq-border`, `border-luminaq-accent`
-- `text-luminaq-text`, `text-luminaq-muted`, `text-luminaq-accent`
-
-## Features
-
-### Smart Font Application
-
-- Applies Playfair Display to headings and display text (serif-title class)
-- Applies Inter to all body and UI text
-- Uses JetBrains Mono for any code snippets or technical labels
-- Headline styling: `leading-[1.1] tracking-tight` for tight, impactful headlines
-- Label styling: `tracking-widest text-sm font-light` for uppercase category labels
-
-### Button Styles
-
-**Primary CTA (Gold):**
-- `bg-luminaq-accent hover:bg-luminaq-accentHover text-white px-8 py-4 rounded-full font-medium`
-- Shadow: `shadow-[0_4px_30px_rgba(161,131,93,0.4)]` → hover: `shadow-[0_6px_40px_rgba(161,131,93,0.6)]`
-- Icon shifts right on hover via `group-hover:translate-x-1`
-
-**Secondary (Frosted Glass):**
-- `bg-black/30 backdrop-blur-sm border border-white/30 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-full`
-
-**Tertiary (Outline):**
-- `border-2 border-white/30 hover:border-white hover:bg-white/5 text-white px-10 py-5 rounded-full`
-
-### Card Styling
-
-- Background: `bg-luminaq-card`
-- Border: `border border-luminaq-border rounded-[2px]` (sharp, minimal corners — luxury aesthetic)
-- Padding: `p-10 md:p-14`
-- Accent glow on hover: `shadow-[0_0_40px_-10px_rgba(161,131,93,0.15)]` → `shadow-[0_0_60px_-10px_rgba(161,131,93,0.25)]`
-
-### Animation Patterns
-
-- **Entrance**: `initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}` with `duration: 0.8–1`
-- **Easing**: `ease: [0.22, 1, 0.36, 1]` (smooth cubic bezier)
-- **Scroll trigger**: `whileInView` with `viewport={{ once: true }}`
-- **Hover**: `whileHover={{ scale: 1.02 }}` for interactive elements
-- **Stagger**: Sequential delays (`0.3`, `0.5`) for grouped elements
-
-### Layout Conventions
-
-- Section vertical padding: `py-24`
-- Container horizontal padding: `px-6 md:px-12`
-- Max content widths: `max-w-5xl` (sections), `max-w-3xl` (text blocks)
-- Responsive grids: `grid-cols-1 lg:grid-cols-2`
-
-## Brand Voice
-
-### Tone
-
-- **Confident and direct** — no hedging or soft language
-- **Contrarian** — challenges startup hype and marketing fluff
-- **Premium** — sophisticated vocabulary, luxury-minimalist aesthetic
-- **Protective** — positions LuminaQ as the investor's shield
-
-### Key Vocabulary
-
-- "Due diligence", "audit", "red flags", "vaporware", "technical debt"
-- "Innovation vs. hype", "pitch deck", "angel investors"
-- Avoid jargon-heavy language: "No jargon. No engineering degree required."
-
-### Tagline
-
-> "The Pitch Deck Says Unicorn. The Code Says Weekend Project."
+A film grain overlay at 1.2 percent opacity sits over the whole page. Hairline rules
+rather than borders. Almost no radius: 2px where a radius is needed at all, never more.
+No shadows. No gradients except the scrims that protect type over the hero photograph.

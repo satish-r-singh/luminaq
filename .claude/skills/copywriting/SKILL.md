@@ -1,162 +1,59 @@
 ---
 name: copywriting
-description: Enforces LuminaQ's brand voice and rhetorical patterns when writing or editing any copy — headlines, body text, CTAs, section labels, or microcopy. Use it when creating new sections, editing existing text, or reviewing copy for tone consistency.
+description: Luminaq's voice. Use when writing or editing any text that a visitor will read, including headlines, body copy, button labels, section titles and microcopy.
 ---
 
-# LuminaQ Copywriting System
+# How Luminaq writes
 
-## Overview
+The site is written by one person, in the first person singular, to one reader who is
+about to risk a lot of money on something he cannot evaluate himself.
 
-LuminaQ speaks like a seasoned investor's trusted advisor — someone who has seen enough bad deals to be blunt, enough good ones to be optimistic, and enough pitches to know the difference.
+## The voice
 
-**Keywords**: copywriting, brand voice, tone, headlines, CTAs, microcopy, messaging, content, copy editing, landing page text
+**First person singular. Always.** "I open the repository." Never "we audit", never "our
+team". There is no team. The whole proposition is that a named individual looks at the
+code and signs his name to what he found. Any drift into "we" destroys it.
 
-## Voice Profile
+**Short declaratives.** Say the thing. "I tell you what is built." Do not build up to it.
 
-- **Register:** Conversational authority — technical credibility delivered in plain language
-- **Attitude:** Protective of the investor, skeptical of founders (but not cynical)
-- **Posture:** The site rarely claims. It mostly questions. Positioning through exclusion (what we don't do) rather than what we do.
-- **Emotional arc across the page:** Anxiety → Recognition → Relief → Action
+**Concrete over abstract.** "Six risk vectors, one score, five working days" beats
+"comprehensive technical assessment". Numbers, timeframes and nouns you can picture.
 
-## Core Rhetorical Devices
+**State the limits of the claim.** This is the most distinctive move in the voice and the
+thing that makes it credible. "I have no view on your thesis and no opinion on the
+founder." "Sometimes the answer is that it is not, and that is free." Naming what you do
+not claim is what makes the rest believable.
 
-### 1. Contrast & Juxtaposition (Primary Device)
+**No hype vocabulary.** Not: leverage, unlock, empower, seamless, cutting-edge,
+revolutionary, game-changing, solution, journey, passionate, excited to. If a sentence
+would survive being pasted onto any other consultancy's site, rewrite it.
 
-Every section hinges on a gap between appearance and reality. This is the engine of the entire site.
+## Headlines
 
-- "The Pitch Deck Says *Unicorn.* The Code Says *Weekend Project.*"
-- "We audit code, not just slide decks."
-- "Is this real innovation, or an expensive science project?"
-- "The demo looks incredible... But something feels off."
+The signature structure is a claim and its reversal, two beats:
 
-**Rule:** When writing new copy, identify the contrast first. What does the founder claim vs. what is actually true? Build the sentence around that tension.
+> The pitch deck says unicorn. The code says weekend project.
+> You can read the founder. I read the code.
+> The point is not the deals I stopped.
+> Priced against the cheque.
 
-### 2. Second-Person Immersion
+Short. Present tense. The turn happens on a full stop, not a conjunction.
 
-The reader is always "you" — placed inside a scenario they recognize.
+## Buttons
 
-- "You're in the pitch meeting. The founder says 'fine-tuned LLM with proprietary embeddings.' You nod. You smile. You have no idea if that's impressive or meaningless."
+Say exactly what happens. "Book a 15 minute call", not "Get started". "Read a real audit
+report", not "Learn more". A button that says "Submit" has failed.
 
-**Rule:** Use "you" and "your" in narrative sections. Use "we" only when describing what LuminaQ does. Never use "our clients" or "users" — say "you."
+## Section labels
 
-### 3. Negation as Confidence
+Mono, uppercase, numbered: `001 / THE PREMISE`. The number is real information, it tells
+the reader where they are in a document. Keep them sequential.
 
-Authority is established by listing what LuminaQ does NOT do, removing problems rather than adding features.
+## Hard rules
 
-- "No jargon. No engineering degree required."
-- "No obligation."
-- "No email required."
-- "100% Independent — No Equity Conflicts."
-- "We don't send juniors."
-
-**Rule:** For trust-building copy, lead with what's absent. Subtraction signals confidence.
-
-### 4. Rhetorical Questions
-
-Questions position LuminaQ as the investigator, not the salesperson.
-
-- "Can it handle 10M users? Or will it crash at 10k?"
-- "Is the training data clean? Legal?"
-- "Are they actually fine-tuning Llama-3, or just prompting GPT-4 with a system wrapper?"
-
-**Rule:** Use questions in technical/audit sections. Use statements in CTA and trust sections.
-
-### 5. Parenthetical Asides
-
-Breaks formal tone, builds insider rapport.
-
-- "(looking impressive but failing in production)"
-- "disguised as 'proprietary algo'"
-- "You don't talk about that one at dinner parties."
-
-**Rule:** One aside per paragraph maximum. They lose impact if overused.
-
-### 6. Quantified Specificity
-
-Numbers create trust. Vague claims create suspicion.
-
-- "$25K – $250K" not "significant investments"
-- "10-15 page document" not "comprehensive report"
-- "60-Minute Debrief Call" not "follow-up discussion"
-- "9 Deals Killed" not "several deals rejected"
-
-**Rule:** If a number exists, use it. If it doesn't, find one or rewrite without the claim.
-
-## Formatting Conventions
-
-### Headlines
-
-- Always use Playfair Display (serif) via `font-serif`
-- One or two key words in *italics* for emphasis: "What You *Receive*", "Audit *Pricing*"
-- Short and punchy — ideally under 10 words
-- Periods at end of headline fragments for weight: "Deals Examined. *Capital Protected.*"
-
-### Section Labels
-
-- ALL CAPS, gold accent color (`text-luminaq-accent`)
-- `tracking-widest text-sm font-light`
-- Two to three words: "THE REALITY", "RISK ASSESSMENT", "TRACK RECORD"
-
-### Body Copy
-
-- Inter (sans-serif), `text-lg md:text-xl`, `text-white/60` or `text-luminaq-muted`
-- `font-light` for supporting paragraphs
-- Em-dashes (—) for supporting clauses, not parentheses: "A 10-15 page document you can share with co-investors—without embarrassment"
-- **Bold** for the single most important phrase in a paragraph, used sparingly
-
-### CTAs
-
-- Primary: Action verb + object: "Book a Discovery Call", "Request a Custom Quote", "Download the Free Guide"
-- Always followed by a reassurance line in smaller text: "15 minutes. No obligation." or "PDF download. No email required."
-- Never use "Submit", "Sign Up", "Learn More", or "Click Here"
-
-### Lists (e.g., "This Is For You If...")
-
-- Start each item with "You" or "You're"
-- Specific behavioral markers, not demographics: "You've nodded through technical explanations you didn't fully understand" not "You're a non-technical investor"
-- Mirror positive/negative lists when paired
-
-## Vocabulary
-
-### Use These Words
-
-| Word | Context |
-|------|---------|
-| Audit | Primary verb for the service |
-| Due diligence | The category/framework |
-| Vaporware | Fake or non-functional products |
-| Technical debt | Code quality issues |
-| Red flags | Risk indicators |
-| Wrapper | Thin layer over someone else's API |
-| Moat | Defensible technology |
-| Demo-ware | Looks good in demos, falls apart in production |
-| Kill / Killed | Rejected a deal based on findings |
-
-### Never Use
-
-| Avoid | Why |
-|-------|-----|
-| "Cutting-edge" / "Revolutionary" | Sounds like the startups we audit |
-| "Leverage" / "Synergy" | Corporate buzzwords undermine credibility |
-| "Solution" / "Platform" | Too generic, too SaaS |
-| "Our clients" / "Users" | Say "you" instead |
-| "World-class" / "Best-in-class" | Unprovable superlatives |
-| "AI-powered" (for our own service) | Ironic given we audit AI claims |
-| Emoji in body copy | Breaks the refined tone |
-
-## Tone Calibration
-
-**Too soft:** "We can help you evaluate potential investment opportunities more effectively."
-**On brand:** "We strip away the marketing hype and audit the engineering reality."
-**Too aggressive:** "Most AI startups are scams and we'll prove it."
-
-The sweet spot is **confident skepticism with a protective instinct** — not cynicism, not salesmanship.
-
-## Sentence Structure Patterns
-
-1. **Short declarative for impact:** "That's not due diligence. That's hope with a checkbook."
-2. **Long immersive for narrative:** "You leave with a beautiful deck and a simple question you can't answer: Is this real innovation, or an expensive science project?"
-3. **Triple negative for trust:** "No jargon. No ambiguity. Just the truth about the code."
-4. **Question + answer pair:** "Can it handle 10M users? Or will it crash at 10k? We stress-test the theoretical limits."
-
-Alternate between these rhythms. Never write three long sentences in a row or three short ones.
+- **No em dashes or en dashes.** Ever. A comma, a colon or a full stop. Standing
+  instruction from the owner, and it applies to every piece of text on the site.
+- Straight apostrophes are not used in prose; the typographic apostrophe is.
+- British spelling is not enforced, but be consistent within a page.
+- Never claim a number that is not real. The Record section currently carries invented
+  placeholder figures and is flagged as such in CLAUDE.md. Do not add more.
