@@ -98,7 +98,7 @@ section{position:relative}
   border-bottom:1px solid transparent;
 }
 #nav:before{content:'';position:absolute;inset:0;pointer-events:none;z-index:-1;
-  background:linear-gradient(180deg,rgba(0,0,0,.62),rgba(0,0,0,.28) 58%,rgba(0,0,0,0));
+  background:linear-gradient(180deg,rgba(0,0,0,.82),rgba(0,0,0,.46) 58%,rgba(0,0,0,0));
   transition:opacity .5s}
 #nav.stuck:before{opacity:0}
 #nav.stuck{background:rgba(10,10,11,.82);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
@@ -106,7 +106,7 @@ section{position:relative}
 .brand svg{width:auto;height:18px;display:block;flex:none;color:var(--bone);overflow:visible}
 .brand:hover svg{color:var(--am)}
 .brand svg,.brand{transition:color .35s}
-#nav .links{display:flex;gap:30px;font:400 10.5px/1 var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--mute)}
+#nav .links{display:flex;gap:30px;font:400 10.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
 #nav .links a{position:relative;padding:6px 0;transition:color .3s}
 #nav .links a:hover{color:var(--bone)}
 #nav .links a:after{content:'';position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--am);transition:width .4s var(--ez)}
@@ -202,14 +202,26 @@ section{position:relative}
 @keyframes pip{0%{box-shadow:0 0 0 0 rgba(217,161,92,.45)}70%{box-shadow:0 0 0 9px rgba(217,161,92,0)}100%{box-shadow:0 0 0 0 rgba(217,161,92,0)}}
 #hero .sub{margin-top:26px;max-width:46ch;font-size:clamp(.98rem,1.18vw,1.14rem);color:var(--dim);line-height:1.6}
 #hero .acts{margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
+/* Scrim protecting the hero copy over the photograph. The canvas scrim covers
+   the left band on wide screens but not the middle band on narrow ones, so the
+   text column carries its own and both CTAs sit on protected ground. */
+#hero .hgrid>div:first-child{position:relative}
+#hero .hgrid>div:first-child:before{
+  content:'';position:absolute;z-index:-1;pointer-events:none;
+  inset:-46px -72px -46px calc(var(--pad) * -1);
+  background:radial-gradient(125% 92% at 20% 50%,rgba(0,0,0,.80) 0%,rgba(0,0,0,.62) 44%,rgba(0,0,0,0) 78%);
+}
 .tlink{display:inline-flex;align-items:center;gap:9px;font:400 10.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--mute);transition:color .35s;padding:12px 0}
 .tlink:hover{color:var(--am)}
+/* The hero CTA sits on the photograph, not on a solid ground, so it carries
+   full value. The diagnostic .tlink on a dark section keeps the quieter grey. */
+#hero .tlink{color:var(--bone)}
 .tlink .ar{width:14px;height:1px;background:currentColor;position:relative;transition:width .4s var(--ez)}
 .tlink .ar:after{content:'';position:absolute;right:0;top:-2.5px;width:5px;height:5px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
 .tlink:hover .ar{width:24px}
 #hint{
   position:absolute;left:var(--pad);bottom:34px;z-index:3;display:flex;align-items:center;gap:12px;
-  font:400 9.5px/1 var(--mono);letter-spacing:.19em;text-transform:uppercase;color:var(--mute2);
+  font:400 9.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
   transition:opacity .7s;
 }
 #hint .sw{width:46px;height:1px;background:linear-gradient(90deg,transparent,var(--am),transparent);background-size:200% 100%;animation:sw 3.2s var(--ez) infinite}
