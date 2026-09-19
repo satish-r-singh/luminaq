@@ -279,7 +279,7 @@ function scrim(x){
     x.fillStyle=v; x.fillRect(0,0,W,H);
     x.save();
     x.font="400 9.5px 'JetBrains Mono',monospace";
-    x.fillStyle="rgba(255,255,255,.40)"; x.textAlign="right";
+    x.fillStyle="rgba(255,255,255,.74)"; x.textAlign="right";
     x.fillText("PLATE 01  /  SUBJECT IN SITU  /  UNVERIFIED", W-30, H-34);
     x.textAlign="left"; x.restore();
   }
@@ -409,5 +409,13 @@ imgR=new Image(); imgR.onload=ready; imgR.onerror=ready; imgR.src=PLATE_REV;
 if(NEEDC){ imgC=new Image(); imgC.onload=ready; imgC.onerror=ready; imgC.src=CANOPY; }
 requestAnimationFrame(draw);
 addEventListener("pointermove",onMove,{passive:true});
+/* Touch has no hover, so a tap is the gesture. It places the lens and resets
+   the idle timer; 2.8s later the lens resumes drifting across the head by
+   itself. Deliberately no touch-action change: vertical swipes stay with the
+   page, so a visitor can always scroll out of a full height hero. */
+cv.addEventListener("pointerdown",function(e){
+  if(e.pointerType==="mouse") return;
+  onMove(e);
+},{passive:true});
 let rt; addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(build,220);},{passive:true});
 })();
