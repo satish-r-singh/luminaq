@@ -105,7 +105,7 @@ panes rethemes itself.
 weights and the verdict bands.
 
 **Calls to action.** Every book-a-call link points at `https://calendly.com/satish-r-singh`
-with `target="_blank" rel="noopener"`. There were eight at the last count. If the Calendly
+with `target="_blank" rel="noopener"`. There were nine at the last count. If the Calendly
 URL changes, change all of them.
 
 **The Record figures.** Section `007 RECORD`. **These are invented placeholders**: 24

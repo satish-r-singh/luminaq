@@ -126,6 +126,45 @@ section{position:relative}
 .btn.lg{padding:17px 26px;font-size:11px}
 @media(max-width:1040px){#nav .links{display:none}}
 
+/* ---------- mobile menu ----------
+   The only navigation below 1040px. Same eight numbered sections as the rail,
+   set in the display face so the panel reads as a contents page rather than a
+   list of controls. */
+#menub{display:none;align-items:center;gap:11px;padding:11px 14px;background:none;
+  border:1px solid var(--line2);border-radius:2px;color:var(--dim);cursor:pointer;
+  font:400 10.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;text-align:left;
+  transition:color .3s,border-color .3s}
+#menub:hover{color:var(--bone);border-color:var(--am)}
+#menub .mx{display:block;position:relative;width:14px;height:9px;flex:none}
+#menub .mx i{position:absolute;left:0;right:0;height:1px;background:currentColor;
+  transition:transform .35s var(--ez)}
+#menub .mx i:first-child{top:0}
+#menub .mx i:last-child{bottom:0}
+#menub[aria-expanded="true"] .mx i:first-child{transform:translateY(4px) rotate(45deg)}
+#menub[aria-expanded="true"] .mx i:last-child{transform:translateY(-4px) rotate(-45deg)}
+#menu{position:fixed;inset:0;z-index:890;background:var(--ink);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:110px var(--pad) 44px;overflow-y:auto;
+  opacity:0;visibility:hidden;transition:opacity .34s var(--ez),visibility .34s}
+#menu.open{opacity:1;visibility:visible}
+#menu .mlist{display:flex;flex-direction:column}
+#menu .mlist a{display:flex;align-items:baseline;gap:16px;padding:16px 0;
+  border-bottom:1px solid var(--line);color:var(--bone);
+  font-family:var(--display);font-size:clamp(1.3rem,6vw,1.75rem);line-height:1;
+  transition:color .3s}
+#menu .mlist a b{font:400 10px/1 var(--mono);letter-spacing:.16em;color:var(--mute);
+  min-width:32px;flex:none}
+#menu .mlist a:active,#menu .mlist a:hover{color:var(--dim)}
+#menu .mcta{margin-top:32px;justify-content:center}
+body.menuopen{overflow:hidden}
+body.menuopen #nav{background:var(--ink);border-bottom-color:var(--line)}
+body.menuopen #nav:before{opacity:0}
+@media(max-width:1040px){#menub{display:inline-flex}}
+@media(min-width:1041px){#menu{display:none}}
+/* at phone width the booking button in the bar crowds the menu button out; it
+   is the first thing inside the panel and the hero carries it too */
+@media(max-width:480px){#nav>.btn{display:none}}
+
 /* ---------- rail: a progress scale, not a second menu ---------- */
 #rail{
   position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:880;display:none;
@@ -198,19 +237,13 @@ section{position:relative}
 .h1 .truth em{color:var(--cy)}
 
 #hero .eyebrow{display:flex;align-items:center;gap:13px;margin-bottom:30px}
+/* The eyebrow is over the photograph, so it carries more value than the
+   section labels on solid grounds elsewhere on the page. */
+#hero .eyebrow .lbl{color:var(--bone);letter-spacing:.17em}
 #hero .eyebrow .pip{width:5px;height:5px;border-radius:50%;background:var(--am);box-shadow:0 0 0 0 rgba(143,217,238,.5);animation:pip 2.8s infinite}
 @keyframes pip{0%{box-shadow:0 0 0 0 rgba(217,161,92,.45)}70%{box-shadow:0 0 0 9px rgba(217,161,92,0)}100%{box-shadow:0 0 0 0 rgba(217,161,92,0)}}
 #hero .sub{margin-top:26px;max-width:46ch;font-size:clamp(.98rem,1.18vw,1.14rem);color:var(--dim);line-height:1.6}
 #hero .acts{margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
-/* Scrim protecting the hero copy over the photograph. The canvas scrim covers
-   the left band on wide screens but not the middle band on narrow ones, so the
-   text column carries its own and both CTAs sit on protected ground. */
-#hero .hgrid>div:first-child{position:relative}
-#hero .hgrid>div:first-child:before{
-  content:'';position:absolute;z-index:-1;pointer-events:none;
-  inset:-46px -72px -46px calc(var(--pad) * -1);
-  background:radial-gradient(125% 92% at 20% 50%,rgba(0,0,0,.80) 0%,rgba(0,0,0,.62) 44%,rgba(0,0,0,0) 78%);
-}
 .tlink{display:inline-flex;align-items:center;gap:9px;font:400 10.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--mute);transition:color .35s;padding:12px 0}
 .tlink:hover{color:var(--am)}
 /* The hero CTA sits on the photograph, not on a solid ground, so it carries
@@ -227,17 +260,18 @@ section{position:relative}
 #hint .sw{width:46px;height:1px;background:linear-gradient(90deg,transparent,var(--am),transparent);background-size:200% 100%;animation:sw 3.2s var(--ez) infinite}
 @keyframes sw{0%{background-position:100% 0}60%,100%{background-position:-100% 0}}
 #hint.gone{opacity:0}
-#hero .stat{
-  position:absolute;right:var(--pad);bottom:34px;z-index:3;text-align:right;
-  font:400 9.5px/1.9 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--mute2);
-}
 @media(max-width:900px){
   #hero .hgrid{grid-template-columns:1fr}
-  #hero{min-height:100svh;align-items:flex-end;padding-top:0;padding-bottom:86px}
-  #hero .eyebrow{margin-bottom:22px}
-  #hint{bottom:52px}
+  /* The photograph owns the top band, the copy owns everything beneath it.
+     --heroband is written by hero.js from the same number it uses to draw the
+     plate, so the two cannot drift apart at any screen height. The hero grows
+     past 100svh rather than letting the copy ride up onto the image. */
+  #hero{min-height:100svh;height:auto;align-items:flex-start;
+        padding-top:calc(var(--heroband,32svh) + 48px);padding-bottom:64px}
+  #hero .eyebrow{margin-bottom:18px}
 }
 @media(max-width:560px){ .hide-s{display:none} }
+@media(max-width:560px){ .h1{font-size:clamp(2.05rem,8.8vw,3.3rem)} }
 @media(min-width:561px){ .only-s{display:none} }
 @media(max-width:620px){
   .vpane .vfig{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
@@ -513,7 +547,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 40px}
 #hint{bottom:34px}
 @media(max-width:900px){
   #hero .hgrid>div:first-child{max-width:none}
-  #hint{bottom:52px}
+  /* The hint sits just under the plate: close enough to be about the image,
+     but on the black rather than on the bokeh, where nothing is readable.
+     Both top and bottom set would stretch it the height of the hero and centre
+     its text over the copy, so bottom is released here. */
+  #hint{top:calc(var(--heroband,32svh) + 9px);bottom:auto}
 }
 /* severity by inversion, not by hue */
 .vpill.bad{background:#FFFFFF;color:#000000;border:1px solid #FFFFFF;font-weight:500}
