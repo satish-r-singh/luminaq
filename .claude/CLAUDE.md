@@ -12,7 +12,7 @@ It was a Vite + React + Tailwind app until September 2026. It was rebuilt as van
 because the design is hand-tuned CSS and two canvas engines that gain nothing from
 components. If you find yourself wanting to add React back, do not.
 
-**Owner:** Satish Rohit Singh, Luminaq FZE LLC.
+**Owner:** Satish Rohit Singh, Luminaq.
 **Reader:** someone about to write a cheque of USD 100k or more into an AI startup, who
 cannot read a repository themselves. Every decision on this page serves one goal, which
 is making that person trust a solo auditor enough to send him a deal.
