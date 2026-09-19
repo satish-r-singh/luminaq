@@ -177,157 +177,162 @@
   </div>
 
   <div class="instwrap rvf">
-   <div class="vlist">
-    <button class="vrow on" data-v="0"><span class="num">01</span><span class="nm">Codebase Integrity</span><span class="st">Viewing</span></button>
-    <button class="vrow" data-v="1"><span class="num">02</span><span class="nm">Architecture Scalability</span><span class="st">Viewing</span></button>
-    <button class="vrow" data-v="2"><span class="num">03</span><span class="nm">Licence and IP Exposure</span><span class="st">Viewing</span></button>
-    <button class="vrow" data-v="3"><span class="num">04</span><span class="nm">Inference Economics</span><span class="st">Viewing</span></button>
-    <button class="vrow" data-v="4"><span class="num">05</span><span class="nm">Data Lineage and Privacy</span><span class="st">Viewing</span></button>
-    <button class="vrow" data-v="5"><span class="num">06</span><span class="nm">Model Moat</span><span class="st">Viewing</span></button>
+   <button class="vrow on" data-v="0"><span class="num">01</span><span class="nm">Codebase Integrity</span><span class="st">Viewing</span></button>
+   <div class="vpane on" data-p="0">
+    <p class="vd">A repository keeps an honest diary. Commit cadence, authorship spread and the ratio of new code to rewritten code tell me whether a company was built over two years or assembled over one quarter to be shown to you.</p>
+    <div class="vfig">
+     <svg class="fig" viewBox="0 0 560 250"><g id="f0">
+      <line class="ax" x1="24" y1="212" x2="552" y2="212"/>
+      <text class="axl" x="24" y="30">COMMITS / MONTH</text>
+      <text class="axl" x="24" y="232">MONTH 01</text><text class="axl" x="500" y="232">MONTH 24</text>
+      <g class="bars"></g>
+      <line x1="462" y1="40" x2="462" y2="212" stroke="#E2503B" stroke-width="1" stroke-dasharray="3 4" class="fade"/>
+      <text class="figr fade" x="454" y="52" text-anchor="end">PRE-SEED ANNOUNCED</text>
+      <text class="figt fade" x="454" y="68" text-anchor="end" opacity=".7">614 commits in 11 weeks</text>
+      <text class="figt fade" x="24" y="184" opacity=".7">18 months, 1 author, 94 commits</text>
+     </g></svg>
+     <div class="cap">Fig 01 &nbsp;/&nbsp; Deal LQ-0231 &nbsp;/&nbsp; git log --numstat, 24 month window</div>
+    </div>
+    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
+     <div class="vfind"><span class="fx">F-01 HIGH</span><span class="ft">Eighty one percent of the codebase was written in the eleven weeks before the raise, by a single author, with no review history. This is a demo built for a room, not a product built for users.</span></div>
    </div>
 
-   <div class="vstage">
-    <!-- 01 -->
-    <div class="vpane on" data-p="0">
-     <p class="vd">A repository keeps an honest diary. Commit cadence, authorship spread and the ratio of new code to rewritten code tell me whether a company was built over two years or assembled over one quarter to be shown to you.</p>
-     <div class="vfig">
-      <svg class="fig" viewBox="0 0 560 250"><g id="f0">
-       <line class="ax" x1="24" y1="212" x2="552" y2="212"/>
-       <text class="axl" x="24" y="30">COMMITS / MONTH</text>
-       <text class="axl" x="24" y="232">MONTH 01</text><text class="axl" x="500" y="232">MONTH 24</text>
-       <g class="bars"></g>
-       <line x1="462" y1="40" x2="462" y2="212" stroke="#E2503B" stroke-width="1" stroke-dasharray="3 4" class="fade"/>
-       <text class="figr fade" x="454" y="52" text-anchor="end">PRE-SEED ANNOUNCED</text>
-       <text class="figt fade" x="454" y="68" text-anchor="end" opacity=".7">614 commits in 11 weeks</text>
-       <text class="figt fade" x="24" y="184" opacity=".7">18 months, 1 author, 94 commits</text>
-      </g></svg>
-      <div class="cap">Fig 01 &nbsp;/&nbsp; Deal LQ-0231 &nbsp;/&nbsp; git log --numstat, 24 month window</div>
-     </div>
-     <div class="vfind"><span class="fx">F-01 HIGH</span><span class="ft">Eighty one percent of the codebase was written in the eleven weeks before the raise, by a single author, with no review history. This is a demo built for a room, not a product built for users.</span></div>
-    </div>
+   <!-- 02 -->
 
-    <!-- 02 -->
-    <div class="vpane" data-p="1">
-     <p class="vd">The demo serves twelve people beautifully. I model the point at which it stops, which component gives way first, and what it costs to fix. Most architectures do not fail gradually. They fail at a specific number.</p>
-     <div class="vfig">
-      <svg class="fig" viewBox="0 0 560 250">
-       <line class="ax" x1="46" y1="206" x2="548" y2="206"/><line class="ax" x1="46" y1="24" x2="46" y2="206"/>
-       <text class="axl" x="46" y="18">P99 LATENCY</text>
-       <text class="axl" x="46" y="226">100</text><text class="axl" x="200" y="226">1K</text><text class="axl" x="354" y="226">10K</text><text class="axl" x="498" y="226">100K CONCURRENT</text>
-       <path d="M46 188 L548 188" stroke="#D9A15C" stroke-width="1" stroke-dasharray="4 5" opacity=".6" class="fade"/>
-       <text class="figa fade" x="52" y="180">CLAIMED: FLAT TO 100K</text>
-       <path class="dr" d="M46 192 C140 190 210 186 268 178 C320 170 352 150 378 116 C398 88 412 56 424 30" fill="none" stroke="#E2503B" stroke-width="1.6" stroke-linecap="round"/>
-       <circle cx="352" cy="152" r="3.5" fill="#E2503B" class="pop"/>
-       <text class="figr fade" x="362" y="146">KNEE AT 8,400</text>
-       <text class="figt fade" x="362" y="162" opacity=".7">p99 1.2s to 14.6s</text>
-       <text class="figt fade" x="362" y="178" opacity=".7">single write primary, no read replicas</text>
-      </svg>
-      <div class="cap">Fig 02 &nbsp;/&nbsp; Modelled from schema, queue config and connection limits</div>
-     </div>
+   <button class="vrow" data-v="1"><span class="num">02</span><span class="nm">Architecture Scalability</span><span class="st">Viewing</span></button>
+   <div class="vpane" data-p="1">
+    <p class="vd">The demo serves twelve people beautifully. I model the point at which it stops, which component gives way first, and what it costs to fix. Most architectures do not fail gradually. They fail at a specific number.</p>
+    <div class="vfig">
+     <svg class="fig" viewBox="0 0 560 250">
+      <line class="ax" x1="46" y1="206" x2="548" y2="206"/><line class="ax" x1="46" y1="24" x2="46" y2="206"/>
+      <text class="axl" x="46" y="18">P99 LATENCY</text>
+      <text class="axl" x="46" y="226">100</text><text class="axl" x="200" y="226">1K</text><text class="axl" x="354" y="226">10K</text><text class="axl" x="498" y="226">100K CONCURRENT</text>
+      <path d="M46 188 L548 188" stroke="#D9A15C" stroke-width="1" stroke-dasharray="4 5" opacity=".6" class="fade"/>
+      <text class="figa fade" x="52" y="180">CLAIMED: FLAT TO 100K</text>
+      <path class="dr" d="M46 192 C140 190 210 186 268 178 C320 170 352 150 378 116 C398 88 412 56 424 30" fill="none" stroke="#E2503B" stroke-width="1.6" stroke-linecap="round"/>
+      <circle cx="352" cy="152" r="3.5" fill="#E2503B" class="pop"/>
+      <text class="figr fade" x="362" y="146">KNEE AT 8,400</text>
+      <text class="figt fade" x="362" y="162" opacity=".7">p99 1.2s to 14.6s</text>
+      <text class="figt fade" x="362" y="178" opacity=".7">single write primary, no read replicas</text>
+     </svg>
+     <div class="cap">Fig 02 &nbsp;/&nbsp; Modelled from schema, queue config and connection limits</div>
+    </div>
+    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
      <div class="vfind"><span class="fx">F-04 HIGH</span><span class="ft">Every inference request writes synchronously to one primary database with a connection ceiling of 200. The architecture cannot reach the traction the model assumes without a rebuild of the persistence layer.</span></div>
-    </div>
+   </div>
 
-    <!-- 03 -->
-    <div class="vpane" data-p="2">
-     <p class="vd">One dependency with the wrong licence can place the intellectual property you are buying outside the company that is selling it to you. I walk the full dependency graph, including the parts the founders did not know they had.</p>
-     <div class="vfig">
-      <svg class="fig" viewBox="0 0 560 250">
-       <g stroke="rgba(232,230,225,.16)" stroke-width="1" fill="none" class="fade">
-        <path d="M92 125 C140 125 150 58 196 58"/><path d="M92 125 C140 125 150 104 196 104"/>
-        <path d="M92 125 C140 125 150 150 196 150"/><path d="M92 125 C140 125 150 196 196 196"/>
-        <path d="M262 104 C310 104 320 66 366 66"/><path d="M262 104 C310 104 320 122 366 122"/>
-        <path d="M262 150 C310 150 320 168 366 168"/><path d="M262 58 C310 58 320 30 366 30"/>
-        <path d="M262 196 C310 196 320 212 366 212"/>
-       </g>
-       <g class="pop"><circle cx="86" cy="125" r="5" fill="#E8E6E1"/><text class="figt" x="30" y="112">app/</text></g>
-       <g class="pop"><circle cx="200" cy="58" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="50" opacity=".75">fastapi</text></g>
-       <g class="pop"><circle cx="200" cy="104" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="96" opacity=".75">ml-core</text></g>
-       <g class="pop"><circle cx="200" cy="150" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="142" opacity=".75">vectordb</text></g>
-       <g class="pop"><circle cx="200" cy="196" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="188" opacity=".75">ingest</text></g>
-       <g class="pop"><circle cx="370" cy="30" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="34" opacity=".55">pydantic  MIT</text></g>
-       <g class="pop plz"><circle cx="370" cy="122" r="6" fill="#E2503B"/><text class="figr" x="382" y="126">seg-attn-v2  GPL-3.0</text></g>
-       <g class="pop"><circle cx="370" cy="66" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="70" opacity=".55">torch  BSD-3</text></g>
-       <g class="pop"><circle cx="370" cy="168" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="172" opacity=".55">faiss  MIT</text></g>
-       <g class="pop"><circle cx="370" cy="212" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="216" opacity=".55">httpx  BSD-3</text></g>
-       <text class="axl" x="30" y="242">247 PACKAGES WALKED &nbsp;/&nbsp; 4 DEPTH LEVELS &nbsp;/&nbsp; 1 COPYLEFT CONFLICT</text>
-      </svg>
-      <div class="cap">Fig 03 &nbsp;/&nbsp; Transitive dependency graph, production lockfile</div>
-     </div>
+   <!-- 03 -->
+
+   <button class="vrow" data-v="2"><span class="num">03</span><span class="nm">Licence and IP Exposure</span><span class="st">Viewing</span></button>
+   <div class="vpane" data-p="2">
+    <p class="vd">One dependency with the wrong licence can place the intellectual property you are buying outside the company that is selling it to you. I walk the full dependency graph, including the parts the founders did not know they had.</p>
+    <div class="vfig">
+     <svg class="fig" viewBox="0 0 560 250">
+      <g stroke="rgba(232,230,225,.16)" stroke-width="1" fill="none" class="fade">
+       <path d="M92 125 C140 125 150 58 196 58"/><path d="M92 125 C140 125 150 104 196 104"/>
+       <path d="M92 125 C140 125 150 150 196 150"/><path d="M92 125 C140 125 150 196 196 196"/>
+       <path d="M262 104 C310 104 320 66 366 66"/><path d="M262 104 C310 104 320 122 366 122"/>
+       <path d="M262 150 C310 150 320 168 366 168"/><path d="M262 58 C310 58 320 30 366 30"/>
+       <path d="M262 196 C310 196 320 212 366 212"/>
+      </g>
+      <g class="pop"><circle cx="86" cy="125" r="5" fill="#E8E6E1"/><text class="figt" x="30" y="112">app/</text></g>
+      <g class="pop"><circle cx="200" cy="58" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="50" opacity=".75">fastapi</text></g>
+      <g class="pop"><circle cx="200" cy="104" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="96" opacity=".75">ml-core</text></g>
+      <g class="pop"><circle cx="200" cy="150" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="142" opacity=".75">vectordb</text></g>
+      <g class="pop"><circle cx="200" cy="196" r="4" fill="rgba(232,230,225,.5)"/><text class="figt" x="210" y="188" opacity=".75">ingest</text></g>
+      <g class="pop"><circle cx="370" cy="30" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="34" opacity=".55">pydantic  MIT</text></g>
+      <g class="pop plz"><circle cx="370" cy="122" r="6" fill="#E2503B"/><text class="figr" x="382" y="126">seg-attn-v2  GPL-3.0</text></g>
+      <g class="pop"><circle cx="370" cy="66" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="70" opacity=".55">torch  BSD-3</text></g>
+      <g class="pop"><circle cx="370" cy="168" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="172" opacity=".55">faiss  MIT</text></g>
+      <g class="pop"><circle cx="370" cy="212" r="3" fill="rgba(232,230,225,.32)"/><text class="figt" x="380" y="216" opacity=".55">httpx  BSD-3</text></g>
+      <text class="axl" x="30" y="242">247 PACKAGES WALKED &nbsp;/&nbsp; 4 DEPTH LEVELS &nbsp;/&nbsp; 1 COPYLEFT CONFLICT</text>
+     </svg>
+     <div class="cap">Fig 03 &nbsp;/&nbsp; Transitive dependency graph, production lockfile</div>
+    </div>
+    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
      <div class="vfind"><span class="fx">F-07 CRITICAL</span><span class="ft">A GPL-3.0 segmentation module sits four levels deep inside the inference path. Distributed as it is today, the copyleft terms reach the code the company calls proprietary. This is a legal question, not an engineering one, and it changes what you are buying.</span></div>
-    </div>
-    <!-- 04 -->
-    <div class="vpane" data-p="3">
-     <p class="vd">AI margins invert quietly. A company can grow revenue and lose more money on every new customer, and the deck will not show it because the deck prices tokens at last year’s rate and this year’s volume. Move the inputs and watch where their model actually sits.</p>
-     <div class="vfig">
-      <div class="calc">
-       <div class="ctrls">
-        <div class="sl"><label>Tokens per active user, monthly <b id="o-tok">1.4M</b></label><input id="i-tok" type="range" min="1" max="150" value="14"></div>
-        <div class="sl"><label>Monthly active users <b id="o-usr">8,000</b></label><input id="i-usr" type="range" min="1" max="120" value="80"></div>
-        <div class="sl"><label>Price per seat, monthly <b id="o-prc">USD 29</b></label><input id="i-prc" type="range" min="5" max="200" value="29"></div>
-        <div class="sl"><label>Blended cost per 1M tokens <b id="o-cst">USD 4.10</b></label><input id="i-cst" type="range" min="10" max="900" value="410"></div>
-       </div>
-       <div class="out">
-        <div class="row"><div class="k">Gross margin per seat</div><div class="v" id="o-gm">-98%</div></div>
-        <div class="row"><div class="k">Monthly inference bill</div><div class="v" id="o-bill">USD 459K</div></div>
-        <div class="verdictbar vb-bad" id="o-vb">Negative unit economics at stated price</div>
-       </div>
+   </div>
+   <!-- 04 -->
+
+   <button class="vrow" data-v="3"><span class="num">04</span><span class="nm">Inference Economics</span><span class="st">Viewing</span></button>
+   <div class="vpane" data-p="3">
+    <p class="vd">AI margins invert quietly. A company can grow revenue and lose more money on every new customer, and the deck will not show it because the deck prices tokens at last year’s rate and this year’s volume. Move the inputs and watch where their model actually sits.</p>
+    <div class="vfig">
+     <div class="calc">
+      <div class="ctrls">
+       <div class="sl"><label>Tokens per active user, monthly <b id="o-tok">1.4M</b></label><input id="i-tok" type="range" min="1" max="150" value="14"></div>
+       <div class="sl"><label>Monthly active users <b id="o-usr">8,000</b></label><input id="i-usr" type="range" min="1" max="120" value="80"></div>
+       <div class="sl"><label>Price per seat, monthly <b id="o-prc">USD 29</b></label><input id="i-prc" type="range" min="5" max="200" value="29"></div>
+       <div class="sl"><label>Blended cost per 1M tokens <b id="o-cst">USD 4.10</b></label><input id="i-cst" type="range" min="10" max="900" value="410"></div>
       </div>
-      <div class="cap" style="position:static;margin-top:16px">Fig 04 &nbsp;/&nbsp; Live model, defaults are deal LQ-0231 as billed &nbsp;&middot;&nbsp; drag tokens to 9.5M to reach their heaviest decile</div>
+      <div class="out">
+       <div class="row"><div class="k">Gross margin per seat</div><div class="v" id="o-gm">-98%</div></div>
+       <div class="row"><div class="k">Monthly inference bill</div><div class="v" id="o-bill">USD 459K</div></div>
+       <div class="verdictbar vb-bad" id="o-vb">Negative unit economics at stated price</div>
+      </div>
      </div>
+     <div class="cap" style="position:static;margin-top:16px">Fig 04 &nbsp;/&nbsp; Live model, defaults are deal LQ-0231 as billed &nbsp;&middot;&nbsp; drag tokens to 9.5M to reach their heaviest decile</div>
+    </div>
+    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
      <div class="vfind"><span class="fx">F-11 HIGH</span><span class="ft">At blended usage the margin is eighty percent, which is survivable. The heaviest decile consumes seven times the average and crosses into loss at 7.1 million tokens per seat. That is the cohort the sales team is actively targeting, so growth moves this the wrong way. The deck also models tokens at USD 1.80, a rate the company has never actually paid.</span></div>
-    </div>
+   </div>
 
-    <!-- 05 -->
-    <div class="vpane" data-p="4">
-     <p class="vd">Where the training data came from, whether they had the right to use it, and what leaves the building. Two of the last nine companies I looked at were training on customer data their own contracts prohibited them from touching.</p>
-     <div class="vfig">
-      <svg class="fig" viewBox="0 0 560 250">
-       <g class="fade">
-        <rect x="24" y="58" width="112" height="44" fill="none" stroke="rgba(232,230,225,.22)"/><text class="figt" x="36" y="78">WEB CRAWL</text><text class="axl" x="36" y="92">14.2M docs</text>
-        <rect x="172" y="58" width="112" height="44" fill="none" stroke="rgba(232,230,225,.22)"/><text class="figt" x="184" y="78">CLEANING</text><text class="axl" x="184" y="92">dedupe, pii scrub</text>
-        <rect x="320" y="58" width="112" height="44" fill="none" stroke="rgba(232,230,225,.22)"/><text class="figt" x="332" y="78">TRAIN SET</text><text class="axl" x="332" y="92">v7.final.2</text>
-        <rect x="468" y="58" width="72" height="44" fill="none" stroke="#8FD9EE" stroke-opacity=".5"/><text class="figc" x="480" y="78">MODEL</text>
-        <g stroke="rgba(232,230,225,.26)" stroke-width="1" marker-end="url(#ah)">
-          <path d="M136 80 L168 80"/><path d="M284 80 L316 80"/><path d="M432 80 L464 80"/>
-        </g>
+   <!-- 05 -->
+
+   <button class="vrow" data-v="4"><span class="num">05</span><span class="nm">Data Lineage and Privacy</span><span class="st">Viewing</span></button>
+   <div class="vpane" data-p="4">
+    <p class="vd">Where the training data came from, whether they had the right to use it, and what leaves the building. Two of the last nine companies I looked at were training on customer data their own contracts prohibited them from touching.</p>
+    <div class="vfig">
+     <svg class="fig" viewBox="0 0 560 250">
+      <g class="fade">
+       <rect x="24" y="58" width="112" height="44" fill="none" stroke="rgba(232,230,225,.22)"/><text class="figt" x="36" y="78">WEB CRAWL</text><text class="axl" x="36" y="92">14.2M docs</text>
+       <rect x="172" y="58" width="112" height="44" fill="none" stroke="rgba(232,230,225,.22)"/><text class="figt" x="184" y="78">CLEANING</text><text class="axl" x="184" y="92">dedupe, pii scrub</text>
+       <rect x="320" y="58" width="112" height="44" fill="none" stroke="rgba(232,230,225,.22)"/><text class="figt" x="332" y="78">TRAIN SET</text><text class="axl" x="332" y="92">v7.final.2</text>
+       <rect x="468" y="58" width="72" height="44" fill="none" stroke="#8FD9EE" stroke-opacity=".5"/><text class="figc" x="480" y="78">MODEL</text>
+       <g stroke="rgba(232,230,225,.26)" stroke-width="1" marker-end="url(#ah)">
+         <path d="M136 80 L168 80"/><path d="M284 80 L316 80"/><path d="M432 80 L464 80"/>
        </g>
-       <defs><marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="rgba(232,230,225,.4)"/></marker>
-       <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#E2503B"/></marker></defs>
-       <g class="fade">
-        <rect x="172" y="172" width="150" height="44" fill="rgba(226,80,59,.07)" stroke="#E2503B" stroke-opacity=".55"/>
-        <text class="figr" x="184" y="192">CLIENT UPLOADS</text><text class="axl" x="184" y="206" fill="#E2503B" opacity=".7">3 enterprise accounts</text>
-       </g>
-       <path class="dr" d="M322 194 C376 194 376 140 376 106" fill="none" stroke="#E2503B" stroke-width="1.4" stroke-dasharray="1400" marker-end="url(#ar)"/>
-       <text class="figr fade" x="386" y="160">NO CONSENT PATH</text>
-       <text class="axl fade" x="386" y="176" fill="#E2503B" opacity=".7">MSA clause 8.3 prohibits</text>
-       <text class="axl fade" x="24" y="240">RETENTION: INDEFINITE &nbsp;/&nbsp; DELETION ENDPOINT: NOT IMPLEMENTED</text>
-      </svg>
-      <div class="cap">Fig 05 &nbsp;/&nbsp; Data lineage reconstructed from pipeline code and storage buckets</div>
-     </div>
+      </g>
+      <defs><marker id="ah" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="rgba(232,230,225,.4)"/></marker>
+      <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7 z" fill="#E2503B"/></marker></defs>
+      <g class="fade">
+       <rect x="172" y="172" width="150" height="44" fill="rgba(226,80,59,.07)" stroke="#E2503B" stroke-opacity=".55"/>
+       <text class="figr" x="184" y="192">CLIENT UPLOADS</text><text class="axl" x="184" y="206" fill="#E2503B" opacity=".7">3 enterprise accounts</text>
+      </g>
+      <path class="dr" d="M322 194 C376 194 376 140 376 106" fill="none" stroke="#E2503B" stroke-width="1.4" stroke-dasharray="1400" marker-end="url(#ar)"/>
+      <text class="figr fade" x="386" y="160">NO CONSENT PATH</text>
+      <text class="axl fade" x="386" y="176" fill="#E2503B" opacity=".7">MSA clause 8.3 prohibits</text>
+      <text class="axl fade" x="24" y="240">RETENTION: INDEFINITE &nbsp;/&nbsp; DELETION ENDPOINT: NOT IMPLEMENTED</text>
+     </svg>
+     <div class="cap">Fig 05 &nbsp;/&nbsp; Data lineage reconstructed from pipeline code and storage buckets</div>
+    </div>
+    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
      <div class="vfind"><span class="fx">F-13 CRITICAL</span><span class="ft">Documents uploaded by three named enterprise customers are flowing into the training set. The company’s own master agreement forbids it. This is a contractual and regulatory exposure that sits on the balance sheet you are buying into.</span></div>
-    </div>
+   </div>
 
-    <!-- 06 -->
-    <div class="vpane" data-p="5">
-     <p class="vd">Fine tuned, or a system prompt in a trench coat. There is a test for this and it is not the demo. I compare what the deck claims is proprietary against what the repository can actually be shown to contain.</p>
-     <div class="vfig">
-      <svg class="fig" viewBox="0 0 560 250">
-       <text class="figa fade" x="24" y="24">CLAIMED IN THE DECK</text>
-       <text class="figr fade" x="300" y="24">FOUND IN THE REPOSITORY</text>
-       <g class="pop"><rect x="24" y="40" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="63">Proprietary domain model</text></g>
-       <g class="pop"><rect x="24" y="86" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="109">Fine tuning pipeline</text></g>
-       <g class="pop"><rect x="24" y="132" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="155">Proprietary eval harness</text></g>
-       <g class="pop"><rect x="24" y="178" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="201">Inference orchestration</text></g>
-       <g class="pop"><rect x="300" y="40" width="240" height="38" fill="none" stroke="#E2503B" stroke-opacity=".5" stroke-dasharray="4 4"/><text class="figr" x="314" y="63">Not present</text></g>
-       <g class="pop"><rect x="300" y="86" width="240" height="38" fill="none" stroke="#E2503B" stroke-opacity=".5" stroke-dasharray="4 4"/><text class="figr" x="314" y="109">Not present</text></g>
-       <g class="pop"><rect x="300" y="132" width="240" height="38" fill="rgba(232,230,225,.05)" stroke="rgba(232,230,225,.24)"/><text class="figt" x="314" y="155">12 assertions, last run 7 months ago</text></g>
-       <g class="pop"><rect x="300" y="178" width="240" height="38" fill="rgba(232,230,225,.05)" stroke="rgba(232,230,225,.24)"/><text class="figt" x="314" y="201">prompt_v9.txt &nbsp;+&nbsp; 1 API call</text></g>
-       <text class="axl fade" x="24" y="240">SWITCHING COST TO A COMPETING MODEL: ESTIMATED 3 DAYS</text>
-      </svg>
-      <div class="cap">Fig 06 &nbsp;/&nbsp; Claim mapping against repository contents and training artefacts</div>
-     </div>
-     <div class="vfind"><span class="fx">F-16 HIGH</span><span class="ft">No fine tuning has ever been run. The product is a 4.2 kilobyte system prompt in front of a general model, wrapped in a good interface. The interface is real work and has value. It is not a technical moat, and the deck prices it as one.</span></div>
+   <!-- 06 -->
+
+   <button class="vrow" data-v="5"><span class="num">06</span><span class="nm">Model Moat</span><span class="st">Viewing</span></button>
+   <div class="vpane" data-p="5">
+    <p class="vd">Fine tuned, or a system prompt in a trench coat. There is a test for this and it is not the demo. I compare what the deck claims is proprietary against what the repository can actually be shown to contain.</p>
+    <div class="vfig">
+     <svg class="fig" viewBox="0 0 560 250">
+      <text class="figa fade" x="24" y="24">CLAIMED IN THE DECK</text>
+      <text class="figr fade" x="300" y="24">FOUND IN THE REPOSITORY</text>
+      <g class="pop"><rect x="24" y="40" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="63">Proprietary domain model</text></g>
+      <g class="pop"><rect x="24" y="86" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="109">Fine tuning pipeline</text></g>
+      <g class="pop"><rect x="24" y="132" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="155">Proprietary eval harness</text></g>
+      <g class="pop"><rect x="24" y="178" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="201">Inference orchestration</text></g>
+      <g class="pop"><rect x="300" y="40" width="240" height="38" fill="none" stroke="#E2503B" stroke-opacity=".5" stroke-dasharray="4 4"/><text class="figr" x="314" y="63">Not present</text></g>
+      <g class="pop"><rect x="300" y="86" width="240" height="38" fill="none" stroke="#E2503B" stroke-opacity=".5" stroke-dasharray="4 4"/><text class="figr" x="314" y="109">Not present</text></g>
+      <g class="pop"><rect x="300" y="132" width="240" height="38" fill="rgba(232,230,225,.05)" stroke="rgba(232,230,225,.24)"/><text class="figt" x="314" y="155">12 assertions, last run 7 months ago</text></g>
+      <g class="pop"><rect x="300" y="178" width="240" height="38" fill="rgba(232,230,225,.05)" stroke="rgba(232,230,225,.24)"/><text class="figt" x="314" y="201">prompt_v9.txt &nbsp;+&nbsp; 1 API call</text></g>
+      <text class="axl fade" x="24" y="240">SWITCHING COST TO A COMPETING MODEL: ESTIMATED 3 DAYS</text>
+     </svg>
+     <div class="cap">Fig 06 &nbsp;/&nbsp; Claim mapping against repository contents and training artefacts</div>
     </div>
+    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
+     <div class="vfind"><span class="fx">F-16 HIGH</span><span class="ft">No fine tuning has ever been run. The product is a 4.2 kilobyte system prompt in front of a general model, wrapped in a good interface. The interface is real work and has value. It is not a technical moat, and the deck prices it as one.</span></div>
    </div>
   </div>
  </div>
