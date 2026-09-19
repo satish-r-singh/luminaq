@@ -317,16 +317,17 @@ body.menuopen #nav:before{opacity:0}
    base rule above re-declares overflow. So: the whole figure now fits, nothing
    is cropped, and the detail lives in a viewer one tap away. These rules must
    stay AFTER the two base rules above or they lose on source order. */
-.figzoom{display:none;width:100%;margin-top:11px;padding:11px 12px;background:none;cursor:pointer;
-  border:1px solid var(--line2);border-radius:2px;color:var(--dim);text-align:center;
-  font:400 9.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;
-  transition:color .3s,border-color .3s}
-.figzoom:hover{color:var(--bone);border-color:var(--am)}
 @media(max-width:620px){
   .vpane .vfig{min-height:0;padding:14px 14px 16px;justify-content:flex-start}
   .vpane .vfig .fig{min-width:0;width:100%}
   .vfig .cap{position:static;margin-top:12px;min-width:0;left:auto;bottom:auto}
-  .figzoom{display:block}
+  /* The figure is its own control. No label: tapping a diagram to see it
+     properly is the obvious thing to try, and a button under every figure was
+     clutter. .zoomable is set by JS only on figures that hold a real drawing,
+     so the inference calculator never becomes tappable. */
+  .vpane .vfig.zoomable{cursor:zoom-in;transition:border-color .3s}
+  .vpane .vfig.zoomable:active{border-color:var(--line2)}
+  .vpane .vfig.zoomable:focus-visible{outline:1px solid var(--am);outline-offset:2px}
 }
 
 /* the viewer itself: full screen, figure at a readable size, pans both ways */
@@ -340,7 +341,11 @@ body.figopen{overflow:hidden}
   font:400 10px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase}
 #figclose:hover{color:var(--bone);border-color:var(--am)}
 .figviewport{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;
-  padding:10px var(--pad) 48px}
+  padding:10px var(--pad) 48px;
+  /* centre the figure in the space rather than stranding it at the top. safe
+     keeps the start of it reachable if it ever grows taller than the screen,
+     and browsers without safe alignment simply fall back to top aligned. */
+  display:flex;flex-direction:column;justify-content:safe center}
 .figstage{width:760px}
 .figstage .fig{width:760px;height:auto;display:block}
 .figstage .cap{position:static;display:block;margin-top:18px;max-width:760px;
