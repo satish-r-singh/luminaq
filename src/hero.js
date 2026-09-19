@@ -37,7 +37,15 @@ function build(){
   cv.width=W*DPR; cv.height=H*DPR; cv.style.width=W+"px"; cv.style.height=H+"px";
   ctx=cv.getContext("2d"); ctx.setTransform(DPR,0,0,DPR,0,0);
 
-  pan = narrow ? {x:0,y:0,w:W,h:Math.round(H*0.30)} : {x:0,y:0,w:W,h:H};
+  /* One source of truth for the mobile split. The band is measured from the
+     viewport rather than from the hero, so it cannot chase its own padding
+     when the copy below it grows. CSS reads it back as --heroband, which is
+     what keeps the headline off the photograph at every screen height. */
+  const BAND = Math.round(Math.min((window.innerHeight||H)*0.36, 400));
+  if(narrow) hero.style.setProperty("--heroband", BAND+"px");
+  else       hero.style.removeProperty("--heroband");
+
+  pan = narrow ? {x:0,y:0,w:W,h:BAND} : {x:0,y:0,w:W,h:H};
   const zoom = narrow ? 2.40 : 1.02;
   const s = Math.max(pan.w/PW, pan.h/PH)*zoom;
   let ox = pan.w*(narrow?0.50:0.64) - HEAD[0]*s;
@@ -327,7 +335,7 @@ function draw(t){
     /* the finding is at the head, so the unattended lens never wanders off it */
     const cx = HEAD[0] + 14 + Math.sin(k)*SUBJ[2]*(narrow?0.20:0.14);
     const cy = HEAD[1] + 10 + Math.cos(k*0.8)*SUBJ[3]*(narrow?0.09:0.085);
-    const p=pp(cx,cy); lens.tx=p[0]; lens.ty=p[1];
+    const p=pp(cx,cy), q=clampLens(p[0],p[1]); lens.tx=q[0]; lens.ty=q[1];
   }
   lens.x=lerp(lens.x,lens.tx,.14); lens.y=lerp(lens.y,lens.ty,.14); lens.r=lerp(lens.r,lens.tr,.10);
   const R=lens.r, Z=1.20;
@@ -394,11 +402,20 @@ function draw(t){
   requestAnimationFrame(draw);
 }
 
+/* The lens reads the photograph, so it never leaves it. Without this a tap
+   below the plate on mobile drags it down over the copy. */
+function clampLens(x,y){
+  const bot=Math.min(pan.y+pan.h, fit.bottom), m=lens.r*0.55;
+  const x0=pan.x+m, x1=pan.x+pan.w-m, y0=pan.y+m, y1=bot-m;
+  return [ x1>x0 ? Math.max(x0,Math.min(x,x1)) : pan.x+pan.w/2,
+           y1>y0 ? Math.max(y0,Math.min(y,y1)) : (pan.y+bot)/2 ];
+}
+
 function onMove(e){
   const R=hero.getBoundingClientRect();
   if(e.clientY>R.bottom||e.clientY<R.top){idle=true;return;}
   idle=false; clearTimeout(idleT); idleT=setTimeout(function(){idle=true;},2800);
-  lens.tx=e.clientX-R.left; lens.ty=e.clientY-R.top;
+  const c=clampLens(e.clientX-R.left, e.clientY-R.top); lens.tx=c[0]; lens.ty=c[1];
   const h=$("#hint"); if(h)h.classList.add("gone");
 }
 

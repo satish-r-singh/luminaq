@@ -250,6 +250,28 @@ $$(".vrow").forEach(b=>b.addEventListener("click",()=>{
   $$("[data-cu]").forEach(el=>cio.observe(el));
 })();
 
+/* ===================== mobile menu ===================== */
+/* Registered before the smooth anchor handler on purpose: a menu link has to
+   release the body scroll lock before that handler tries to scroll, or the
+   scroll is swallowed and the link appears to do nothing. */
+(function(){
+  const b=$("#menub"), m=$("#menu"); if(!b||!m) return;
+  const label=$(".mt",b);
+  function set(open){
+    b.setAttribute("aria-expanded",open?"true":"false");
+    m.setAttribute("aria-hidden",open?"false":"true");
+    m.classList.toggle("open",open);
+    document.body.classList.toggle("menuopen",open);
+    if(label) label.textContent = open ? "Close" : "Menu";
+  }
+  const isOpen=()=>b.getAttribute("aria-expanded")==="true";
+  b.addEventListener("click",()=>set(!isOpen()));
+  $$("#menu a").forEach(a=>a.addEventListener("click",()=>set(false)));
+  addEventListener("keydown",e=>{ if(e.key==="Escape"&&isOpen()) set(false); });
+  /* widening past the breakpoint hides the button, which would strand it open */
+  addEventListener("resize",()=>{ if(innerWidth>1040&&isOpen()) set(false); },{passive:true});
+})();
+
 /* ===================== smooth anchors ===================== */
 $$('a[href^="#"]').forEach(a=>a.addEventListener("click",e=>{
   const id=a.getAttribute("href"); if(id==="#"||id==="#top"){e.preventDefault();scrollTo({top:0,behavior:"smooth"});return;}
