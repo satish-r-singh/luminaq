@@ -97,22 +97,44 @@ $$(".vrow").forEach(b=>b.addEventListener("click",()=>{
   requestAnimationFrame(()=>$$(".vpane").forEach(p=>{if(p.dataset.p===v)p.classList.add("on");}));
 }));
 
-/* ===================== figure scroll ===================== */
-/* Below 620px the vector figures scroll sideways. The CSS fades their right
-   edge to advertise that; this clears the fade at the end of the scroll so the
-   last of the figure is never dimmed. */
+/* ===================== figure viewer ===================== */
+/* The vector figures are drawn on a 560 unit grid. On a phone they render whole
+   but small, so nothing is ever cropped, and this shows one at a size where the
+   labels are readable. The SVG is cloned rather than moved, so the figure in the
+   page is untouched. The stage carries .on because the figure animations key off
+   an ancestor with that class. */
 (function(){
-  const figs=$$(".vpane .vfig"); if(!figs.length) return;
-  /* A hidden pane measures zero, which would read as already scrolled to the
-     end, so a figure that does not overflow is never marked atend. */
-  const upd=f=>f.classList.toggle("atend",
-    f.scrollWidth>f.clientWidth+2 && f.scrollLeft+f.clientWidth>=f.scrollWidth-4);
-  const all=()=>figs.forEach(upd);
-  figs.forEach(f=>f.addEventListener("scroll",()=>upd(f),{passive:true}));
-  addEventListener("resize",all,{passive:true});
-  /* panes are measurable only once opened */
-  $$(".vrow").forEach(r=>r.addEventListener("click",()=>requestAnimationFrame(all)));
-  all();
+  const view=$("#figview"); if(!view) return;
+  const stage=$(".figstage",view), shutBtn=$("#figclose");
+  if(!stage||!shutBtn) return;
+  let opener=null;
+
+  function open(fig,btn){
+    const svg=fig.querySelector("svg.fig"), cap=fig.querySelector(".cap");
+    stage.innerHTML="";
+    if(svg) stage.appendChild(svg.cloneNode(true));
+    if(cap) stage.appendChild(cap.cloneNode(true));
+    opener=btn;
+    view.classList.add("open"); view.setAttribute("aria-hidden","false");
+    document.body.classList.add("figopen");
+    view.querySelector(".figviewport").scrollTop=0;
+    view.querySelector(".figviewport").scrollLeft=0;
+    shutBtn.focus();
+  }
+  function shut(){
+    view.classList.remove("open"); view.setAttribute("aria-hidden","true");
+    document.body.classList.remove("figopen");
+    stage.innerHTML="";
+    if(opener){ opener.focus(); opener=null; }
+  }
+
+  $$(".figzoom").forEach(btn=>btn.addEventListener("click",()=>{
+    const fig=btn.previousElementSibling;
+    if(fig&&fig.classList.contains("vfig")) open(fig,btn);
+  }));
+  shutBtn.addEventListener("click",shut);
+  view.addEventListener("click",e=>{ if(e.target===view) shut(); });
+  addEventListener("keydown",e=>{ if(e.key==="Escape"&&view.classList.contains("open")) shut(); });
 })();
 
 /* ===================== inference calculator ===================== */

@@ -273,20 +273,6 @@ body.menuopen #nav:before{opacity:0}
 @media(max-width:560px){ .hide-s{display:none} }
 @media(max-width:560px){ .h1{font-size:clamp(2.05rem,8.8vw,3.3rem)} }
 @media(min-width:561px){ .only-s{display:none} }
-@media(max-width:620px){
-  /* The figures are drawn on a 560 unit grid. Shrunk to phone width their
-     labels fall under 5px, so they scroll instead. The fade on the right edge
-     is what tells the reader there is more, rather than it reading as a figure
-     that has been cut off. JS drops the fade once it is scrolled to the end. */
-  .vpane .vfig{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
-    scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.26) transparent}
-  .vpane .vfig::-webkit-scrollbar{height:3px}
-  .vpane .vfig::-webkit-scrollbar-thumb{background:rgba(255,255,255,.26)}
-  .vpane .vfig::-webkit-scrollbar-track{background:rgba(255,255,255,.06)}
-  .vpane .vfig{padding-left:14px;padding-right:14px}
-  .vpane .vfig .fig{min-width:430px}
-  .vfig .cap{position:static;margin-top:14px;min-width:430px}
-}
 
 /* ---------- premise ---------- */
 #premise .big{font-family:var(--display);font-size:clamp(1.6rem,3.1vw,2.7rem);font-weight:400;line-height:1.2;letter-spacing:-.01em;max-width:23ch}
@@ -323,15 +309,44 @@ body.menuopen #nav:before{opacity:0}
 .vpane .vd{font-size:1.02rem;color:var(--dim);line-height:1.58;max-width:52ch}
 .vpane .vfig{flex:1;margin-top:26px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line);background:var(--ink2);border-radius:2px;padding:20px 20px 46px;position:relative;overflow:hidden;min-height:290px}
 .vfig .cap{position:absolute;left:20px;bottom:14px;font:400 9px/1.7 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--mute2)}
-.fighint{display:none;margin-top:10px;font:400 9px/1 var(--mono);letter-spacing:.14em;
-  text-transform:uppercase;color:var(--mute);transition:opacity .35s}
-/* Shown only where the figure actually scrolls. Must sit after the rule above,
-   not in the earlier 620px block, or the display:none there wins on order.
-   Mobile browsers hide overlay scrollbars, so the figure says it in words. */
+
+/* ---------- figures on a phone ----------
+   These are drawn on a 560 unit grid. At phone width their labels fall under
+   5px, so the old approach cropped them to a 430px floor and scrolled. That
+   left them looking cut off, and the scroll never worked anyway because the
+   base rule above re-declares overflow. So: the whole figure now fits, nothing
+   is cropped, and the detail lives in a viewer one tap away. These rules must
+   stay AFTER the two base rules above or they lose on source order. */
+.figzoom{display:none;width:100%;margin-top:11px;padding:11px 12px;background:none;cursor:pointer;
+  border:1px solid var(--line2);border-radius:2px;color:var(--dim);text-align:center;
+  font:400 9.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;
+  transition:color .3s,border-color .3s}
+.figzoom:hover{color:var(--bone);border-color:var(--am)}
 @media(max-width:620px){
-  .fighint{display:block}
-  .vpane .vfig.atend+.fighint{opacity:0}
+  .vpane .vfig{min-height:0;padding:14px 14px 16px;justify-content:flex-start}
+  .vpane .vfig .fig{min-width:0;width:100%}
+  .vfig .cap{position:static;margin-top:12px;min-width:0;left:auto;bottom:auto}
+  .figzoom{display:block}
 }
+
+/* the viewer itself: full screen, figure at a readable size, pans both ways */
+#figview{position:fixed;inset:0;z-index:950;background:var(--ink);
+  display:none;flex-direction:column}
+#figview.open{display:flex}
+body.figopen{overflow:hidden}
+#figclose{align-self:flex-end;flex:none;margin:16px var(--pad) 6px;padding:11px 16px;
+  background:none;cursor:pointer;border:1px solid var(--line2);border-radius:2px;
+  color:var(--dim);text-align:left;
+  font:400 10px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase}
+#figclose:hover{color:var(--bone);border-color:var(--am)}
+.figviewport{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;
+  padding:10px var(--pad) 48px}
+.figstage{width:760px}
+.figstage .fig{width:760px;height:auto;display:block}
+.figstage .cap{position:static;display:block;margin-top:18px;max-width:760px;
+  white-space:normal;left:auto;bottom:auto;
+  /* the clone sits outside .vfig, so it does not inherit the caption styling */
+  font:400 11px/1.7 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
 .vfind{margin-top:22px;display:flex;gap:13px;align-items:flex-start;padding:15px 17px;border:1px solid var(--rd2);background:rgba(226,80,59,.045);border-radius:2px}
 .vfind .fx{font:500 9px/1.6 var(--mono);letter-spacing:.13em;color:var(--rd);white-space:nowrap;padding-top:2px}
 .vfind .ft{font-size:.895rem;color:var(--dim);line-height:1.55}
