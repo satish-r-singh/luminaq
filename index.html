@@ -193,8 +193,7 @@
      </g></svg>
      <div class="cap">Fig 01 &nbsp;/&nbsp; Deal LQ-0231 &nbsp;/&nbsp; git log --numstat, 24 month window</div>
     </div>
-    <button class="figzoom" type="button">Tap to enlarge</button>
-     <div class="vfind"><span class="fx">F-01 HIGH</span><span class="ft">Eighty one percent of the codebase was written in the eleven weeks before the raise, by a single author, with no review history. This is a demo built for a room, not a product built for users.</span></div>
+         <div class="vfind"><span class="fx">F-01 HIGH</span><span class="ft">Eighty one percent of the codebase was written in the eleven weeks before the raise, by a single author, with no review history. This is a demo built for a room, not a product built for users.</span></div>
    </div>
 
    <!-- 02 -->
@@ -206,19 +205,20 @@
      <svg class="fig" viewBox="0 0 560 250">
       <line class="ax" x1="46" y1="206" x2="548" y2="206"/><line class="ax" x1="46" y1="24" x2="46" y2="206"/>
       <text class="axl" x="46" y="18">P99 LATENCY</text>
-      <text class="axl" x="46" y="226">100</text><text class="axl" x="200" y="226">1K</text><text class="axl" x="354" y="226">10K</text><text class="axl" x="498" y="226">100K CONCURRENT</text>
+      <text class="axl" x="46" y="226">100</text><text class="axl" x="200" y="226">1K</text><text class="axl" x="354" y="226">10K</text><text class="axl" x="498" y="226">100K</text>
+      <text class="axl" x="548" y="242" text-anchor="end">CONCURRENT USERS</text>
       <path d="M46 188 L548 188" stroke="#D9A15C" stroke-width="1" stroke-dasharray="4 5" opacity=".6" class="fade"/>
       <text class="figa fade" x="52" y="180">CLAIMED: FLAT TO 100K</text>
       <path class="dr" d="M46 192 C140 190 210 186 268 178 C320 170 352 150 378 116 C398 88 412 56 424 30" fill="none" stroke="#E2503B" stroke-width="1.6" stroke-linecap="round"/>
       <circle cx="352" cy="152" r="3.5" fill="#E2503B" class="pop"/>
       <text class="figr fade" x="362" y="146">KNEE AT 8,400</text>
       <text class="figt fade" x="362" y="162" opacity=".7">p99 1.2s to 14.6s</text>
-      <text class="figt fade" x="362" y="178" opacity=".7">single write primary, no read replicas</text>
+      <text class="figt fade" x="362" y="178" opacity=".7">single write primary,</text>
+      <text class="figt fade" x="362" y="191" opacity=".7">no read replicas</text>
      </svg>
      <div class="cap">Fig 02 &nbsp;/&nbsp; Modelled from schema, queue config and connection limits</div>
     </div>
-    <button class="figzoom" type="button">Tap to enlarge</button>
-     <div class="vfind"><span class="fx">F-04 HIGH</span><span class="ft">Every inference request writes synchronously to one primary database with a connection ceiling of 200. The architecture cannot reach the traction the model assumes without a rebuild of the persistence layer.</span></div>
+         <div class="vfind"><span class="fx">F-04 HIGH</span><span class="ft">Every inference request writes synchronously to one primary database with a connection ceiling of 200. The architecture cannot reach the traction the model assumes without a rebuild of the persistence layer.</span></div>
    </div>
 
    <!-- 03 -->
@@ -249,8 +249,7 @@
      </svg>
      <div class="cap">Fig 03 &nbsp;/&nbsp; Transitive dependency graph, production lockfile</div>
     </div>
-    <button class="figzoom" type="button">Tap to enlarge</button>
-     <div class="vfind"><span class="fx">F-07 CRITICAL</span><span class="ft">A GPL-3.0 segmentation module sits four levels deep inside the inference path. Distributed as it is today, the copyleft terms reach the code the company calls proprietary. This is a legal question, not an engineering one, and it changes what you are buying.</span></div>
+         <div class="vfind"><span class="fx">F-07 CRITICAL</span><span class="ft">A GPL-3.0 segmentation module sits four levels deep inside the inference path. Distributed as it is today, the copyleft terms reach the code the company calls proprietary. This is a legal question, not an engineering one, and it changes what you are buying.</span></div>
    </div>
    <!-- 04 -->
 
@@ -273,8 +272,7 @@
      </div>
      <div class="cap" style="position:static;margin-top:16px">Fig 04 &nbsp;/&nbsp; Live model, defaults are deal LQ-0231 as billed &nbsp;&middot;&nbsp; drag tokens to 9.5M to reach their heaviest decile</div>
     </div>
-    <button class="figzoom" type="button">Tap to enlarge</button>
-     <div class="vfind"><span class="fx">F-11 HIGH</span><span class="ft">At blended usage the margin is eighty percent, which is survivable. The heaviest decile consumes seven times the average and crosses into loss at 7.1 million tokens per seat. That is the cohort the sales team is actively targeting, so growth moves this the wrong way. The deck also models tokens at USD 1.80, a rate the company has never actually paid.</span></div>
+         <div class="vfind"><span class="fx">F-11 HIGH</span><span class="ft">At blended usage the margin is eighty percent, which is survivable. The heaviest decile consumes seven times the average and crosses into loss at 7.1 million tokens per seat. That is the cohort the sales team is actively targeting, so growth moves this the wrong way. The deck also models tokens at USD 1.80, a rate the company has never actually paid.</span></div>
    </div>
 
    <!-- 05 -->
@@ -306,8 +304,7 @@
      </svg>
      <div class="cap">Fig 05 &nbsp;/&nbsp; Data lineage reconstructed from pipeline code and storage buckets</div>
     </div>
-    <button class="figzoom" type="button">Tap to enlarge</button>
-     <div class="vfind"><span class="fx">F-13 CRITICAL</span><span class="ft">Documents uploaded by three named enterprise customers are flowing into the training set. The company’s own master agreement forbids it. This is a contractual and regulatory exposure that sits on the balance sheet you are buying into.</span></div>
+         <div class="vfind"><span class="fx">F-13 CRITICAL</span><span class="ft">Documents uploaded by three named enterprise customers are flowing into the training set. The company’s own master agreement forbids it. This is a contractual and regulatory exposure that sits on the balance sheet you are buying into.</span></div>
    </div>
 
    <!-- 06 -->
@@ -325,14 +322,13 @@
       <g class="pop"><rect x="24" y="178" width="240" height="38" fill="rgba(217,161,92,.09)" stroke="#D9A15C" stroke-opacity=".45"/><text class="figt" x="38" y="201">Inference orchestration</text></g>
       <g class="pop"><rect x="300" y="40" width="240" height="38" fill="none" stroke="#E2503B" stroke-opacity=".5" stroke-dasharray="4 4"/><text class="figr" x="314" y="63">Not present</text></g>
       <g class="pop"><rect x="300" y="86" width="240" height="38" fill="none" stroke="#E2503B" stroke-opacity=".5" stroke-dasharray="4 4"/><text class="figr" x="314" y="109">Not present</text></g>
-      <g class="pop"><rect x="300" y="132" width="240" height="38" fill="rgba(232,230,225,.05)" stroke="rgba(232,230,225,.24)"/><text class="figt" x="314" y="155">12 assertions, last run 7 months ago</text></g>
+      <g class="pop"><rect x="300" y="132" width="240" height="38" fill="rgba(232,230,225,.05)" stroke="rgba(232,230,225,.24)"/><text class="figt" x="314" y="150">12 assertions,</text><text class="figt" x="314" y="163">last run 7 months ago</text></g>
       <g class="pop"><rect x="300" y="178" width="240" height="38" fill="rgba(232,230,225,.05)" stroke="rgba(232,230,225,.24)"/><text class="figt" x="314" y="201">prompt_v9.txt &nbsp;+&nbsp; 1 API call</text></g>
       <text class="axl fade" x="24" y="240">SWITCHING COST TO A COMPETING MODEL: ESTIMATED 3 DAYS</text>
      </svg>
      <div class="cap">Fig 06 &nbsp;/&nbsp; Claim mapping against repository contents and training artefacts</div>
     </div>
-    <button class="figzoom" type="button">Tap to enlarge</button>
-     <div class="vfind"><span class="fx">F-16 HIGH</span><span class="ft">No fine tuning has ever been run. The product is a 4.2 kilobyte system prompt in front of a general model, wrapped in a good interface. The interface is real work and has value. It is not a technical moat, and the deck prices it as one.</span></div>
+         <div class="vfind"><span class="fx">F-16 HIGH</span><span class="ft">No fine tuning has ever been run. The product is a 4.2 kilobyte system prompt in front of a general model, wrapped in a good interface. The interface is real work and has value. It is not a technical moat, and the deck prices it as one.</span></div>
    </div>
   </div>
  </div>

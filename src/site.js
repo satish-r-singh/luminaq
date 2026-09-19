@@ -128,10 +128,36 @@ $$(".vrow").forEach(b=>b.addEventListener("click",()=>{
     if(opener){ opener.focus(); opener=null; }
   }
 
-  $$(".figzoom").forEach(btn=>btn.addEventListener("click",()=>{
-    const fig=btn.previousElementSibling;
-    if(fig&&fig.classList.contains("vfig")) open(fig,btn);
-  }));
+  /* Only figures holding an actual drawing are tappable. The inference
+     economics pane uses a .vfig to hold the calculator, which has nothing to
+     enlarge, so it is skipped and never gets the zoom cursor. */
+  const narrow=matchMedia("(max-width:620px)");
+  const zoomable=$$(".vpane .vfig").filter(f=>f.querySelector("svg.fig"));
+  zoomable.forEach(fig=>{
+    fig.classList.add("zoomable");
+    fig.addEventListener("click",()=>{ if(narrow.matches) open(fig,fig); });
+    fig.addEventListener("keydown",e=>{
+      if((e.key==="Enter"||e.key===" ")&&narrow.matches){ e.preventDefault(); open(fig,fig); }
+    });
+  });
+  /* Only announce a figure as a control where tapping it actually does
+     something. Above the breakpoint it is already legible and inert, and a
+     button that does nothing is worse than no button. */
+  function announce(){
+    zoomable.forEach(fig=>{
+      if(narrow.matches){
+        fig.setAttribute("role","button");
+        fig.setAttribute("tabindex","0");
+        fig.setAttribute("aria-label","Enlarge this figure");
+      } else {
+        fig.removeAttribute("role");
+        fig.removeAttribute("tabindex");
+        fig.removeAttribute("aria-label");
+      }
+    });
+  }
+  narrow.addEventListener ? narrow.addEventListener("change",announce) : narrow.addListener(announce);
+  announce();
   shutBtn.addEventListener("click",shut);
   view.addEventListener("click",e=>{ if(e.target===view) shut(); });
   addEventListener("keydown",e=>{ if(e.key==="Escape"&&view.classList.contains("open")) shut(); });
