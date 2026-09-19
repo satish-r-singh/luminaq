@@ -274,7 +274,16 @@ body.menuopen #nav:before{opacity:0}
 @media(max-width:560px){ .h1{font-size:clamp(2.05rem,8.8vw,3.3rem)} }
 @media(min-width:561px){ .only-s{display:none} }
 @media(max-width:620px){
-  .vpane .vfig{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+  /* The figures are drawn on a 560 unit grid. Shrunk to phone width their
+     labels fall under 5px, so they scroll instead. The fade on the right edge
+     is what tells the reader there is more, rather than it reading as a figure
+     that has been cut off. JS drops the fade once it is scrolled to the end. */
+  .vpane .vfig{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.26) transparent}
+  .vpane .vfig::-webkit-scrollbar{height:3px}
+  .vpane .vfig::-webkit-scrollbar-thumb{background:rgba(255,255,255,.26)}
+  .vpane .vfig::-webkit-scrollbar-track{background:rgba(255,255,255,.06)}
+  .vpane .vfig{padding-left:14px;padding-right:14px}
   .vpane .vfig .fig{min-width:430px}
   .vfig .cap{position:static;margin-top:14px;min-width:430px}
 }
@@ -288,8 +297,8 @@ body.menuopen #nav:before{opacity:0}
 /* ---------- instrument ---------- */
 #inst .top{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
 .instwrap{margin-top:54px;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.28fr);gap:0;border-top:1px solid var(--line)}
-.vlist{border-right:1px solid var(--line)}
 .vrow{
+  grid-column:1;border-right:1px solid var(--line);
   width:100%;text-align:left;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:baseline;
   padding:19px 26px 19px 0;border-bottom:1px solid var(--line);cursor:pointer;
   transition:background .4s,padding .5s var(--ez);position:relative;
@@ -304,21 +313,34 @@ body.menuopen #nav:before{opacity:0}
 .vrow.on .nm{color:var(--bone)}
 .vrow .st{font:400 9px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--mute2);opacity:0;transition:opacity .4s}
 .vrow.on .st{opacity:1;color:var(--am2)}
-.vstage{padding:34px clamp(18px,3vw,44px);min-height:470px;display:flex;flex-direction:column;position:relative}
-.vpane{display:none;flex:1;flex-direction:column}
+.vpane{
+  grid-column:2;grid-row:1 / span 6;
+  padding:34px clamp(18px,3vw,44px);min-height:470px;
+  display:none;flex-direction:column;position:relative;
+}
 .vpane.on{display:flex;animation:pin .7s var(--ez)}
 @keyframes pin{from{opacity:0;clip-path:inset(0 0 0 8%)}to{opacity:1;clip-path:inset(0 0 0 0)}}
 .vpane .vd{font-size:1.02rem;color:var(--dim);line-height:1.58;max-width:52ch}
 .vpane .vfig{flex:1;margin-top:26px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line);background:var(--ink2);border-radius:2px;padding:20px 20px 46px;position:relative;overflow:hidden;min-height:290px}
 .vfig .cap{position:absolute;left:20px;bottom:14px;font:400 9px/1.7 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--mute2)}
+.fighint{display:none;margin-top:10px;font:400 9px/1 var(--mono);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--mute);transition:opacity .35s}
+/* Shown only where the figure actually scrolls. Must sit after the rule above,
+   not in the earlier 620px block, or the display:none there wins on order.
+   Mobile browsers hide overlay scrollbars, so the figure says it in words. */
+@media(max-width:620px){
+  .fighint{display:block}
+  .vpane .vfig.atend+.fighint{opacity:0}
+}
 .vfind{margin-top:22px;display:flex;gap:13px;align-items:flex-start;padding:15px 17px;border:1px solid var(--rd2);background:rgba(226,80,59,.045);border-radius:2px}
 .vfind .fx{font:500 9px/1.6 var(--mono);letter-spacing:.13em;color:var(--rd);white-space:nowrap;padding-top:2px}
 .vfind .ft{font-size:.895rem;color:var(--dim);line-height:1.55}
 @media(max-width:940px){
+  /* One column, and because each pane now follows its own row in the markup it
+     opens directly beneath the row you tapped rather than below all six. */
   .instwrap{grid-template-columns:minmax(0,1fr)}
-  .vlist{border-right:0}
-  .vstage{min-height:0;padding:26px 0 0}
-  .vrow{padding-right:0}
+  .vrow{grid-column:1;border-right:0;padding-right:0}
+  .vpane{grid-column:1;grid-row:auto;min-height:0;padding:22px 0 34px}
 }
 
 /* ---------- generic figure bits ---------- */

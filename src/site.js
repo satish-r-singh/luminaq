@@ -97,6 +97,24 @@ $$(".vrow").forEach(b=>b.addEventListener("click",()=>{
   requestAnimationFrame(()=>$$(".vpane").forEach(p=>{if(p.dataset.p===v)p.classList.add("on");}));
 }));
 
+/* ===================== figure scroll ===================== */
+/* Below 620px the vector figures scroll sideways. The CSS fades their right
+   edge to advertise that; this clears the fade at the end of the scroll so the
+   last of the figure is never dimmed. */
+(function(){
+  const figs=$$(".vpane .vfig"); if(!figs.length) return;
+  /* A hidden pane measures zero, which would read as already scrolled to the
+     end, so a figure that does not overflow is never marked atend. */
+  const upd=f=>f.classList.toggle("atend",
+    f.scrollWidth>f.clientWidth+2 && f.scrollLeft+f.clientWidth>=f.scrollWidth-4);
+  const all=()=>figs.forEach(upd);
+  figs.forEach(f=>f.addEventListener("scroll",()=>upd(f),{passive:true}));
+  addEventListener("resize",all,{passive:true});
+  /* panes are measurable only once opened */
+  $$(".vrow").forEach(r=>r.addEventListener("click",()=>requestAnimationFrame(all)));
+  all();
+})();
+
 /* ===================== inference calculator ===================== */
 (function(){
   const it=$("#i-tok"),iu=$("#i-usr"),ip=$("#i-prc"),ic=$("#i-cst");
