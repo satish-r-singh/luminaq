@@ -29,8 +29,31 @@ Monochrome. No hue at all. Hierarchy is carried by value and by inversion.
 
 **Never use green.** Where green is the instinct, use grey. This is absolute.
 
-Severity is inversion, not colour. A critical finding is white on black reversed to black
-on white. A moderate one is outlined. A clear one is grey. Red and amber do not appear.
+### The one exception: the verdict
+
+Two hues exist, and they mark a verdict and nothing else. Added September 2026, after
+the monochrome build showed that a reader had to stop and read the word to tell a
+Withdraw from a Proceed, which is the single thing a buyer most needs at a glance.
+
+```
+--sev-hi       #E2503B   critical. On dark ground.
+--sev-mid      #D9A15C   conditional. On dark ground.
+--sev-hi-ink   #B3311F   the same two, cut darker for the light paper of the
+--sev-mid-ink  #8A5A18   report pages, where the values above fail contrast.
+```
+
+They appear on four surfaces only: the verdict pill, the finding chip in a vector pane,
+the severity tag inside a report page, and the calculator verdict bar. Nowhere else.
+
+A Clear verdict gets no colour at all. The absence is the signal: no colour means
+nothing is wrong. Never colour a clear or positive state.
+
+The score number, the vector bars, the rail, the buttons and every other element stay
+monochrome. If you find yourself reaching for either hue to decorate, brighten or draw
+attention to something that is not a verdict, the answer is value or inversion instead.
+
+Outside that exception, severity is inversion, not colour: a moderate finding is
+outlined, a clear one is grey.
 
 ## Type
 

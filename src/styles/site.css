@@ -577,6 +577,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 40px}
   --cy:#B8B8B8; --cy2:#8A8A8A; --cy3:rgba(255,255,255,.06);
   --rd:#FFFFFF; --rd2:rgba(255,255,255,.16);
   --sc-bad:#FFFFFF; --sc-mid:#8E8E8E; --sc-good:#C8C8C8;
+  /* The only two hues on the page. They mark a verdict and nothing else, and
+     each has a darker cut for the light paper of the report pages, where the
+     dark ground values would fail contrast. */
+  --sev-hi:#E2503B;      --sev-mid:#D9A15C;
+  --sev-hi-ink:#B3311F;  --sev-mid-ink:#8A5A18;
 }
 ::selection{background:#FFFFFF;color:#000000}
 .h1 .claim{color:#9A9A9A}
@@ -596,16 +601,16 @@ footer{border-top:1px solid var(--line);padding:44px 0 40px}
   #hint{top:calc(var(--heroband,32svh) + 9px);bottom:auto}
 }
 /* severity by inversion, not by hue */
-.vpill.bad{background:#FFFFFF;color:#000000;border:1px solid #FFFFFF;font-weight:500}
-.vpill.mid{background:transparent;color:#F4F3F1;border:1px solid rgba(255,255,255,.42)}
+.vpill.bad{background:rgba(226,80,59,.12);color:var(--sev-hi);border:1px solid rgba(226,80,59,.45);font-weight:500}
+.vpill.mid{background:rgba(217,161,92,.10);color:var(--sev-mid);border:1px solid rgba(217,161,92,.45)}
 .vpill.good{background:transparent;color:#9A9A9A;border:1px solid rgba(255,255,255,.20)}
-.sev.hi{background:#FFFFFF;color:#000000}
-.sev.md{background:transparent;color:#15151A;border:1px solid rgba(21,21,26,.45)}
+.sev.hi{background:var(--sev-hi-ink);color:#F4F2ED}
+.sev.md{background:transparent;color:var(--sev-mid-ink);border:1px solid rgba(138,90,24,.5)}
 .doc .vbox{border-color:#15151A!important}
 .doc .vbox .vv{color:#15151A!important}
-.vfind{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.035)}
-.vfind .fx{color:#FFFFFF}
-.verdictbar.vb-bad{background:#FFFFFF;color:#000;border-color:#FFFFFF}
+.vfind{border-color:rgba(226,80,59,.34);background:rgba(226,80,59,.05)}
+.vfind .fx{color:var(--sev-hi)}
+.verdictbar.vb-bad{background:rgba(226,80,59,.12);color:var(--sev-hi);border-color:rgba(226,80,59,.45)}
 .verdictbar.vb-ok{background:transparent;color:#B8B8B8;border-color:rgba(255,255,255,.28)}
 .tier li i{background:rgba(255,255,255,.5)}
 #hero .eyebrow .pip{background:#FFFFFF}
