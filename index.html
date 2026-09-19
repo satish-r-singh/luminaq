@@ -193,7 +193,7 @@
      </g></svg>
      <div class="cap">Fig 01 &nbsp;/&nbsp; Deal LQ-0231 &nbsp;/&nbsp; git log --numstat, 24 month window</div>
     </div>
-    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
+    <button class="figzoom" type="button">Tap to enlarge</button>
      <div class="vfind"><span class="fx">F-01 HIGH</span><span class="ft">Eighty one percent of the codebase was written in the eleven weeks before the raise, by a single author, with no review history. This is a demo built for a room, not a product built for users.</span></div>
    </div>
 
@@ -217,7 +217,7 @@
      </svg>
      <div class="cap">Fig 02 &nbsp;/&nbsp; Modelled from schema, queue config and connection limits</div>
     </div>
-    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
+    <button class="figzoom" type="button">Tap to enlarge</button>
      <div class="vfind"><span class="fx">F-04 HIGH</span><span class="ft">Every inference request writes synchronously to one primary database with a connection ceiling of 200. The architecture cannot reach the traction the model assumes without a rebuild of the persistence layer.</span></div>
    </div>
 
@@ -249,7 +249,7 @@
      </svg>
      <div class="cap">Fig 03 &nbsp;/&nbsp; Transitive dependency graph, production lockfile</div>
     </div>
-    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
+    <button class="figzoom" type="button">Tap to enlarge</button>
      <div class="vfind"><span class="fx">F-07 CRITICAL</span><span class="ft">A GPL-3.0 segmentation module sits four levels deep inside the inference path. Distributed as it is today, the copyleft terms reach the code the company calls proprietary. This is a legal question, not an engineering one, and it changes what you are buying.</span></div>
    </div>
    <!-- 04 -->
@@ -273,7 +273,7 @@
      </div>
      <div class="cap" style="position:static;margin-top:16px">Fig 04 &nbsp;/&nbsp; Live model, defaults are deal LQ-0231 as billed &nbsp;&middot;&nbsp; drag tokens to 9.5M to reach their heaviest decile</div>
     </div>
-    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
+    <button class="figzoom" type="button">Tap to enlarge</button>
      <div class="vfind"><span class="fx">F-11 HIGH</span><span class="ft">At blended usage the margin is eighty percent, which is survivable. The heaviest decile consumes seven times the average and crosses into loss at 7.1 million tokens per seat. That is the cohort the sales team is actively targeting, so growth moves this the wrong way. The deck also models tokens at USD 1.80, a rate the company has never actually paid.</span></div>
    </div>
 
@@ -306,7 +306,7 @@
      </svg>
      <div class="cap">Fig 05 &nbsp;/&nbsp; Data lineage reconstructed from pipeline code and storage buckets</div>
     </div>
-    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
+    <button class="figzoom" type="button">Tap to enlarge</button>
      <div class="vfind"><span class="fx">F-13 CRITICAL</span><span class="ft">Documents uploaded by three named enterprise customers are flowing into the training set. The company’s own master agreement forbids it. This is a contractual and regulatory exposure that sits on the balance sheet you are buying into.</span></div>
    </div>
 
@@ -331,7 +331,7 @@
      </svg>
      <div class="cap">Fig 06 &nbsp;/&nbsp; Claim mapping against repository contents and training artefacts</div>
     </div>
-    <div class="fighint" aria-hidden="true">Scroll the figure sideways</div>
+    <button class="figzoom" type="button">Tap to enlarge</button>
      <div class="vfind"><span class="fx">F-16 HIGH</span><span class="ft">No fine tuning has ever been run. The product is a 4.2 kilobyte system prompt in front of a general model, wrapped in a good interface. The interface is real work and has value. It is not a technical moat, and the deck prices it as one.</span></div>
    </div>
   </div>
@@ -674,6 +674,14 @@
   </div>
  </div>
 </footer>
+<!-- FIGURE VIEWER. On a phone each figure renders whole but small, so nothing
+     is ever cut off. This shows one at a size where the labels are readable,
+     pannable in both directions. One viewer is reused for all six figures. -->
+<div id="figview" role="dialog" aria-modal="true" aria-label="Figure detail" aria-hidden="true">
+  <button id="figclose" type="button">Close</button>
+  <div class="figviewport"><div class="figstage on"></div></div>
+</div>
+
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>
