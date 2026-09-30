@@ -20,7 +20,7 @@ code and signs his name to what he found. Any drift into "we" destroys it.
 "comprehensive technical assessment". Numbers, timeframes and nouns you can picture.
 
 **State the limits of the claim.** This is the most distinctive move in the voice and the
-thing that makes it credible. "I have no view on your thesis and no opinion on the
+thing that makes it credible. "I have no view on your market and no opinion on the
 founder." "Sometimes the answer is that it is not, and that is free." Naming what you do
 not claim is what makes the rest believable.
 
@@ -33,7 +33,7 @@ would survive being pasted onto any other consultancy's site, rewrite it.
 The signature structure is a claim and its reversal, two beats:
 
 > The pitch deck says unicorn. The code says weekend project.
-> You can read the founder. I read the code.
+> You know founders. I know what AI can and cannot do.
 > The point is not the deals I stopped.
 > Priced against the cheque.
 
